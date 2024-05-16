@@ -80,22 +80,26 @@ public class ViewEvent {
 
                 LocalDate eventDate = LocalDate.parse(event_date, formatter);
 
-                List<String> registeredEventTitles = Files.lines(Paths.get(username + ".csv"))
-                        .map(line -> line.split(",")[0]) // Assuming title is the first element in each line
-                        .collect(Collectors.toList());
+                String event_status = "Available"; // Default status
 
-                String event_status;
-                if (registeredEventTitles.contains(event_title)) {
-                    event_status = "Registered";
-                } else {
+                // Check if the file exists before attempting to read it
+                if (Files.exists(Paths.get(username + ".csv"))) {
+                    List<String> registeredEventTitles = Files.lines(Paths.get(username + ".csv"))
+                            .map(line -> line.split(",")[0]) // Assuming title is the first element in each line
+                            .collect(Collectors.toList());
+
+                    if (registeredEventTitles.contains(event_title)) {
+                        event_status = "Registered";
+                    }
+                }
+                else{
                     event_status = "Available";
                 }
 
                 if (!eventDate.isBefore(LocalDate.now())) {
-                    eventInfo = new EventInfo(event_id, event_title, event_description, event_venue, event_date, event_time,event_status);
+                    eventInfo = new EventInfo(event_id, event_title, event_description, event_venue, event_date, event_time, event_status);
                     listData.add(eventInfo);
                 }
-
             }
 
 
@@ -159,7 +163,7 @@ public class ViewEvent {
     }
 
     public List<String> getEventTitles() {
-        return addEventList.stream()
+        return addEventList2.stream()
                 .map(EventInfo::getEvent_title)
                 .collect(Collectors.toList());
     }

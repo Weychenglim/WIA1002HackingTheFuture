@@ -375,10 +375,10 @@
                                                 </AnchorPane>
                                                 <TableView fx:id="LeaderBoardTable" layoutX="14.0" layoutY="110.0" prefHeight="400.0" prefWidth="847.0">
                                                     <columns>
-                                                        <TableColumn fx:id="LeaderboardNumber" prefWidth="75.0" text="No" />
-                                                        <TableColumn fx:id="LeaderboardStudentName" prefWidth="254.4000244140625" text="Student Name" />
-                                                        <TableColumn fx:id="LeaderboardParentName" prefWidth="277.5999755859375" text="Parent Name" />
-                                                        <TableColumn fx:id="LeaderboardTotlPoints" prefWidth="277.5999755859375" text="Total Points" />
+                                                        <TableColumn fx:id="LeaderboardNumber" prefWidth="70.39997863769531" text="No" />
+                                                        <TableColumn fx:id="LeaderboardStudentName" prefWidth="352.79998779296875" text="Username" />
+                                                        <TableColumn fx:id="LeaderboardPoints" prefWidth="160.800048828125" text="Points" />
+                                                        <TableColumn fx:id="LeaderboardTime" prefWidth="302.4000244140625" text="Last Updated" />
                                                     </columns>
                                                 </TableView>
                                             </children>
@@ -586,7 +586,7 @@
                                                         <Pane fx:id="RegisterEventTimePane" layoutX="162.0" layoutY="240.0" prefHeight="32.0" prefWidth="355.0" styleClass="white-background" stylesheets="@DashBoardDesign.css" />
                                                     </children>
                                                 </Pane>
-                                                <Button fx:id="RegisterEventsComfirmButton" onAction="#switchForm" layoutX="398.0" layoutY="471.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="106.0" styleClass="nav-form" stylesheets="@DashBoardDesign.css" text="Confirm">
+                                                <Button fx:id="RegisterEventsComfirmButton" layoutX="398.0" layoutY="471.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="43.0" prefWidth="106.0" styleClass="nav-form" stylesheets="@DashBoardDesign.css" text="Confirm">
                                                     <font>
                                                         <Font name="Berlin Sans FB Bold" size="18.0" />
                                                     </font>

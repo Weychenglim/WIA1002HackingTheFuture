@@ -114,6 +114,8 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(false);
             AddEventsForm.setVisible(false);
             RegisterEventsForm.setVisible(false);
+            LeaderboardRanking obj = new LeaderboardRanking();
+            obj.initialize(LeaderBoardTable,LeaderboardNumber,LeaderboardPoints,LeaderboardStudentName,LeaderboardTime);
         }else if(event.getSource() == AddQuizButton){
             AddNewQuiz<?> obj;
             if (role.equals("EDUCATOR")) {
@@ -251,8 +253,6 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             obj.clearMenuButtonPane();
             obj.initialize(RegisterEventDatePane, RegisterEventDescriptionPane, RegisterEventTimePane, RegisterEventVenusPane, MenuButtonRegisterEvent);
         }
-
-
     }
 
     @FXML
@@ -298,7 +298,19 @@ public class DashBoardController extends SixteenDashboard implements Initializab
     private Button LeaderBoardButton;
 
     @FXML
-    private TableView<?> LeaderBoardTable;
+    private TableView<LeaderboardInfo> LeaderBoardTable;
+
+    @FXML
+    private TableColumn<LeaderboardInfo,Integer> LeaderboardNumber;
+
+    @FXML
+    private TableColumn<LeaderboardInfo,Integer> LeaderboardPoints;
+
+    @FXML
+    private TableColumn<LeaderboardInfo,String> LeaderboardStudentName;
+
+    @FXML
+    private TableColumn<LeaderboardInfo,String> LeaderboardTime;
 
     @FXML
     private Button NotificationButton;

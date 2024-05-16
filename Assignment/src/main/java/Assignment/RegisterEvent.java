@@ -56,7 +56,7 @@ public class RegisterEvent<T extends YoungStudents> extends ViewEvent {
 
 
     public void updateNumPoints() {
-        String sql = "UPDATE user.student SET CURRENT_POINTS = CURRENT_POINTS + 1, timepointsupdated = ? WHERE STUDENT_USERNAME = ?";
+        String sql = "UPDATE user.student SET CURRENT_POINTS = CURRENT_POINTS + 5, timepointsupdated = ? WHERE STUDENT_USERNAME = ?";
 
         try {
             this.connection = DatabaseConnector.getConnection();
@@ -159,6 +159,11 @@ public class RegisterEvent<T extends YoungStudents> extends ViewEvent {
     }
 
     public void confirmRegistration() {
+        if (registeredEvent == null) {
+            // No event is selected
+            showAlert(Alert.AlertType.ERROR, "Error Message", "Please select an event first.");
+            return; // Exit the method early
+        }
         Alert alert;
         if (checkEventClash(registeredEvent, username)) {
             // Event clashes with existing events
@@ -175,6 +180,7 @@ public class RegisterEvent<T extends YoungStudents> extends ViewEvent {
             alert.setHeaderText(null);
             alert.setContentText("Successfully Registered!");
             alert.showAndWait();
+            updateNumPoints();
         }
     }
 
@@ -244,6 +250,7 @@ public class RegisterEvent<T extends YoungStudents> extends ViewEvent {
         RegisterEventDescriptionPane.getChildren().clear();
         RegisterEventVenusPane.getChildren().clear();
         RegisterEventTimePane.getChildren().clear();
+        registeredEvent = null;
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String content) {
