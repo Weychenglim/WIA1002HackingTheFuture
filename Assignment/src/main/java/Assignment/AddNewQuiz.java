@@ -56,6 +56,8 @@ public class AddNewQuiz<T extends Educators> {
     @FXML
     private MenuItem technologyMenuItem;
 
+    private static String username;
+
 
     private Connection connection;
     private PreparedStatement preparedStatement;
@@ -66,8 +68,30 @@ public class AddNewQuiz<T extends Educators> {
 
     }
 
-    public AddNewQuiz(MenuButton AddMenuButton) {
-        this.AddMenuButton = AddMenuButton;
+    public AddNewQuiz(String username){
+        AddNewQuiz.username=username;
+    }
+
+    public void updateNumQuiz(){
+        String sql = "UPDATE user.educator SET NUM_QUIZZES_CREATED = NUM_QUIZZES_CREATED + 1 WHERE EDUCATOR_USERNAME = ?";
+
+        try {
+            this.connection = DatabaseConnector.getConnection();
+            this.preparedStatement = connection.prepareStatement(sql);
+            System.out.println(username);
+            preparedStatement.setString(1, username);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                showAlert(Alert.AlertType.INFORMATION, "INFO Message", "Number of quizzes created updated successfully.");
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Error Message", "Failed to update the number of quizzes created.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error Message", "An error occurred while updating the number of quizzes created.");
+        }
     }
 
     public void initializeMenuButton(MenuItem engineeringMenuItem, MenuItem mathematicsMenuItem, MenuItem scienceMenuItem,MenuItem technologyMenuItem){
@@ -146,9 +170,9 @@ public class AddNewQuiz<T extends Educators> {
             return;
         }
 
-        AddQuizTitleTextField.setText(String.valueOf(quizD.getQuiz_ID()));
-        AddQuizDescriptionTextField.setText(quizD.getQuiz_Title());
-        AddQuizContentTextField.setText(quizD.getQuiz_content());
+        this.AddQuizTitleTextField.setText(quizD.getQuiz_Title());
+        this.AddQuizDescriptionTextField.setText(quizD.getQuiz_Description());
+        this.AddQuizContentTextField.setText(quizD.getQuiz_content());
     }
 
     public void addNewQuiz() {
@@ -188,6 +212,7 @@ public class AddNewQuiz<T extends Educators> {
                     alert.setHeaderText(null);
                     alert.setContentText("Successfully Added!");
                     alert.showAndWait();
+                    updateNumQuiz();
 
                     addQuizShowQuizInfo(ViewQuizNumber, ViewQuizTitle, ViewQuizDescription, ViewQuizTheme, ViewQuizContent, AddQuizTable);
                     addQuizClear();

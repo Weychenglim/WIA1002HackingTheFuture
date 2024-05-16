@@ -244,6 +244,7 @@ public class Login extends javax.swing.JFrame {
             // TODO add your handling code here:
         }//GEN-LAST:event_jComboBox1ActionPerformed
 
+
         private boolean authenticatePlayer(String username, String password) {
             // Implement logic to authenticate the player
             // For example (this is a placeholder, replace it with your database logic):

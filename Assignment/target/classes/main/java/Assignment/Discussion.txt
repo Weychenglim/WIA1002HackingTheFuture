@@ -1,3 +1,4 @@
 CHAT: 
 a (EDUCATOR): HI
 b (PARENT): Bye
+a (EDUCATOR): FUCK you

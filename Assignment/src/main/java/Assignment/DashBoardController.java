@@ -1,8 +1,5 @@
 package Assignment;
 
-import com.gluonhq.charm.glisten.control.DropdownButton;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -67,6 +64,17 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddEventsForm.setVisible(false);
             RegisterEventsForm.setVisible(false);
         }else if(event.getSource()== QuizzesButton){
+            ViewQuiz <?> obj;
+            if (role.equals("STUDENT")) {
+                obj = new ViewQuiz <YoungStudents>();
+            } else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Only Students can accessed !!");
+                alert.showAndWait();
+                return;
+            }
             homeform.setVisible(false);
             Quizzesform.setVisible(true);
             EventsForm.setVisible(false);
@@ -75,6 +83,8 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(false);
             AddEventsForm.setVisible(false);
             RegisterEventsForm.setVisible(false);
+            obj.initializeTickBox(ScienceTickBox, TechnologyTickBox, EngineeringTickBox, MathematicTickBox);
+            obj.ShowQuizInfo(QuizesNumber,QuizesQuizTitle,QuizezQuizDescribtion,QuizesQuizTheme,QuizesQuizLink,QuizTable);
         }else if(event.getSource()==EventsButton){
             homeform.setVisible(false);
             Quizzesform.setVisible(false);
@@ -84,6 +94,8 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(false);
             AddEventsForm.setVisible(false);
             RegisterEventsForm.setVisible(false);
+            ViewEvent obj = new ViewEvent(username);
+            obj.ShowEventInfo(EventNumber,EventTitle,EventDescription,EventsVenue,EventDate,EventTime,EventTable,EventsStatus);
         }else if(event.getSource()==BookingButton){
             homeform.setVisible(false);
             Quizzesform.setVisible(false);
@@ -105,9 +117,8 @@ public class DashBoardController extends SixteenDashboard implements Initializab
         }else if(event.getSource() == AddQuizButton){
             AddNewQuiz<?> obj;
             if (role.equals("EDUCATOR")) {
-                obj = new AddNewQuiz<Educators>();
+                obj = new AddNewQuiz<Educators>(username);
             } else{
-                System.out.println("a");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
@@ -126,18 +137,18 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             obj.initializeMenuButton(engineeringMenuItem,mathematicsMenuItem,scienceMenuItem,technologyMenuItem);
             obj.addQuizShowQuizInfo(ViewQuizNumber, ViewQuizTitle,ViewQuizDescription,ViewQuizTheme,ViewQuizContent,AddQuizTable);
             obj.setQuizField(AddQuizTitleTextField,AddQuizDescriptionTextField,AddQuizContentTextField, AddMenuButton);
-
-        }else if(event.getSource() == AddEventsButton){
-            homeform.setVisible(false);
-            Quizzesform.setVisible(false);
-            EventsForm.setVisible(false);
-            BookingForm.setVisible(false);
-            LeaderBoardForm.setVisible(false);
-            AddQuizForm.setVisible(false);
-            AddEventsForm.setVisible(true);
-            RegisterEventsForm.setVisible(false);
-        }
-        else if(event.getSource() == EventsRegisterButton){
+        } else if(event.getSource() == EventsRegisterButton){
+            RegisterEvent <?> obj;
+            if (role.equals("STUDENT")) {
+                obj = new  RegisterEvent <YoungStudents>();
+            } else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Only Students can accessed !!");
+                alert.showAndWait();
+                return;
+            }
             homeform.setVisible(false);
             Quizzesform.setVisible(false);
             EventsForm.setVisible(false);
@@ -146,7 +157,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(false);
             AddEventsForm.setVisible(false);
             RegisterEventsForm.setVisible(true);
-            addChoice();
+            obj.initialize(RegisterEventDatePane, RegisterEventDescriptionPane, RegisterEventTimePane, RegisterEventVenusPane, MenuButtonRegisterEvent);
         }else if(event.getSource() == AddQuizAddButton){
             homeform.setVisible(false);
             Quizzesform.setVisible(false);
@@ -176,10 +187,79 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             obj.addQuizShowQuizInfo(ViewQuizNumber, ViewQuizTitle,ViewQuizDescription,ViewQuizTheme,ViewQuizContent,AddQuizTable);
             obj.setQuizField(AddQuizTitleTextField,AddQuizDescriptionTextField,AddQuizContentTextField, AddMenuButton);
             obj.addQuizDelete();
+        } else if(event.getSource() == AddEventsButton){
+            AddNewEvent<?> obj;
+            if (role.equals("EDUCATOR")) {
+                obj = new AddNewEvent<Educators>(username);
+            } else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Only Educators can accessed !!");
+                alert.showAndWait();
+                return;
+            }
+            homeform.setVisible(false);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(true);
+            RegisterEventsForm.setVisible(false);
+            obj.addEventShowEventInfo(AddEventNumber,AddEventTitle,AddEventDescription,AddEventVenue,AddEventDate,AddEventTime,AddEventTable);
+            obj.setEventField(AddEventsTitleTextField,AddEventsDescriptionTextField,AddEventsVenusTextField,AddEventsTimeTextField,AddEventsDateTextField);
+        }else if(event.getSource() == AddEventsAddButton){
+            homeform.setVisible(false);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(true);
+            RegisterEventsForm.setVisible(false);
+            AddNewEvent obj = new AddNewEvent();
+            obj.addEventShowEventInfo(AddEventNumber,AddEventTitle,AddEventDescription,AddEventVenue,AddEventDate,AddEventTime,AddEventTable);
+            obj.setEventField(AddEventsTitleTextField,AddEventsDescriptionTextField,AddEventsVenusTextField,AddEventsTimeTextField,AddEventsDateTextField);
+            obj.addNewEvent();
+        }else if(event.getSource() == AddEventsDeleteButton){
+            homeform.setVisible(false);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(true);
+            RegisterEventsForm.setVisible(false);
+            AddNewEvent obj = new AddNewEvent();
+            obj.addEventShowEventInfo(AddEventNumber,AddEventTitle,AddEventDescription,AddEventVenue,AddEventDate,AddEventTime,AddEventTable);
+            obj.setEventField(AddEventsTitleTextField,AddEventsDescriptionTextField,AddEventsVenusTextField,AddEventsTimeTextField,AddEventsDateTextField);
+            obj.deleteEvent();
+        }
+        else if(event.getSource()== RegisterEventsComfirmButton){
+            RegisterEvent obj = new RegisterEvent(username);
+            obj.confirmRegistration();
+            homeform.setVisible(false);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(false);
+            RegisterEventsForm.setVisible(true);
+            obj.initialize(RegisterEventDatePane, RegisterEventDescriptionPane, RegisterEventTimePane, RegisterEventVenusPane, MenuButtonRegisterEvent);
+            obj.clearMenuButtonPane();
+            obj.initialize(RegisterEventDatePane, RegisterEventDescriptionPane, RegisterEventTimePane, RegisterEventVenusPane, MenuButtonRegisterEvent);
         }
 
 
     }
+
+    @FXML
+    private Button RegisterEventsComfirmButton;
+
+    @FXML
+    private MenuButton MenuButtonRegisterEvent;
 
     @FXML
     private AnchorPane main_form;
@@ -209,30 +289,6 @@ public class DashBoardController extends SixteenDashboard implements Initializab
     private TableView<?> EventsTable;
 
     @FXML
-    private DropdownButton RegisterEventsEventTitleDropDown;
-    private String[] sexList = {"Male", "Female"};
-
-    public void addChoice() {
-        ObservableList<MenuItem> menuItems = FXCollections.observableArrayList();
-
-        for (String data : sexList) {
-            MenuItem menuItem = new MenuItem(data);
-            menuItem.setOnAction(event -> {
-                // Get the source of the event, which is the clicked MenuItem
-                MenuItem clickedItem = (MenuItem) event.getSource();
-                // Set the selected item of the DropdownButton
-                RegisterEventsEventTitleDropDown.setSelectedItem(clickedItem);
-            });
-            menuItems.add(menuItem);
-        }
-
-        // Set the items of the dropdown button
-        RegisterEventsEventTitleDropDown.getItems().setAll(menuItems);
-    }
-
-
-
-    @FXML
     private Button HomeButton;
 
     @FXML
@@ -250,24 +306,29 @@ public class DashBoardController extends SixteenDashboard implements Initializab
     @FXML
     private Button QuizzesButton;
 
+    @FXML
+    private TableView<QuizInfo> QuizTable;
 
     @FXML
-    private TableColumn<?, ?> QuizesDone;
+    private TableColumn<QuizInfo,String> QuizesDone;
 
     @FXML
-    private TableColumn<?, ?> QuizesNumber;
+    private TableColumn<QuizInfo,Integer> QuizesNumber;
 
     @FXML
-    private TableColumn<?, ?> QuizesQuizLink;
+    private TableColumn<QuizInfo,String> QuizesQuizLink;
 
     @FXML
-    private TableColumn<?, ?> QuizesQuizTheme;
+    private TableColumn<QuizInfo,String> QuizesQuizTheme;
 
     @FXML
-    private TableColumn<?, ?> QuizesQuizTitle;
+    private TableColumn<QuizInfo,String> QuizesQuizTitle;
 
     @FXML
-    private TableColumn<?, ?> QuizezQuizDescribtion;
+    private TableColumn<QuizInfo,String> QuizesStatus;
+
+    @FXML
+    private TableColumn<QuizInfo,String> QuizezQuizDescribtion;
 
     @FXML
     private CheckBox ScienceTickBox;
@@ -312,10 +373,32 @@ public class DashBoardController extends SixteenDashboard implements Initializab
     private CheckBox EngineeringTickBox;
 
     @FXML
-    private TableColumn<?, ?> EventDate;
+    private CheckBox MathematicTickBox;
 
     @FXML
-    private TableColumn<?, ?> EventTime;
+    private TableColumn<EventInfo, String> EventDate;
+
+    @FXML
+    private TableColumn<EventInfo, String> EventDescription;
+
+    @FXML
+    private TableColumn<EventInfo, Integer> EventNumber;
+
+    @FXML
+    private TableView<EventInfo> EventTable;
+
+    @FXML
+    private TableColumn<EventInfo, String> EventTime;
+
+    @FXML
+    private TableColumn<EventInfo, String> EventTitle;
+
+
+    @FXML
+    private TableColumn<EventInfo, String> EventsStatus;
+
+    @FXML
+    private TableColumn<EventInfo, String> EventsVenue;
 
     @FXML
     private Button DiscussionBoardSendButton;
@@ -361,25 +444,25 @@ public class DashBoardController extends SixteenDashboard implements Initializab
     private Button mininimizebutton;
 
     @FXML
-    private TableView<?> AddEventTable;
+    private TableView<EventInfo> AddEventTable;
 
     @FXML
-    private TableColumn<?, ?> AddEventTime;
+    private TableColumn<EventInfo,String> AddEventTime;
 
     @FXML
-    private TableColumn<?, ?> AddEventTitle;
+    private TableColumn<EventInfo,String> AddEventTitle;
 
     @FXML
-    private TableColumn<?, ?> AddEventVenue;
+    private TableColumn<EventInfo,String> AddEventVenue;
 
     @FXML
-    private TableColumn<?, ?> AddEventDate;
+    private TableColumn<EventInfo,String> AddEventDate;
 
     @FXML
-    private TableColumn<?, ?> AddEventDescription;
+    private TableColumn<EventInfo,String> AddEventDescription;
 
     @FXML
-    private TableColumn<?, ?> AddEventNumber;
+    private TableColumn<EventInfo,String> AddEventNumber;
 
     @FXML
     private TableColumn<QuizInfo, String> ViewQuizContent;
@@ -445,7 +528,6 @@ public class DashBoardController extends SixteenDashboard implements Initializab
         discussionBoard = new AddDiscussionBoard(DiscussionBoardDisplay, DiscussionBoardTextField, DiscussionBoardSendButton, username, role);
         discussionBoard.displayDiscussion();
         DiscussionBoardSendButton.setOnAction(event -> discussionBoard.postMessage());
-
     }
 
     public void LogOut(ActionEvent actionEvent) {

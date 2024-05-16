@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.DropdownButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import java.net.URL?>
@@ -100,7 +99,7 @@
                                                 <FontAwesomeIconView glyphName="SIGN_OUT" size="2EM" />
                                             </graphic>
                                         </Button>
-                                        <Label fx:id="LogOutLabel" layoutX="72.0" layoutY="508.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="Logout" textFill="#fff6f6">
+                                        <Label fx:id="LogOutLabel" layoutX="72.0" layoutY="508.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="LogOut" textFill="#fff6f6">
                                             <font>
                                                 <Font name="Tahoma" size="16.0" />
                                             </font>
@@ -142,35 +141,23 @@
                                             <children>
                                                 <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="72.0" prefWidth="875.0" stylesheets="@DashBoardDesign.css">
                                                     <children>
-                                                        <Button fx:id="UserProfileButton" layoutX="793.0" layoutY="13.0" mnemonicParsing="false" styleClass="User-Profile-bttn" stylesheets="@DashBoardDesign.css">
-                                                            <graphic>
-                                                                <FontAwesomeIconView glyphName="USER" />
-                                                            </graphic>
-                                                        </Button>
-                                                        <Button fx:id="NotificationButton" layoutX="706.0" layoutY="14.0" mnemonicParsing="false" styleClass="User-Profile-bttn" stylesheets="@DashBoardDesign.css">
-                                                            <graphic>
-                                                                <FontAwesomeIconView glyphName="BELL" />
-                                                            </graphic>
-                                                        </Button>
-                                                        <Label layoutX="689.0" layoutY="41.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="Notification" />
-                                                        <Label layoutX="784.0" layoutY="41.0" prefHeight="18.0" prefWidth="70.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="User Profile" />
+                                                        <Button fx:id="UserProfileButton" layoutX="793.0" layoutY="13.0" mnemonicParsing="false" styleClass="User-Profile-bttn" stylesheets="@DashBoardDesign.css" />
+                                                        <Button fx:id="NotificationButton" layoutX="706.0" layoutY="14.0" mnemonicParsing="false" styleClass="User-Profile-bttn" stylesheets="@DashBoardDesign.css" />
+                                                        <Label layoutX="706.0" layoutY="41.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="Notification" />
+                                                        <Label layoutX="793.0" layoutY="41.0" prefHeight="18.0" prefWidth="70.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="User Profile" />
                                                         <Label layoutX="14.0" layoutY="11.0" prefHeight="50.0" prefWidth="200.0" text="GOOD DAY">
                                                             <font>
                                                                 <Font name="Berlin Sans FB Bold" size="24.0" />
                                                             </font>
                                                         </Label>
-                                                        <Button fx:id="ConnectionButton" layoutX="612.0" layoutY="14.0" mnemonicParsing="false" styleClass="User-Profile-bttn" stylesheets="@DashBoardDesign.css">
-                                                            <graphic>
-                                                                <FontAwesomeIconView />
-                                                            </graphic>
-                                                        </Button>
-                                                        <Label layoutX="592.0" layoutY="41.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="Connections" />
-                                                        <Button fx:id="AddRelationshipButton" layoutX="516.0" layoutY="13.0" mnemonicParsing="false" styleClass="User-Profile-bttn" stylesheets="@DashBoardDesign.css">
-                                                            <graphic>
-                                                                <FontAwesomeIconView glyphName="PLUS_CIRCLE" />
-                                                            </graphic>
-                                                        </Button>
-                                                        <Label layoutX="481.0" layoutY="41.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="Add Relationships" />
+                                                        <Button fx:id="ConnectionButton" layoutX="612.0" layoutY="14.0" mnemonicParsing="false" styleClass="User-Profile-bttn" stylesheets="@DashBoardDesign.css" />
+                                                        <Label layoutX="611.0" layoutY="41.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="Connections" />
+                                                        <Button fx:id="AddRelationshipButton" layoutX="516.0" layoutY="13.0" mnemonicParsing="false" styleClass="User-Profile-bttn" stylesheets="@DashBoardDesign.css" />
+                                                        <Label layoutX="479.0" layoutY="41.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="Add Relationships" />
+                                                          <FontAwesomeIconView glyphName="PLUS_CIRCLE" layoutX="527.0" layoutY="33.0" />
+                                                          <FontAwesomeIconView glyphName="BELL" layoutX="736.0" layoutY="32.0" />
+                                                          <FontAwesomeIconView layoutX="642.0" layoutY="33.0" text="" />
+                                                          <FontAwesomeIconView glyphName="USER" layoutX="815.0" layoutY="33.0" />
                                                     </children>
                                                     <styleClass>
                                                         <String fx:value="nav-form" />
@@ -238,7 +225,7 @@
                                                             </graphic>
                                                         </Label>
                                                         <Button layoutX="655.0" layoutY="26.0" mnemonicParsing="false" styleClass="nav-button" stylesheets="@DashBoardDesign.css" />
-                                                        <CheckBox fx:id="ScienceTickBox" layoutX="250.0" layoutY="30.0" mnemonicParsing="false" text="Sciences">
+                                                        <CheckBox fx:id="ScienceTickBox" layoutX="250.0" layoutY="30.0" mnemonicParsing="false" text="Science">
                                                             <font>
                                                                 <Font name="Berlin Sans FB Bold" size="17.0" />
                                                             </font>
@@ -266,7 +253,7 @@
                                                         <String fx:value="shadow" />
                                                     </styleClass>
                                                     <children>
-                                                        <TableView layoutX="14.0" layoutY="14.0" prefHeight="322.0" prefWidth="826.0">
+                                                        <TableView fx:id="QuizTable" layoutX="14.0" layoutY="14.0" prefHeight="322.0" prefWidth="826.0">
                                                             <columns>
                                                                 <TableColumn fx:id="QuizesNumber" prefWidth="35.99998474121094" text="No" />
                                                                 <TableColumn fx:id="QuizesQuizTitle" prefWidth="171.19998168945312" text="Quiz Title" />
@@ -295,9 +282,9 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                         </AnchorPane>
-                                        <AnchorPane fx:id="EventsForm" layoutX="14.0" layoutY="15.0" prefHeight="522.0" prefWidth="843.0" stylesheets="@DashBoardDesign.css" visible="false">
+                                        <AnchorPane fx:id="EventsForm" layoutX="14.0" layoutY="15.0" prefHeight="522.0" prefWidth="873.0" stylesheets="@DashBoardDesign.css" visible="false">
                                             <children>
-                                                <AnchorPane layoutX="14.0" layoutY="16.0" prefHeight="78.0" prefWidth="827.0" stylesheets="@DashBoardDesign.css">
+                                                <AnchorPane layoutX="14.0" layoutY="16.0" prefHeight="78.0" prefWidth="844.0" stylesheets="@DashBoardDesign.css">
                                                     <styleClass>
                                                         <String fx:value="nav-form" />
                                                         <String fx:value="shadow" />
@@ -320,15 +307,15 @@
                                                         <String fx:value="shadow" />
                                                     </styleClass>
                                                 </Button>
-                                                <TableView layoutX="14.0" layoutY="105.0" prefHeight="351.0" prefWidth="818.0">
+                                                <TableView fx:id="EventTable" layoutX="14.0" layoutY="105.0" prefHeight="351.0" prefWidth="845.0">
                                                     <columns>
                                                         <TableColumn fx:id="EventNumber" prefWidth="32.80000305175781" text="No" />
                                                         <TableColumn fx:id="EventTitle" prefWidth="161.5999755859375" text="Title" />
-                                                        <TableColumn fx:id="EventDescription" prefWidth="179.20001220703125" text="Description" />
-                                                        <TableColumn fx:id="EventsVenue" prefWidth="147.2000732421875" text="Venue" />
-                                                        <TableColumn fx:id="EventDate" prefWidth="102.39996337890625" text="Date" />
-                                                        <TableColumn fx:id="EventTime" prefWidth="114.40008544921875" text="Time" />
-                                                        <TableColumn fx:id="EventsStatus" prefWidth="79.20001220703125" text="Status" />
+                                                        <TableColumn fx:id="EventDescription" prefWidth="205.5999755859375" text="Description" />
+                                                        <TableColumn fx:id="EventsVenue" prefWidth="133.60003662109375" text="Venue" />
+                                                        <TableColumn fx:id="EventDate" prefWidth="112.0" text="Date" />
+                                                        <TableColumn fx:id="EventTime" prefWidth="108.79998779296875" text="Time" />
+                                                        <TableColumn fx:id="EventsStatus" prefWidth="91.20013427734375" text="Status" />
                                                     </columns>
                                                 </TableView>
                                             </children>
@@ -431,7 +418,7 @@
                                                                 <Font name="Arial Bold" size="19.0" />
                                                             </font>
                                                         </Button>
-                                                        <Button fx:id="AddQuizDeleteButton" layoutX="21.0" layoutY="373.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="227.0" styleClass="close" stylesheets="@DashBoardDesign.css" text="Delete" onAction="#switchForm">
+                                                        <Button fx:id="AddQuizDeleteButton" layoutX="21.0" layoutY="373.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="227.0" styleClass="close" stylesheets="@DashBoardDesign.css" text="Delete">
                                                             <font>
                                                                 <Font name="Arial Bold" size="19.0" />
                                                             </font>
@@ -519,11 +506,11 @@
                                                             </font>
                                                         </Label>
                                                         <TextField fx:id="AddEventsTimeTextField" layoutX="92.0" layoutY="243.0" prefHeight="26.0" prefWidth="146.0" />
-                                                        <Button fx:id="AddEventsAddButton" layoutX="20.0" layoutY="290.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="221.0" styleClass="minimize" stylesheets="@DashBoardDesign.css" text="Add">
+                                                        <Button fx:id="AddEventsAddButton" layoutX="20.0" layoutY="290.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="39.0" prefWidth="221.0" styleClass="minimize" stylesheets="@DashBoardDesign.css" text="Add">
                                                             <font>
                                                                 <Font name="Arial Bold" size="20.0" />
                                                             </font></Button>
-                                                        <Button fx:id="AddEventsDeleteButton" layoutX="21.0" layoutY="343.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="221.0" styleClass="close" stylesheets="@DashBoardDesign.css" text="Delete" onAction="#switchForm">
+                                                        <Button fx:id="AddEventsDeleteButton" layoutX="21.0" layoutY="343.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="39.0" prefWidth="221.0" styleClass="close" stylesheets="@DashBoardDesign.css" text="Delete">
                                                             <font>
                                                                 <Font name="Arial Bold" size="20.0" />
                                                             </font>
@@ -566,55 +553,50 @@
                                                         </Label>
                                                     </children>
                                                 </AnchorPane>
-                                                <Label layoutX="128.0" layoutY="127.0" text="Event Title :">
+                                                <Label layoutX="96.0" layoutY="127.0" text="Event Title :">
                                                     <font>
                                                         <Font name="Berlin Sans FB Bold" size="20.0" />
                                                     </font>
                                                 </Label>
-                                                <DropdownButton fx:id="RegisterEventsEventTitleDropDown" layoutX="316.0" layoutY="125.0" prefHeight="38.0" prefWidth="119.0" stylesheets="@DashBoardDesign.css">
-                                                    <items>
-                                                        <MenuItem text="Choice 1" />
-                                                        <MenuItem text="Choice 2" />
-                                                        <MenuItem text="Choice 3" />
-                                                    </items>
-                                                    <styleClass>
-                                                        <String fx:value="white-background" />
-                                                        <String fx:value="shadow" />
-                                                    </styleClass>
-                                                </DropdownButton>
                                                 <Pane layoutX="28.0" layoutY="172.0" prefHeight="282.0" prefWidth="524.0" styleClass="white-background" stylesheets="@DashBoardDesign.css">
                                                     <children>
-                                                        <Label layoutX="21.0" layoutY="23.0" text="Event Description :">
+                                                        <Label layoutX="21.0" layoutY="13.0" text="Event Description :">
                                                             <font>
                                                                 <Font name="Berlin Sans FB Bold" size="15.0" />
                                                             </font>
                                                         </Label>
-                                                        <Pane fx:id="RegisterEventDescriptionPane" layoutX="161.0" layoutY="14.0" prefHeight="106.0" prefWidth="354.0" styleClass="white-background" stylesheets="@DashBoardDesign.css" />
+                                                        <Pane fx:id="RegisterEventDescriptionPane" layoutX="163.0" layoutY="14.0" prefHeight="106.0" prefWidth="352.0" styleClass="white-background" stylesheets="@DashBoardDesign.css" />
                                                         <Label layoutX="21.0" layoutY="131.0" text="Event Venue :">
                                                             <font>
                                                                 <Font name="Berlin Sans FB Bold" size="15.0" />
                                                             </font>
                                                         </Label>
-                                                        <Pane fx:id="RegisterEventVenusPane" layoutX="161.0" layoutY="132.0" prefHeight="47.0" prefWidth="353.0" styleClass="white-background" stylesheets="@DashBoardDesign.css" />
+                                                        <Pane fx:id="RegisterEventVenusPane" layoutX="163.0" layoutY="132.0" prefHeight="47.0" prefWidth="353.0" styleClass="white-background" stylesheets="@DashBoardDesign.css" />
                                                         <Label layoutX="21.0" layoutY="187.0" text="Event Date :">
                                                             <font>
                                                                 <Font name="Berlin Sans FB Bold" size="15.0" />
                                                             </font>
                                                         </Label>
-                                                        <Pane fx:id="RegisterEventDatePane" layoutX="162.0" layoutY="182.0" prefHeight="32.0" prefWidth="353.0" styleClass="white-background" stylesheets="@DashBoardDesign.css" />
-                                                        <Label layoutX="26.0" layoutY="235.0" text="Event Time :">
+                                                        <Pane fx:id="RegisterEventDatePane" layoutX="162.0" layoutY="192.0" prefHeight="32.0" prefWidth="354.0" styleClass="white-background" stylesheets="@DashBoardDesign.css" />
+                                                        <Label layoutX="21.0" layoutY="240.0" text="Event Time :">
                                                             <font>
                                                                 <Font name="Berlin Sans FB Bold" size="15.0" />
                                                             </font>
                                                         </Label>
-                                                        <Pane fx:id="RegisterEventTimePane" layoutX="161.0" layoutY="230.0" prefHeight="32.0" prefWidth="353.0" styleClass="white-background" stylesheets="@DashBoardDesign.css" />
+                                                        <Pane fx:id="RegisterEventTimePane" layoutX="162.0" layoutY="240.0" prefHeight="32.0" prefWidth="355.0" styleClass="white-background" stylesheets="@DashBoardDesign.css" />
                                                     </children>
                                                 </Pane>
-                                                <Button fx:id="RegisterEventsComfirmButton" layoutX="398.0" layoutY="471.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="106.0" styleClass="nav-form" stylesheets="@DashBoardDesign.css" text="Confirm">
+                                                <Button fx:id="RegisterEventsComfirmButton" onAction="#switchForm" layoutX="398.0" layoutY="471.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="106.0" styleClass="nav-form" stylesheets="@DashBoardDesign.css" text="Confirm">
                                                     <font>
                                                         <Font name="Berlin Sans FB Bold" size="18.0" />
                                                     </font>
                                                 </Button>
+                                    <MenuButton fx:id="MenuButtonRegisterEvent" layoutX="225.0" layoutY="129.0" mnemonicParsing="false" text="Select Event">
+                                      <items>
+                                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                                      </items>
+                                    </MenuButton>
                                             </children>
                                         </AnchorPane>
                                     </children></AnchorPane>
