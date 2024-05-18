@@ -68,7 +68,7 @@ public class ViewEvent {
             this.preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
             while (resultSet.next()) {
                 int event_id = resultSet.getInt("event_id");
@@ -92,10 +92,6 @@ public class ViewEvent {
                         event_status = "Registered";
                     }
                 }
-                else{
-                    event_status = "Available";
-                }
-
                 if (!eventDate.isBefore(LocalDate.now())) {
                     eventInfo = new EventInfo(event_id, event_title, event_description, event_venue, event_date, event_time, event_status);
                     listData.add(eventInfo);
@@ -113,12 +109,12 @@ public class ViewEvent {
 
         // Separate live events and upcoming events
         List<EventInfo> liveEvents = listData.stream()
-                .filter(event -> LocalDate.parse(event.getEvent_date(), DateTimeFormatter.ofPattern("dd-MM-yyyy")).isEqual(currentDate))
+                .filter(event -> LocalDate.parse(event.getEvent_date(), DateTimeFormatter.ofPattern("dd/MM/yyyy")).isEqual(currentDate))
                 .collect(Collectors.toList());
 
         List<EventInfo> upcomingEvents = listData.stream()
-                .filter(event -> LocalDate.parse(event.getEvent_date(), DateTimeFormatter.ofPattern("dd-MM-yyyy")).isAfter(currentDate))
-                .sorted(Comparator.comparing(event -> LocalDate.parse(event.getEvent_date(), DateTimeFormatter.ofPattern("dd-MM-yyyy"))))
+                .filter(event -> LocalDate.parse(event.getEvent_date(), DateTimeFormatter.ofPattern("dd/MM/yyyy")).isAfter(currentDate))
+                .sorted(Comparator.comparing(event -> LocalDate.parse(event.getEvent_date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))))
                 .limit(3)
                 .collect(Collectors.toList());
 
@@ -167,4 +163,6 @@ public class ViewEvent {
                 .map(EventInfo::getEvent_title)
                 .collect(Collectors.toList());
     }
+
+
 }

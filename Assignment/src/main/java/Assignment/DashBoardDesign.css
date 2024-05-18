@@ -93,3 +93,9 @@
     -fx-font-family: "Arial";
 }
 
+.font{
+    -fx-font-size:20px;
+    -fx-font-family:"Berlin Sans FB";
+    -fx-text-fill: #fff;
+}
+

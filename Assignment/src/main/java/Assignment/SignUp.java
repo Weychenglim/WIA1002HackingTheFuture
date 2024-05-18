@@ -122,6 +122,7 @@ public class SignUp extends javax.swing.JFrame {
                                 user.saveLocationCoordinate(username,"EDUCATOR" ,educator.getLocationCoordinate());
                             }
                         }
+                        closeFrame();
                     } else {
                         JOptionPane.showMessageDialog(null, "Registration failed. Please try again.");
                     }
@@ -236,6 +237,14 @@ public class SignUp extends javax.swing.JFrame {
         UserRegistration user = new UserRegistration();
         boolean registrationSuccessful = user.registerUser(username, email, password, role);
         return registrationSuccessful;
+    }
+
+    private void closeFrame(){
+        Login Login = new Login();
+        Login.setVisible(true);
+        Login.pack();
+        Login.setLocationRelativeTo(null);
+        this.dispose();
     }
 
 

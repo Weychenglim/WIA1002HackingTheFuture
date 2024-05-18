@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
@@ -27,23 +28,20 @@
                     <top>
                         <AnchorPane prefHeight="46.0" prefWidth="1100.0" styleClass="semi-top-form" stylesheets="@DashBoardDesign.css" BorderPane.alignment="CENTER">
                             <children>
-                                <AnchorPane layoutX="256.0" layoutY="-86.0" prefHeight="35.0" prefWidth="1100.0" styleClass="top-form" stylesheets="@DashBoardDesign.css" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane layoutX="1.6" layoutY="-86.0" prefHeight="34.0" prefWidth="1100.0" styleClass="top-form" stylesheets="@DashBoardDesign.css" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <Label layoutX="34.0" layoutY="9.0" text="Hacking The Future">
                                             <font>
                                                 <Font name="Tahoma" size="14.0" />
                                             </font>
                                         </Label>
-                                        <Button fx:id="closebutton" layoutX="1045.0" layoutY="-1.0" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@DashBoardDesign.css" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="2.0">
-                                            <graphic>
-                                                <FontAwesomeIconView glyphName="CLOSE" size="1.2EM" />
-                                            </graphic>
-                                        </Button>
-                                        <Button fx:id="minimizebutton" layoutX="996.0" layoutY="-1.0" mnemonicParsing="false" onAction="#minimize" styleClass="minimize" stylesheets="@DashBoardDesign.css" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="4.0">
+                                        <Button fx:id="closebutton" layoutX="1044.0" minWidth="40.0" mnemonicParsing="false" onAction="#close" prefHeight="35.0" prefWidth="56.0" styleClass="close" stylesheets="@DashBoardDesign.css" AnchorPane.rightAnchor="-1.599999999999909" AnchorPane.topAnchor="0.0" />
+                                        <Button fx:id="minimizebutton" layoutX="990.0" layoutY="0.8" mnemonicParsing="false" onAction="#minimize" prefHeight="37.0" prefWidth="54.0" styleClass="minimize" stylesheets="@DashBoardDesign.css" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="0.0">
                                             <graphic>
                                                 <FontAwesomeIconView glyphName="MINUS" size="1.2EM" />
                                             </graphic>
                                         </Button>
+                                        <FontAwesomeIconView glyphName="CLOSE" layoutX="1072.0" layoutY="23.0" size="1.2EM" />
                                     </children>
                                 </AnchorPane>
                             </children>
@@ -78,46 +76,74 @@
                                                 <String fx:value="nav-button" />
                                                 <String fx:value="minimize" />
                                             </styleClass></Button>
-                                        <Button fx:id="QuizzesButton" layoutX="10.0" layoutY="218.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-button" stylesheets="@DashBoardDesign.css" text="Quizzes">
+                                        <Button fx:id="QuizzesButton" layoutX="10.0" layoutY="218.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" stylesheets="@DashBoardDesign.css" text="Quizzes">
                                             <graphic>
                                                 <FontAwesomeIconView glyphName="STAR" />
                                             </graphic>
+                                            <styleClass>
+                                                <String fx:value="nav-button" />
+                                                <String fx:value="minimize" />
+                                            </styleClass>
 
                                         </Button>
-                                        <Button fx:id="EventsButton" layoutX="10.0" layoutY="288.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-button" stylesheets="@DashBoardDesign.css" text="Events">
+                                        <Button fx:id="EventsButton" layoutX="10.0" layoutY="288.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" stylesheets="@DashBoardDesign.css" text="Events">
                                             <graphic>
                                                 <FontAwesomeIconView glyphName="CALENDAR" />
                                             </graphic>
+                                            <styleClass>
+                                                <String fx:value="nav-button" />
+                                                <String fx:value="minimize" />
+                                            </styleClass>
                                         </Button>
-                                        <Button fx:id="BookingButton" layoutX="9.0" layoutY="359.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-button" stylesheets="@DashBoardDesign.css" text="Booking">
+                                        <Button fx:id="BookingButton" layoutX="9.0" layoutY="359.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" stylesheets="@DashBoardDesign.css" text="Booking">
                                             <graphic>
                                                 <FontAwesomeIconView glyphName="PAW" />
                                             </graphic>
+                                            <styleClass>
+                                                <String fx:value="nav-button" />
+                                                <String fx:value="minimize" />
+                                            </styleClass>
                                         </Button>
-                                        <Button fx:id="LogOutButton" layoutX="8.0" layoutY="497.0" mnemonicParsing="false" onAction="#LogOut" styleClass="logout-btn" stylesheets="@DashBoardDesign.css">
+                                        <Button fx:id="LogOutButton" layoutX="8.0" layoutY="497.0" mnemonicParsing="false" onAction="#LogOut" stylesheets="@DashBoardDesign.css">
                                             <graphic>
                                                 <FontAwesomeIconView glyphName="SIGN_OUT" size="2EM" />
                                             </graphic>
+                                            <styleClass>
+                                                <String fx:value="logout-btn" />
+                                                <String fx:value="minimize" />
+                                            </styleClass>
                                         </Button>
                                         <Label fx:id="LogOutLabel" layoutX="72.0" layoutY="508.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="LogOut" textFill="#fff6f6">
                                             <font>
                                                 <Font name="Tahoma" size="16.0" />
                                             </font>
                                         </Label>
-                                        <Button fx:id="LeaderBoardButton" layoutX="10.0" layoutY="395.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-button" stylesheets="@DashBoardDesign.css" text="Leaderboard">
+                                        <Button fx:id="LeaderBoardButton" layoutX="10.0" layoutY="395.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" stylesheets="@DashBoardDesign.css" text="Leaderboard">
                                             <graphic>
                                                 <FontAwesomeIconView glyphName="USERS" text="" />
                                             </graphic>
+                                            <styleClass>
+                                                <String fx:value="nav-button" />
+                                                <String fx:value="minimize" />
+                                            </styleClass>
                                         </Button>
-                                        <Button fx:id="AddQuizButton" layoutX="9.0" layoutY="253.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-button" stylesheets="@DashBoardDesign.css" text="Add Quizes">
+                                        <Button fx:id="AddQuizButton" layoutX="9.0" layoutY="253.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" stylesheets="@DashBoardDesign.css" text="Add Quizes">
                                             <graphic>
                                                 <FontAwesomeIconView glyphName="PLUS_CIRCLE" />
                                             </graphic>
+                                            <styleClass>
+                                                <String fx:value="nav-button" />
+                                                <String fx:value="minimize" />
+                                            </styleClass>
                                         </Button>
-                                        <Button fx:id="AddEventsButton" layoutX="10.0" layoutY="323.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-button" stylesheets="@DashBoardDesign.css" text="Add Events">
+                                        <Button fx:id="AddEventsButton" layoutX="10.0" layoutY="323.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" stylesheets="@DashBoardDesign.css" text="Add Events">
                                             <graphic>
                                                 <FontAwesomeIconView glyphName="PLUS_CIRCLE" />
                                             </graphic>
+                                            <styleClass>
+                                                <String fx:value="nav-button" />
+                                                <String fx:value="minimize" />
+                                            </styleClass>
                                         </Button>
                                     </children>
                                     <stylesheets>
@@ -137,27 +163,51 @@
                             <children>
                                 <AnchorPane layoutX="269.0" layoutY="100.0" prefHeight="551.2" prefWidth="900.0" stylesheets="@DashBoardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <AnchorPane fx:id="homeform" layoutX="127.0" layoutY="90.0" prefHeight="551.2" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <AnchorPane fx:id="homeform" layoutX="127.0" layoutY="90.0" prefHeight="549.0" prefWidth="898.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
                                             <children>
                                                 <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="72.0" prefWidth="875.0" stylesheets="@DashBoardDesign.css">
                                                     <children>
-                                                        <Button fx:id="UserProfileButton" layoutX="793.0" layoutY="13.0" mnemonicParsing="false" styleClass="User-Profile-bttn" stylesheets="@DashBoardDesign.css" />
-                                                        <Button fx:id="NotificationButton" layoutX="706.0" layoutY="14.0" mnemonicParsing="false" styleClass="User-Profile-bttn" stylesheets="@DashBoardDesign.css" />
+                                                        <Button fx:id="UserProfileButton" layoutX="793.0" layoutY="13.0" mnemonicParsing="false" onAction="#switchForm" stylesheets="@DashBoardDesign.css">
+                                                            <styleClass>
+                                                                <String fx:value="User-Profile-bttn" />
+                                                                <String fx:value="minimize" />
+                                                            </styleClass>
+                                                            <graphic>
+                                                                <FontAwesomeIconView glyphName="USER" />
+                                                            </graphic></Button>
+                                                        <Button fx:id="NotificationButton" layoutX="714.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@DashBoardDesign.css">
+                                                            <graphic>
+                                                                <FontAwesomeIconView glyphName="BELL" />
+                                                            </graphic>
+                                                            <styleClass>
+                                                                <String fx:value="User-Profile-bttn" />
+                                                                <String fx:value="minimize" />
+                                                            </styleClass></Button>
                                                         <Label layoutX="706.0" layoutY="41.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="Notification" />
-                                                        <Label layoutX="793.0" layoutY="41.0" prefHeight="18.0" prefWidth="70.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="User Profile" />
+                                                        <Label layoutX="784.0" layoutY="41.0" prefHeight="18.0" prefWidth="70.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="User Profile" />
                                                         <Label layoutX="14.0" layoutY="11.0" prefHeight="50.0" prefWidth="200.0" text="GOOD DAY">
                                                             <font>
                                                                 <Font name="Berlin Sans FB Bold" size="24.0" />
                                                             </font>
                                                         </Label>
-                                                        <Button fx:id="ConnectionButton" layoutX="612.0" layoutY="14.0" mnemonicParsing="false" styleClass="User-Profile-bttn" stylesheets="@DashBoardDesign.css" />
-                                                        <Label layoutX="611.0" layoutY="41.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="Connections" />
-                                                        <Button fx:id="AddRelationshipButton" layoutX="516.0" layoutY="13.0" mnemonicParsing="false" styleClass="User-Profile-bttn" stylesheets="@DashBoardDesign.css" />
+                                                        <Button fx:id="ConnectionButton" layoutX="612.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@DashBoardDesign.css">
+                                                            <graphic>
+                                                                <FontAwesomeIconView />
+                                                            </graphic>
+                                                            <styleClass>
+                                                                <String fx:value="User-Profile-bttn" />
+                                                                <String fx:value="minimize" />
+                                                            </styleClass></Button>
+                                                        <Label layoutX="601.0" layoutY="41.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="Connections" />
+                                                        <Button fx:id="AddRelationshipButton" layoutX="506.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchForm" stylesheets="@DashBoardDesign.css">
+                                                            <graphic>
+                                                                <FontAwesomeIconView glyphName="PLUS_CIRCLE" />
+                                                            </graphic>
+                                                            <styleClass>
+                                                                <String fx:value="User-Profile-bttn" />
+                                                                <String fx:value="minimize" />
+                                                            </styleClass></Button>
                                                         <Label layoutX="479.0" layoutY="41.0" styleClass="logout-label" stylesheets="@DashBoardDesign.css" text="Add Relationships" />
-                                                          <FontAwesomeIconView glyphName="PLUS_CIRCLE" layoutX="527.0" layoutY="33.0" />
-                                                          <FontAwesomeIconView glyphName="BELL" layoutX="736.0" layoutY="32.0" />
-                                                          <FontAwesomeIconView layoutX="642.0" layoutY="33.0" text="" />
-                                                          <FontAwesomeIconView glyphName="USER" layoutX="815.0" layoutY="33.0" />
                                                     </children>
                                                     <styleClass>
                                                         <String fx:value="nav-form" />
@@ -187,14 +237,19 @@
                                                                 <String fx:value="shadow" />
                                                             </styleClass>
                                                         </ScrollPane>
-                                                        <TextField fx:id="DiscussionBoardTextField" layoutX="12.0" layoutY="346.0" prefHeight="37.0" prefWidth="701.0" />
+                                                        <TextField fx:id="DiscussionBoardTextField" layoutX="12.0" layoutY="346.0" prefHeight="37.0" prefWidth="701.0" stylesheets="@DashBoardDesign.css">
+                                                            <styleClass>
+                                                                <String fx:value="white-background" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass></TextField>
                                                         <Button fx:id="DiscussionBoardSendButton" layoutX="729.0" layoutY="346.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" stylesheets="@DashBoardDesign.css" text="Send">
                                                             <font>
                                                                 <Font name="Berlin Sans FB Bold" size="16.0" />
                                                             </font>
                                                             <styleClass>
+                                                                <String fx:value="nav-form" />
                                                                 <String fx:value="minimize" />
-                                                                <String fx:value="white-background" />
+                                                                <String fx:value="shadow" />
                                                             </styleClass>
                                                         </Button>
                                                     </children>
@@ -253,7 +308,7 @@
                                                         <String fx:value="shadow" />
                                                     </styleClass>
                                                     <children>
-                                                        <TableView fx:id="QuizTable" layoutX="14.0" layoutY="14.0" prefHeight="322.0" prefWidth="826.0">
+                                                        <TableView fx:id="QuizTable" layoutX="14.0" layoutY="14.0" prefHeight="322.0" prefWidth="820.0">
                                                             <columns>
                                                                 <TableColumn fx:id="QuizesNumber" prefWidth="35.99998474121094" text="No" />
                                                                 <TableColumn fx:id="QuizesQuizTitle" prefWidth="171.19998168945312" text="Quiz Title" />
@@ -261,16 +316,16 @@
                                                                 <TableColumn fx:id="QuizesQuizTheme" prefWidth="156.79998779296875" text="Quiz Theme" />
                                                                 <TableColumn fx:id="QuizesDone" minWidth="5.60009765625" prefWidth="56.7999267578125" text="Done" visible="false" />
                                                                 <TableColumn fx:id="QuizesQuizLink" minWidth="5.60009765625" prefWidth="171.9998779296875" text="Quiz Link" />
-                                                                <TableColumn fx:id="QuizesStatus" minWidth="5.60009765625" prefWidth="87.20013427734375" text="Status" />
+                                                                <TableColumn fx:id="QuizesStatus" minWidth="5.60009765625" prefWidth="79.199951171875" text="Status" />
                                                             </columns>
                                                         </TableView>
                                                     </children>
                                                 </AnchorPane>
                                                 <Button fx:id="QuizesSubmitStatus" layoutX="721.0" layoutY="484.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" stylesheets="@DashBoardDesign.css" text="Submit Status">
                                                     <styleClass>
-                                                        <String fx:value="white-background" />
                                                         <String fx:value="minimize" />
                                                         <String fx:value="shadow" />
+                                                        <String fx:value="nav-form" />
                                                     </styleClass>
                                                     <font>
                                                         <Font name="Berlin Sans FB Bold" size="15.0" />
@@ -297,13 +352,13 @@
                                                         </Label>
                                                     </children>
                                                 </AnchorPane>
-                                                <Button fx:id="EventsRegisterButton" layoutX="684.0" layoutY="466.0" mnemonicParsing="false" onAction="#switchForm" stylesheets="@DashBoardDesign.css" text="Register">
+                                                <Button fx:id="EventsRegisterButton" layoutX="684.0" layoutY="466.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="48.0" prefWidth="174.0" stylesheets="@DashBoardDesign.css" text="Register">
                                                     <font>
                                                         <Font name="Berlin Sans FB Bold" size="21.0" />
                                                     </font>
                                                     <styleClass>
                                                         <String fx:value="minimize" />
-                                                        <String fx:value="white-background" />
+                                                        <String fx:value="nav-form" />
                                                         <String fx:value="shadow" />
                                                     </styleClass>
                                                 </Button>
@@ -338,16 +393,22 @@
                                                         </Label>
                                                     </children>
                                                 </AnchorPane>
-                                                <TableView fx:id="BookingTable" layoutX="14.0" layoutY="106.0" prefHeight="407.0" prefWidth="842.0">
+                                                <TableView fx:id="BookingTable" layoutX="14.0" layoutY="106.0" prefHeight="357.0" prefWidth="842.0">
                                                     <columns>
-                                                        <TableColumn fx:id="BookingNumber" prefWidth="75.0" text="No" />
-                                                        <TableColumn fx:id="BookingTitle" prefWidth="187.99993896484375" text="Title" />
-                                                        <TableColumn fx:id="BookingDescription" prefWidth="176.800048828125" text="Description" />
-                                                        <TableColumn fx:id="BookingVenue" prefWidth="149.60009765625" text="Venue" />
-                                                        <TableColumn fx:id="BookingDate" prefWidth="129.60003662109375" text="Date" />
-                                                        <TableColumn fx:id="BookingTime" prefWidth="118.40008544921875" text="Time" />
+                                                        <TableColumn fx:id="BookingNumber" prefWidth="63.19999694824219" text="No" />
+                                                        <TableColumn fx:id="BookingVenue" prefWidth="436.0" text="Venue" />
+                                                        <TableColumn fx:id="BookingDistance" prefWidth="215.20001220703125" text="Distance" />
+                                                        <TableColumn fx:id="BookingSlot" prefWidth="127.20001220703125" text="Slot Available" />
                                                     </columns>
                                                 </TableView>
+                                                <Button fx:id="MakeBookingButton" layoutX="661.0" layoutY="472.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="50.0" prefWidth="189.0" stylesheets="@DashBoardDesign.css" text="Make Booking">
+                                                    <styleClass>
+                                                        <String fx:value="nav-form" />
+                                                        <String fx:value="font" />
+                                                        <String fx:value="shadow" />
+                                                        <String fx:value="minimize" />
+                                                    </styleClass>
+                                                </Button>
                                             </children>
                                             <styleClass>
                                                 <String fx:value="white-background" />
@@ -378,7 +439,7 @@
                                                         <TableColumn fx:id="LeaderboardNumber" prefWidth="70.39997863769531" text="No" />
                                                         <TableColumn fx:id="LeaderboardStudentName" prefWidth="352.79998779296875" text="Username" />
                                                         <TableColumn fx:id="LeaderboardPoints" prefWidth="160.800048828125" text="Points" />
-                                                        <TableColumn fx:id="LeaderboardTime" prefWidth="302.4000244140625" text="Last Updated" />
+                                                        <TableColumn fx:id="LeaderboardTime" prefWidth="255.20013427734375" text="Last Updated" />
                                                     </columns>
                                                 </TableView>
                                             </children>
@@ -401,42 +462,64 @@
                                                                 <Font name="Arial Bold" size="13.0" />
                                                             </font>
                                                         </Label>
-                                                        <TextField fx:id="AddQuizTitleTextField" layoutX="105.0" layoutY="110.0" prefHeight="26.0" prefWidth="147.0" />
+                                                        <TextField fx:id="AddQuizTitleTextField" layoutX="105.0" layoutY="110.0" prefHeight="26.0" prefWidth="147.0" stylesheets="@DashBoardDesign.css">
+                                                            <styleClass>
+                                                                <String fx:value="white-background" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass></TextField>
                                                         <Label layoutX="16.0" layoutY="151.0" text="Description :">
                                                             <font>
                                                                 <Font name="Arial Bold" size="13.0" />
                                                             </font>
                                                         </Label>
-                                                        <TextField fx:id="AddQuizDescriptionTextField" layoutX="107.0" layoutY="147.0" prefHeight="26.0" prefWidth="147.0" />
+                                                        <TextField fx:id="AddQuizDescriptionTextField" layoutX="107.0" layoutY="147.0" prefHeight="26.0" prefWidth="147.0" stylesheets="@DashBoardDesign.css">
+                                                            <styleClass>
+                                                                <String fx:value="white-background" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass></TextField>
                                                         <Label layoutX="16.0" layoutY="191.0" text="Theme :">
                                                             <font>
                                                                 <Font name="Arial Bold" size="13.0" />
                                                             </font>
                                                         </Label>
-                                                        <Button fx:id="AddQuizAddButton" layoutX="21.0" layoutY="312.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="227.0" styleClass="minimize" stylesheets="@DashBoardDesign.css" text="Add">
+                                                        <Button fx:id="AddQuizAddButton" layoutX="21.0" layoutY="312.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="227.0" stylesheets="@DashBoardDesign.css" text="Add">
                                                             <font>
                                                                 <Font name="Arial Bold" size="19.0" />
                                                             </font>
+                                                            <styleClass>
+                                                                <String fx:value="minimize" />
+                                                                <String fx:value="shadow" />
+                                                                <String fx:value="nav-form" />
+                                                            </styleClass>
                                                         </Button>
-                                                        <Button fx:id="AddQuizDeleteButton" layoutX="21.0" layoutY="373.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="227.0" styleClass="close" stylesheets="@DashBoardDesign.css" text="Delete">
+                                                        <Button fx:id="AddQuizDeleteButton" layoutX="21.0" layoutY="373.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="227.0" stylesheets="@DashBoardDesign.css" text="Delete">
                                                             <font>
                                                                 <Font name="Arial Bold" size="19.0" />
                                                             </font>
+                                                            <styleClass>
+                                                                <String fx:value="close" />
+                                                                <String fx:value="shadow" />
+                                                                <String fx:value="nav-form" />
+                                                            </styleClass>
                                                         </Button>
                                                         <Label layoutX="19.0" layoutY="249.0" text="Content :">
                                                             <font>
                                                                 <Font name="Arial Bold" size="13.0" />
                                                             </font>
                                                         </Label>
-                                                        <TextField fx:id="AddQuizContentTextField" layoutX="89.0" layoutY="244.0" prefHeight="26.0" prefWidth="147.0" />
-                                          <MenuButton fx:id="AddMenuButton" layoutX="89.0" layoutY="193.0" mnemonicParsing="false" text="Select Category">
-                                              <items>
-                                                  <MenuItem fx:id="scienceMenuItem" text="Science" />
-                                                  <MenuItem fx:id="technologyMenuItem" text="Technology" />
-                                                  <MenuItem fx:id="engineeringMenuItem" text="Engineering" />
-                                                  <MenuItem fx:id="mathematicsMenuItem" text="Mathematics" />
-                                              </items>
-                                          </MenuButton>
+                                                        <TextField fx:id="AddQuizContentTextField" layoutX="89.0" layoutY="244.0" prefHeight="26.0" prefWidth="147.0" stylesheets="@DashBoardDesign.css">
+                                                            <styleClass>
+                                                                <String fx:value="white-background" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass></TextField>
+                                                        <MenuButton fx:id="AddMenuButton" layoutX="89.0" layoutY="193.0" mnemonicParsing="false" text="Select Category">
+                                                            <items>
+                                                                <MenuItem fx:id="scienceMenuItem" text="Science" />
+                                                                <MenuItem fx:id="technologyMenuItem" text="Technology" />
+                                                                <MenuItem fx:id="engineeringMenuItem" text="Engineering" />
+                                                                <MenuItem fx:id="mathematicsMenuItem" text="Mathematics" />
+                                                            </items>
+                                                        </MenuButton>
                                                     </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="301.0" layoutY="14.0" prefHeight="524.0" prefWidth="588.0" styleClass="white-background" stylesheets="@DashBoardDesign.css">
@@ -481,39 +564,67 @@
                                                                 <Font name="Arial Bold" size="15.0" />
                                                             </font>
                                                         </Label>
-                                                        <TextField fx:id="AddEventsTitleTextField" layoutX="93.0" layoutY="97.0" prefHeight="26.0" prefWidth="148.0" />
+                                                        <TextField fx:id="AddEventsTitleTextField" layoutX="93.0" layoutY="97.0" prefHeight="26.0" prefWidth="148.0" stylesheets="@DashBoardDesign.css">
+                                                            <styleClass>
+                                                                <String fx:value="shadow" />
+                                                                <String fx:value="white-background" />
+                                                            </styleClass></TextField>
                                                         <Label layoutX="5.0" layoutY="136.0" text="Description :">
                                                             <font>
                                                                 <Font name="Arial Bold" size="13.0" />
                                                             </font>
                                                         </Label>
-                                                        <TextField fx:id="AddEventsDescriptionTextField" layoutX="93.0" layoutY="131.0" prefHeight="26.0" prefWidth="146.0" />
+                                                        <TextField fx:id="AddEventsDescriptionTextField" layoutX="93.0" layoutY="131.0" prefHeight="26.0" prefWidth="146.0" stylesheets="@DashBoardDesign.css">
+                                                            <styleClass>
+                                                                <String fx:value="white-background" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass></TextField>
                                                         <Label layoutX="19.0" layoutY="170.0" text="Venue :">
                                                             <font>
                                                                 <Font name="Arial Bold" size="15.0" />
                                                             </font>
                                                         </Label>
-                                                        <TextField fx:id="AddEventsVenusTextField" layoutX="93.0" layoutY="166.0" prefHeight="26.0" prefWidth="146.0" />
+                                                        <TextField fx:id="AddEventsVenusTextField" layoutX="93.0" layoutY="166.0" prefHeight="26.0" prefWidth="146.0" stylesheets="@DashBoardDesign.css">
+                                                            <styleClass>
+                                                                <String fx:value="white-background" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass></TextField>
                                                         <Label layoutX="18.0" layoutY="210.0" text="Date :">
                                                             <font>
                                                                 <Font name="Arial Bold" size="15.0" />
                                                             </font>
                                                         </Label>
-                                                        <TextField fx:id="AddEventsDateTextField" layoutX="92.0" layoutY="206.0" prefHeight="26.0" prefWidth="146.0" />
+                                                        <TextField fx:id="AddEventsDateTextField" layoutX="92.0" layoutY="206.0" prefHeight="26.0" prefWidth="146.0">
+                                                            <styleClass>
+                                                                <String fx:value="white-background" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass></TextField>
                                                         <Label layoutX="18.0" layoutY="247.0" text="Time :">
                                                             <font>
                                                                 <Font name="Arial Bold" size="15.0" />
                                                             </font>
                                                         </Label>
-                                                        <TextField fx:id="AddEventsTimeTextField" layoutX="92.0" layoutY="243.0" prefHeight="26.0" prefWidth="146.0" />
-                                                        <Button fx:id="AddEventsAddButton" layoutX="20.0" layoutY="290.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="39.0" prefWidth="221.0" styleClass="minimize" stylesheets="@DashBoardDesign.css" text="Add">
-                                                            <font>
-                                                                <Font name="Arial Bold" size="20.0" />
-                                                            </font></Button>
-                                                        <Button fx:id="AddEventsDeleteButton" layoutX="21.0" layoutY="343.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="39.0" prefWidth="221.0" styleClass="close" stylesheets="@DashBoardDesign.css" text="Delete">
+                                                        <TextField fx:id="AddEventsTimeTextField" layoutX="92.0" layoutY="243.0" prefHeight="26.0" prefWidth="146.0" stylesheets="@DashBoardDesign.css">
+                                                            <styleClass>
+                                                                <String fx:value="white-background" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass></TextField>
+                                                        <Button fx:id="AddEventsAddButton" layoutX="20.0" layoutY="290.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="39.0" prefWidth="221.0" stylesheets="@DashBoardDesign.css" text="Add">
                                                             <font>
                                                                 <Font name="Arial Bold" size="20.0" />
                                                             </font>
+                                                            <styleClass>
+                                                                <String fx:value="minimize" />
+                                                                <String fx:value="nav-form" />
+                                                            </styleClass></Button>
+                                                        <Button fx:id="AddEventsDeleteButton" layoutX="21.0" layoutY="343.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="39.0" prefWidth="221.0" stylesheets="@DashBoardDesign.css" text="Delete">
+                                                            <font>
+                                                                <Font name="Arial Bold" size="20.0" />
+                                                            </font>
+                                                            <styleClass>
+                                                                <String fx:value="close" />
+                                                                <String fx:value="nav-form" />
+                                                            </styleClass>
                                                         </Button>
                                                     </children>
                                                 </AnchorPane>
@@ -541,7 +652,6 @@
                                                     </children></AnchorPane>
                                             </children>
                                         </AnchorPane>
-                                        <AnchorPane disable="true" layoutX="14.0" layoutY="14.0" prefHeight="553.6" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                         <AnchorPane fx:id="RegisterEventsForm" layoutX="152.0" layoutY="10.0" prefHeight="526.0" prefWidth="572.0" styleClass="white-background" stylesheets="@DashBoardDesign.css" visible="false">
                                             <children>
                                                 <AnchorPane layoutX="10.0" layoutY="7.0" prefHeight="96.0" prefWidth="544.0" styleClass="nav-form" stylesheets="@DashBoardDesign.css">
@@ -591,12 +701,291 @@
                                                         <Font name="Berlin Sans FB Bold" size="18.0" />
                                                     </font>
                                                 </Button>
-                                    <MenuButton fx:id="MenuButtonRegisterEvent" layoutX="225.0" layoutY="129.0" mnemonicParsing="false" text="Select Event">
-                                      <items>
-                                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                                        <MenuItem mnemonicParsing="false" text="Action 2" />
-                                      </items>
-                                    </MenuButton>
+                                                <MenuButton fx:id="MenuButtonRegisterEvent" layoutX="225.0" layoutY="129.0" mnemonicParsing="false" text="Select Event">
+                                                    <items>
+                                                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                    </items>
+                                                </MenuButton>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane fx:id="UserProfileForm" layoutX="238.0" layoutY="74.0" prefHeight="549.6" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <AnchorPane layoutX="128.0" layoutY="10.0" prefHeight="526.0" prefWidth="584.0" stylesheets="@DashBoardDesign.css">
+                                                    <children>
+                                                        <AnchorPane layoutX="6.0" layoutY="7.0" prefHeight="85.0" prefWidth="570.0" stylesheets="@DashBoardDesign.css">
+                                                            <children>
+                                                                <Label layoutX="197.0" layoutY="21.0" text="User Profile">
+                                                                    <font>
+                                                                        <Font name="Berlin Sans FB Bold" size="32.0" />
+                                                                    </font>
+                                                                </Label>
+                                                            </children>
+                                                            <styleClass>
+                                                                <String fx:value="nav-form" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass>
+                                                        </AnchorPane>
+                                                        <Pane fx:id="UserProfilePane" layoutX="26.0" layoutY="117.0" prefHeight="298.0" prefWidth="521.0" stylesheets="@DashBoardDesign.css">
+                                                            <styleClass>
+                                                                <String fx:value="white-background" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass>
+                                                        </Pane>
+                                                        <Button fx:id="UserProfileBacktoHomeButton" layoutX="373.0" layoutY="441.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="174.0" stylesheets="@DashBoardDesign.css" text="Back to Home">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="21.0" />
+                                                            </font>
+                                                            <graphic>
+                                                                <FontAwesomeIconView glyphName="HOME" />
+                                                            </graphic>
+                                                            <styleClass>
+                                                                <String fx:value="nav-form" />
+                                                                <String fx:value="font" />
+                                                                <String fx:value="minimize" />
+                                                            </styleClass>
+                                                        </Button>
+                                                    </children>
+                                                    <styleClass>
+                                                        <String fx:value="white-background" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
+                                                </AnchorPane>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane fx:id="SubmitStatusForm" layoutX="177.0" layoutY="7.0" prefHeight="535.0" prefWidth="533.0" stylesheets="@DashBoardDesign.css" visible="false">
+                                            <children>
+                                                <AnchorPane layoutX="6.0" layoutY="8.0" prefHeight="84.0" prefWidth="522.0" stylesheets="@DashBoardDesign.css">
+                                                    <styleClass>
+                                                        <String fx:value="nav-form" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
+                                                    <children>
+                                                        <Label layoutX="163.0" layoutY="21.0" text="Submit Status">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="30.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </AnchorPane>
+                                                <Label layoutX="47.0" layoutY="123.0" text="Quiz Done : ">
+                                                    <font>
+                                                        <Font name="Berlin Sans FB Bold" size="21.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="47.0" layoutY="191.0" text="Quiz Description :">
+                                                    <font>
+                                                        <Font name="Berlin Sans FB Bold" size="21.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="47.0" layoutY="311.0" text="Quiz Theme :">
+                                                    <font>
+                                                        <Font name="Berlin Sans FB Bold" size="21.0" />
+                                                    </font>
+                                                </Label>
+                                                <Pane fx:id="SubmitStatusQuizDescriptionPane" layoutX="236.0" layoutY="196.0" prefHeight="104.0" prefWidth="280.0" stylesheets="@DashBoardDesign.css">
+                                                    <styleClass>
+                                                        <String fx:value="white-background" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
+                                                </Pane>
+                                                <Pane fx:id="SubmitStatusQuizThemePane" layoutX="236.0" layoutY="326.0" prefHeight="77.0" prefWidth="281.0" stylesheets="@DashBoardDesign.css">
+                                                    <styleClass>
+                                                        <String fx:value="white-background" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
+                                                </Pane>
+                                                <Button fx:id="SubmitStatusConfirmButton" layoutX="393.0" layoutY="462.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="120.0" stylesheets="@DashBoardDesign.css" text="Confirm">
+                                                    <styleClass>
+                                                        <String fx:value="font" />
+                                                        <String fx:value="minimize" />
+                                                        <String fx:value="nav-form" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
+                                                </Button>
+                                                <MenuButton fx:id="MenuButtonQuiz" layoutX="236.0" layoutY="125.0" mnemonicParsing="false" text="MenuButton">
+                                                    <items>
+                                                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                    </items>
+                                                </MenuButton>
+                                            </children>
+                                            <styleClass>
+                                                <String fx:value="white-background" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                        </AnchorPane>
+                                        <AnchorPane fx:id="MakeBookingForm" layoutX="61.0" layoutY="14.0" prefHeight="549.6" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <AnchorPane layoutX="157.0" layoutY="14.0" prefHeight="519.0" prefWidth="544.0" stylesheets="@DashBoardDesign.css">
+                                                    <styleClass>
+                                                        <String fx:value="white-background" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
+                                                    <children>
+                                                        <AnchorPane layoutX="8.0" layoutY="5.0" prefHeight="77.0" prefWidth="530.0" stylesheets="@DashBoardDesign.css">
+                                                            <styleClass>
+                                                                <String fx:value="nav-form" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass>
+                                                            <children>
+                                                                <Label layoutX="161.0" layoutY="18.0" text="Make Booking">
+                                                                    <font>
+                                                                        <Font name="Berlin Sans FB Bold" size="30.0" />
+                                                                    </font>
+                                                                </Label>
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <Label layoutX="68.0" layoutY="165.0" text="Choose Destination :">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="17.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <MenuButton fx:id="MakeBookingDestinationMenuButton" layoutX="347.0" layoutY="165.0" mnemonicParsing="false" stylesheets="@DashBoardDesign.css" text="Select Destination">
+                                                            <items>
+                                                                <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                                <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                            </items>
+                                                            <styleClass>
+                                                                <String fx:value="white-background" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass>
+                                                        </MenuButton>
+                                                        <Label layoutX="68.0" layoutY="221.0" text="Choose Date :">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="17.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <MenuButton fx:id="MakeBookingDateMenuButton" layoutX="347.0" layoutY="218.0" mnemonicParsing="false" stylesheets="@DashBoardDesign.css" text="Select Time">
+                                                            <items>
+                                                                <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                                <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                            </items>
+                                                            <styleClass>
+                                                                <String fx:value="white-background" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass>
+                                                        </MenuButton>
+                                                        <Label layoutX="68.0" layoutY="274.0" text="Time Slot :">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="17.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Button fx:id="MakeBookingConfirmButton" layoutX="74.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="61.0" prefWidth="406.0" stylesheets="@DashBoardDesign.css" text="Confirm" >
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="24.0" />
+                                                            </font>
+                                                            <styleClass>
+                                                                <String fx:value="nav-form" />
+                                                                <String fx:value="shadow" />
+                                                                <String fx:value="minimize" />
+                                                                <String fx:value="font" />
+                                                            </styleClass>
+                                                        </Button>
+                                                        <Button fx:id="MakeBookingCancelButton" layoutX="74.0" layoutY="431.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="61.0" prefWidth="406.0" stylesheets="@DashBoardDesign.css" text="Cancel" >
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="24.0" />
+                                                            </font>
+                                                            <styleClass>
+                                                                <String fx:value="nav-form" />
+                                                                <String fx:value="shadow" />
+                                                                <String fx:value="close" />
+                                                                <String fx:value="font" />
+                                                            </styleClass>
+                                                        </Button>
+                                                        <Pane fx:id="MakeBookingTimeSlotPane" layoutX="191.0" layoutY="276.0" prefHeight="57.0" prefWidth="286.0" stylesheets="@DashBoardDesign.css">
+                                                            <styleClass>
+                                                                <String fx:value="white-background" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass>
+                                                        </Pane>
+                                          <Label layoutX="68.0" layoutY="114.0" text="Choose Child Username :">
+                                             <font>
+                                                <Font name="Berlin Sans FB Bold" size="17.0" />
+                                             </font>
+                                          </Label>
+                                          <MenuButton fx:id="MakeBookingUsernameButton" layoutX="347.0" layoutY="114.0" mnemonicParsing="false" stylesheets="@DashBoardDesign.css" text="Select username">
+                                             <items>
+                                                <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                <MenuItem mnemonicParsing="false" text="Action 2" />
+                                             </items>
+                                             <styleClass>
+                                                <String fx:value="white-background" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                          </MenuButton>
+                                                    </children>
+                                                </AnchorPane>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane fx:id="AddRelationshipsPane" layoutX="212.0" layoutY="52.0" prefHeight="407.0" prefWidth="464.0" stylesheets="@DashBoardDesign.css" visible="false">
+                                            <styleClass>
+                                                <String fx:value="white-background" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <AnchorPane layoutX="7.0" layoutY="10.0" prefHeight="78.0" prefWidth="449.0" stylesheets="@DashBoardDesign.css">
+                                                    <styleClass>
+                                                        <String fx:value="nav-form" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
+                                                    <children>
+                                                        <Label layoutX="95.0" layoutY="18.0" text="Add Relationship">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="30.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </AnchorPane>
+                                                <Label layoutX="26.0" layoutY="121.0" text="Child Username :">
+                                                    <font>
+                                                        <Font name="Berlin Sans FB Bold" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="AddRelationshipsChildrenUserNameTextField" layoutX="211.0" layoutY="121.0" prefHeight="33.0" prefWidth="236.0" stylesheets="@DashBoardDesign.css">
+                                                    <styleClass>
+                                                        <String fx:value="white-background" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
+                                                </TextField>
+                                                <Button fx:id="AddRelationshipsAddButton" layoutX="61.0" layoutY="224.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="64.0" prefWidth="374.0" stylesheets="@DashBoardDesign.css" text="Add">
+                                                    <styleClass>
+                                                        <String fx:value="nav-form" />
+                                                        <String fx:value="minimize" />
+                                                        <String fx:value="shadow" />
+                                                        <String fx:value="font" />
+                                                    </styleClass>
+                                                </Button>
+                                                <Button fx:id="AddRelationshipsCancelButton" layoutX="61.0" layoutY="310.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="64.0" prefWidth="374.0" stylesheets="@DashBoardDesign.css" text="Cancel">
+                                                    <styleClass>
+                                                        <String fx:value="nav-form" />
+                                                        <String fx:value="close" />
+                                                        <String fx:value="shadow" />
+                                                        <String fx:value="font" />
+                                                    </styleClass>
+                                                </Button>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutX="112.0" layoutY="81.0" prefHeight="548.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <AnchorPane layoutX="98.0" layoutY="42.0" prefHeight="469.0" prefWidth="714.0" stylesheets="@DashBoardDesign.css">
+                                                    <styleClass>
+                                                        <String fx:value="white-background" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
+                                                    <children>
+                                                        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="105.0" prefWidth="684.0" styleClass="nav-form" stylesheets="@DashBoardDesign.css" />
+                                                        <ScrollPane layoutX="17.0" layoutY="128.0" prefHeight="329.0" prefWidth="679.0">
+                                                            <content>
+                                                                <VBox prefHeight="418.0" prefWidth="665.0">
+                                                                    <children>
+                                                                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="662.0" text="Button" />
+                                                                    </children>
+                                                                </VBox>
+                                                            </content>
+                                                        </ScrollPane>
+                                                    </children>
+                                                </AnchorPane>
                                             </children>
                                         </AnchorPane>
                                     </children></AnchorPane>

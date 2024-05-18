@@ -6,6 +6,7 @@ public class QuizInfo {
     private String quiz_Description;
     private String quiz_Theme;
     private String quiz_content;
+    private String quiz_status;
 
     public QuizInfo(int quiz_ID, String quiz_Title, String quiz_Description,String quiz_Theme,String quiz_content){
         this.quiz_ID = quiz_ID;
@@ -14,6 +15,16 @@ public class QuizInfo {
         this.quiz_Theme = quiz_Theme;
         this.quiz_content = quiz_content;
     }
+
+    public QuizInfo(int quiz_ID, String quiz_Title, String quiz_Description,String quiz_Theme,String quiz_content,String quiz_status){
+        this.quiz_ID = quiz_ID;
+        this.quiz_Title = quiz_Title;
+        this.quiz_Description = quiz_Description;
+        this.quiz_Theme = quiz_Theme;
+        this.quiz_content = quiz_content;
+        this.quiz_status=quiz_status;
+    }
+
     public String getQuiz_Title() {
         return quiz_Title;
     }
@@ -53,4 +64,9 @@ public class QuizInfo {
     public void setQuiz_ID(int quiz_ID) {
         this.quiz_ID = quiz_ID;
     }
+
+    public String getQuiz_status(){return quiz_status;}
+
+    public void setQuiz_status(String quiz_status){ this.quiz_status = quiz_status;}
+
 }

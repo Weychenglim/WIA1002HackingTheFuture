@@ -52,9 +52,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
     @FXML
     private AnchorPane LeaderBoardForm;
 
-    public void switchForm(ActionEvent event){
+    public void switchForm(ActionEvent event) {
 
-        if(event.getSource() == HomeButton){
+        if (event.getSource() == HomeButton) {
             homeform.setVisible(true);
             Quizzesform.setVisible(false);
             EventsForm.setVisible(false);
@@ -63,15 +63,18 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(false);
             AddEventsForm.setVisible(false);
             RegisterEventsForm.setVisible(false);
-        }else if(event.getSource()== QuizzesButton){
-            ViewQuiz <?> obj;
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+        } else if (event.getSource() == QuizzesButton) {
+            ViewQuiz<?> obj;
             if (role.equals("STUDENT")) {
-                obj = new ViewQuiz <YoungStudents>();
-            } else{
+                obj = new ViewQuiz<YoungStudents>(username);
+            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Students can accessed !!");
+                alert.setContentText("Only Students can access !!");
                 alert.showAndWait();
                 return;
             }
@@ -83,9 +86,12 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(false);
             AddEventsForm.setVisible(false);
             RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
             obj.initializeTickBox(ScienceTickBox, TechnologyTickBox, EngineeringTickBox, MathematicTickBox);
-            obj.ShowQuizInfo(QuizesNumber,QuizesQuizTitle,QuizezQuizDescribtion,QuizesQuizTheme,QuizesQuizLink,QuizTable);
-        }else if(event.getSource()==EventsButton){
+            obj.ShowQuizInfo(QuizesNumber, QuizesQuizTitle, QuizezQuizDescribtion, QuizesQuizTheme, QuizesQuizLink, QuizTable, QuizesStatus);
+        } else if (event.getSource() == EventsButton) {
             homeform.setVisible(false);
             Quizzesform.setVisible(false);
             EventsForm.setVisible(true);
@@ -94,9 +100,23 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(false);
             AddEventsForm.setVisible(false);
             RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
             ViewEvent obj = new ViewEvent(username);
-            obj.ShowEventInfo(EventNumber,EventTitle,EventDescription,EventsVenue,EventDate,EventTime,EventTable,EventsStatus);
-        }else if(event.getSource()==BookingButton){
+            obj.ShowEventInfo(EventNumber, EventTitle, EventDescription, EventsVenue, EventDate, EventTime, EventTable, EventsStatus);
+        } else if (event.getSource() == BookingButton) {
+            ViewBooking<?> obj;
+            if (role.equals("PARENT")) {
+                obj = new ViewBooking<Parents>(username);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Only Parents can access !!");
+                alert.showAndWait();
+                return;
+            }
             homeform.setVisible(false);
             Quizzesform.setVisible(false);
             EventsForm.setVisible(false);
@@ -105,7 +125,11 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(false);
             AddEventsForm.setVisible(false);
             RegisterEventsForm.setVisible(false);
-        }else if(event.getSource()==LeaderBoardButton){
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+            obj.initialize(BookingDistance, BookingNumber, BookingSlot, BookingTable, BookingVenue);
+        } else if (event.getSource() == LeaderBoardButton) {
             homeform.setVisible(false);
             Quizzesform.setVisible(false);
             EventsForm.setVisible(false);
@@ -114,17 +138,20 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(false);
             AddEventsForm.setVisible(false);
             RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
             LeaderboardRanking obj = new LeaderboardRanking();
-            obj.initialize(LeaderBoardTable,LeaderboardNumber,LeaderboardPoints,LeaderboardStudentName,LeaderboardTime);
-        }else if(event.getSource() == AddQuizButton){
+            obj.initialize(LeaderBoardTable, LeaderboardNumber, LeaderboardPoints, LeaderboardStudentName, LeaderboardTime);
+        } else if (event.getSource() == AddQuizButton) {
             AddNewQuiz<?> obj;
             if (role.equals("EDUCATOR")) {
                 obj = new AddNewQuiz<Educators>(username);
-            } else{
+            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Educators can accessed !!");
+                alert.setContentText("Only Educators can access !!");
                 alert.showAndWait();
                 return;
             }
@@ -136,18 +163,21 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(true);
             AddEventsForm.setVisible(false);
             RegisterEventsForm.setVisible(false);
-            obj.initializeMenuButton(engineeringMenuItem,mathematicsMenuItem,scienceMenuItem,technologyMenuItem);
-            obj.addQuizShowQuizInfo(ViewQuizNumber, ViewQuizTitle,ViewQuizDescription,ViewQuizTheme,ViewQuizContent,AddQuizTable);
-            obj.setQuizField(AddQuizTitleTextField,AddQuizDescriptionTextField,AddQuizContentTextField, AddMenuButton);
-        } else if(event.getSource() == EventsRegisterButton){
-            RegisterEvent <?> obj;
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+            obj.initializeMenuButton(engineeringMenuItem, mathematicsMenuItem, scienceMenuItem, technologyMenuItem);
+            obj.addQuizShowQuizInfo(ViewQuizNumber, ViewQuizTitle, ViewQuizDescription, ViewQuizTheme, ViewQuizContent, AddQuizTable);
+            obj.setQuizField(AddQuizTitleTextField, AddQuizDescriptionTextField, AddQuizContentTextField, AddMenuButton);
+        } else if (event.getSource() == EventsRegisterButton) {
+            RegisterEvent<?> obj;
             if (role.equals("STUDENT")) {
-                obj = new  RegisterEvent <YoungStudents>();
-            } else{
+                obj = new RegisterEvent<YoungStudents>();
+            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Students can accessed !!");
+                alert.setContentText("Only Students can access !!");
                 alert.showAndWait();
                 return;
             }
@@ -159,8 +189,11 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(false);
             AddEventsForm.setVisible(false);
             RegisterEventsForm.setVisible(true);
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
             obj.initialize(RegisterEventDatePane, RegisterEventDescriptionPane, RegisterEventTimePane, RegisterEventVenusPane, MenuButtonRegisterEvent);
-        }else if(event.getSource() == AddQuizAddButton){
+        } else if (event.getSource() == AddQuizAddButton) {
             homeform.setVisible(false);
             Quizzesform.setVisible(false);
             EventsForm.setVisible(false);
@@ -169,13 +202,15 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(true);
             AddEventsForm.setVisible(false);
             RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
             AddNewQuiz obj = new AddNewQuiz();
-            obj.initializeMenuButton(engineeringMenuItem,mathematicsMenuItem,scienceMenuItem,technologyMenuItem);
-            obj.addQuizShowQuizInfo(ViewQuizNumber, ViewQuizTitle,ViewQuizDescription,ViewQuizTheme,ViewQuizContent,AddQuizTable);
-            obj.setQuizField(AddQuizTitleTextField,AddQuizDescriptionTextField,AddQuizContentTextField, AddMenuButton);
+            obj.initializeMenuButton(engineeringMenuItem, mathematicsMenuItem, scienceMenuItem, technologyMenuItem);
+            obj.addQuizShowQuizInfo(ViewQuizNumber, ViewQuizTitle, ViewQuizDescription, ViewQuizTheme, ViewQuizContent, AddQuizTable);
+            obj.setQuizField(AddQuizTitleTextField, AddQuizDescriptionTextField, AddQuizContentTextField, AddMenuButton);
             obj.addNewQuiz();
-        }
-        else if(event.getSource() == AddQuizDeleteButton){
+        } else if (event.getSource() == AddQuizDeleteButton) {
             homeform.setVisible(false);
             Quizzesform.setVisible(false);
             EventsForm.setVisible(false);
@@ -184,20 +219,23 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(true);
             AddEventsForm.setVisible(false);
             RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
             AddNewQuiz obj = new AddNewQuiz();
-            obj.initializeMenuButton(engineeringMenuItem,mathematicsMenuItem,scienceMenuItem,technologyMenuItem);
-            obj.addQuizShowQuizInfo(ViewQuizNumber, ViewQuizTitle,ViewQuizDescription,ViewQuizTheme,ViewQuizContent,AddQuizTable);
-            obj.setQuizField(AddQuizTitleTextField,AddQuizDescriptionTextField,AddQuizContentTextField, AddMenuButton);
+            obj.initializeMenuButton(engineeringMenuItem, mathematicsMenuItem, scienceMenuItem, technologyMenuItem);
+            obj.addQuizShowQuizInfo(ViewQuizNumber, ViewQuizTitle, ViewQuizDescription, ViewQuizTheme, ViewQuizContent, AddQuizTable);
+            obj.setQuizField(AddQuizTitleTextField, AddQuizDescriptionTextField, AddQuizContentTextField, AddMenuButton);
             obj.addQuizDelete();
-        } else if(event.getSource() == AddEventsButton){
+        } else if (event.getSource() == AddEventsButton) {
             AddNewEvent<?> obj;
             if (role.equals("EDUCATOR")) {
                 obj = new AddNewEvent<Educators>(username);
-            } else{
+            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Educators can accessed !!");
+                alert.setContentText("Only Educators can access !!");
                 alert.showAndWait();
                 return;
             }
@@ -209,9 +247,12 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(false);
             AddEventsForm.setVisible(true);
             RegisterEventsForm.setVisible(false);
-            obj.addEventShowEventInfo(AddEventNumber,AddEventTitle,AddEventDescription,AddEventVenue,AddEventDate,AddEventTime,AddEventTable);
-            obj.setEventField(AddEventsTitleTextField,AddEventsDescriptionTextField,AddEventsVenusTextField,AddEventsTimeTextField,AddEventsDateTextField);
-        }else if(event.getSource() == AddEventsAddButton){
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+            obj.addEventShowEventInfo(AddEventNumber, AddEventTitle, AddEventDescription, AddEventVenue, AddEventDate, AddEventTime, AddEventTable);
+            obj.setEventField(AddEventsTitleTextField, AddEventsDescriptionTextField, AddEventsVenusTextField, AddEventsTimeTextField, AddEventsDateTextField);
+        } else if (event.getSource() == AddEventsAddButton) {
             homeform.setVisible(false);
             Quizzesform.setVisible(false);
             EventsForm.setVisible(false);
@@ -220,11 +261,14 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(false);
             AddEventsForm.setVisible(true);
             RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
             AddNewEvent obj = new AddNewEvent();
-            obj.addEventShowEventInfo(AddEventNumber,AddEventTitle,AddEventDescription,AddEventVenue,AddEventDate,AddEventTime,AddEventTable);
-            obj.setEventField(AddEventsTitleTextField,AddEventsDescriptionTextField,AddEventsVenusTextField,AddEventsTimeTextField,AddEventsDateTextField);
+            obj.addEventShowEventInfo(AddEventNumber, AddEventTitle, AddEventDescription, AddEventVenue, AddEventDate, AddEventTime, AddEventTable);
+            obj.setEventField(AddEventsTitleTextField, AddEventsDescriptionTextField, AddEventsVenusTextField, AddEventsTimeTextField, AddEventsDateTextField);
             obj.addNewEvent();
-        }else if(event.getSource() == AddEventsDeleteButton){
+        } else if (event.getSource() == AddEventsDeleteButton) {
             homeform.setVisible(false);
             Quizzesform.setVisible(false);
             EventsForm.setVisible(false);
@@ -233,12 +277,14 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(false);
             AddEventsForm.setVisible(true);
             RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
             AddNewEvent obj = new AddNewEvent();
-            obj.addEventShowEventInfo(AddEventNumber,AddEventTitle,AddEventDescription,AddEventVenue,AddEventDate,AddEventTime,AddEventTable);
-            obj.setEventField(AddEventsTitleTextField,AddEventsDescriptionTextField,AddEventsVenusTextField,AddEventsTimeTextField,AddEventsDateTextField);
+            obj.addEventShowEventInfo(AddEventNumber, AddEventTitle, AddEventDescription, AddEventVenue, AddEventDate, AddEventTime, AddEventTable);
+            obj.setEventField(AddEventsTitleTextField, AddEventsDescriptionTextField, AddEventsVenusTextField, AddEventsTimeTextField, AddEventsDateTextField);
             obj.deleteEvent();
-        }
-        else if(event.getSource()== RegisterEventsComfirmButton){
+        } else if (event.getSource() == RegisterEventsComfirmButton) {
             RegisterEvent obj = new RegisterEvent(username);
             obj.confirmRegistration();
             homeform.setVisible(false);
@@ -249,11 +295,240 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(false);
             AddEventsForm.setVisible(false);
             RegisterEventsForm.setVisible(true);
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
             obj.initialize(RegisterEventDatePane, RegisterEventDescriptionPane, RegisterEventTimePane, RegisterEventVenusPane, MenuButtonRegisterEvent);
             obj.clearMenuButtonPane();
             obj.initialize(RegisterEventDatePane, RegisterEventDescriptionPane, RegisterEventTimePane, RegisterEventVenusPane, MenuButtonRegisterEvent);
+        } else if (event.getSource() == QuizesSubmitStatus) {
+            homeform.setVisible(false);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(false);
+            RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(true);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+            SubmitStatusQuiz obj = new SubmitStatusQuiz(username);
+            obj.initialize(SubmitStatusQuizDescriptionPane, SubmitStatusQuizThemePane, MenuButtonQuiz);
+        } else if (event.getSource() == SubmitStatusConfirmButton) {
+            SubmitStatusQuiz obj = new SubmitStatusQuiz(username);
+            obj.confirmRegistration();
+            homeform.setVisible(false);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(false);
+            RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(true);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+            obj.initialize(SubmitStatusQuizDescriptionPane, SubmitStatusQuizThemePane, MenuButtonQuiz);
+            obj.clearMenuButtonPane();
+            obj.initialize(SubmitStatusQuizDescriptionPane, SubmitStatusQuizThemePane, MenuButtonQuiz);
+        } else if (event.getSource() == AddRelationshipButton) {
+            AddRelationship<?> obj;
+            if (role.equals("PARENT")) {
+                obj = new AddRelationship<Parents>(username);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Only Parent can access !!");
+                alert.showAndWait();
+                return;
+            }
+            homeform.setVisible(false);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(false);
+            RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            AddRelationshipsPane.setVisible(true);
+            MakeBookingForm.setVisible(false);
+            obj.initialize(AddRelationshipsChildrenUserNameTextField);
+        } else if (event.getSource() == AddRelationshipsAddButton) {
+            AddRelationship obj = new AddRelationship(username);
+            obj.initialize(AddRelationshipsChildrenUserNameTextField);
+            obj.handleAddRelationship();
+            obj.clear();
+            obj.initialize(AddRelationshipsChildrenUserNameTextField);
+            homeform.setVisible(false);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(false);
+            RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            AddRelationshipsPane.setVisible(true);
+            MakeBookingForm.setVisible(false);
+            Parents.printParentChildMap();
+            YoungStudents.printChildParentMap();
+        } else if (event.getSource() == AddRelationshipsCancelButton) {
+            AddRelationship obj = new AddRelationship(username);
+            obj.initialize(AddRelationshipsChildrenUserNameTextField);
+            obj.clear();
+            homeform.setVisible(true);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(false);
+            RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+            MakeBookingForm.setVisible(false);
+        } else if (event.getSource() == MakeBookingButton) {
+            MakeBooking<?> obj;
+            if (role.equals("PARENT")) {
+                obj = new MakeBooking<Parents>(username);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Only Parents can access !!");
+                alert.showAndWait();
+                return;
+            }
+            homeform.setVisible(false);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(false);
+            RegisterEventsForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(true);
+            obj.initialize(MakeBookingDateMenuButton, MakeBookingDestinationMenuButton, MakeBookingTimeSlotPane, MakeBookingUsernameButton);
+            obj.initializeMenuButtons();
+        } else if (event.getSource() == MakeBookingConfirmButton) {
+            MakeBooking<?> obj;
+            if (role.equals("PARENT")) {
+                obj = new MakeBooking<Parents>(username);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Only Parents can access !!");
+                alert.showAndWait();
+                return;
+            }
+            homeform.setVisible(false);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(false);
+            RegisterEventsForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(true);
+            obj.initialize(MakeBookingDateMenuButton, MakeBookingDestinationMenuButton, MakeBookingTimeSlotPane, MakeBookingUsernameButton);
+            obj.initializeMenuButtons();
+            obj.confirmBooking();
+            obj.clearMenuButtonPane();
+            obj.initialize(MakeBookingDateMenuButton, MakeBookingDestinationMenuButton, MakeBookingTimeSlotPane, MakeBookingUsernameButton);
+            obj.initializeMenuButtons();
+        }else if (event.getSource() == MakeBookingCancelButton) {
+            MakeBooking<?> obj;
+            if (role.equals("PARENT")) {
+                obj = new MakeBooking<Parents>(username);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Only Parents can access !!");
+                alert.showAndWait();
+                return;
+            }
+            obj.initialize(MakeBookingDateMenuButton, MakeBookingDestinationMenuButton, MakeBookingTimeSlotPane, MakeBookingUsernameButton);
+            obj.initializeMenuButtons();
+            obj.clearMenuButtonPane();
+            homeform.setVisible(false);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(true);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(false);
+            RegisterEventsForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
         }
     }
+
+    @FXML
+    private TableColumn<BookingInfo, String> BookingDistance;
+
+    @FXML
+    private TableColumn<BookingInfo, String> BookingNumber;
+
+    @FXML
+    private TableColumn<BookingInfo, String> BookingSlot;
+
+    @FXML
+    private TableView<BookingInfo> BookingTable;
+
+    @FXML
+    private TableColumn<BookingInfo, String> BookingVenue;
+
+    @FXML
+    private Button MakeBookingButton;
+
+    @FXML
+    private Button MakeBookingCancelButton;
+
+    @FXML
+    private Button MakeBookingConfirmButton;
+
+    @FXML
+    private MenuButton MakeBookingUsernameButton;
+
+    @FXML
+    private Pane MakeBookingTimeSlotPane;
+
+    @FXML
+    private MenuButton MakeBookingDateMenuButton;
+
+    @FXML
+    private MenuButton MakeBookingDestinationMenuButton;
+
+    @FXML
+    private AnchorPane MakeBookingForm;
+
+    @FXML
+    private MenuButton MakeBookingTimeSlotMenuButton;
+
+    @FXML
+    private Button AddRelationshipsAddButton;
+
+    @FXML
+    private Button AddRelationshipsCancelButton;
+
+    @FXML
+    private TextField AddRelationshipsChildrenUserNameTextField;
+
+    @FXML
+    private AnchorPane AddRelationshipsPane;
+
+    @FXML
+    private Button QuizesSubmitStatus;
 
     @FXML
     private Button RegisterEventsComfirmButton;
@@ -269,9 +544,6 @@ public class DashBoardController extends SixteenDashboard implements Initializab
 
     @FXML
     private Button BookingButton;
-
-    @FXML
-    private TableView<?> BookingTable;
 
     @FXML
     private Label DisscussionBoardLabel;
@@ -508,6 +780,30 @@ public class DashBoardController extends SixteenDashboard implements Initializab
 
     @FXML
     private MenuItem technologyMenuItem;
+
+    @FXML
+    private Button SubmitStatusConfirmButton;
+
+    @FXML
+    private AnchorPane SubmitStatusForm;
+
+    @FXML
+    private Pane SubmitStatusQuizDescriptionPane;
+
+    @FXML
+    private Pane SubmitStatusQuizThemePane;
+
+    @FXML
+    private MenuButton MenuButtonQuiz;
+
+    @FXML
+    private Button UserProfileBacktoHomeButton;
+
+    @FXML
+    private AnchorPane UserProfileForm;
+
+    @FXML
+    private Pane UserProfilePane;
 
     public void close(){
         System.exit(0);

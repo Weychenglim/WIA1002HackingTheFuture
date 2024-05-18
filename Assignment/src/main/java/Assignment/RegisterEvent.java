@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,6 +22,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Scanner;
 
 public class RegisterEvent<T extends YoungStudents> extends ViewEvent {
     @FXML
@@ -170,7 +172,7 @@ public class RegisterEvent<T extends YoungStudents> extends ViewEvent {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Message");
             alert.setHeaderText(null);
-            alert.setContentText("Registration unsuccessful due to event clash");
+            alert.setContentText("Registration unsuccessful due to event or tour clash");
             alert.showAndWait();
         } else {
             // Save registered information
@@ -201,34 +203,52 @@ public class RegisterEvent<T extends YoungStudents> extends ViewEvent {
                 Files.createFile(Paths.get(username + ".csv"));
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-            return false; // No clash found since the file was just created
-        }
-        try {
-            List<String> lines = Files.readAllLines(Paths.get(username + ".csv"));
-            for (String line : lines) {
-                String[] parts = line.split(",");
-                String existingEventDate = parts[1];
-                String[] existingEventTimes = parts[2].split("-");
-                String existingEventStartTime = existingEventTimes[0].trim();
-                String existingEventEndTime = existingEventTimes[1].trim();
+            }// No clash found since the file was just created
+        }else {
+            try {
+                List<String> lines = Files.readAllLines(Paths.get(username + ".csv"));
+                for (String line : lines) {
+                    String[] parts = line.split(",");
+                    String existingEventDate = parts[1];
+                    String[] existingEventTimes = parts[2].split("-");
+                    String existingEventStartTime = existingEventTimes[0].trim();
+                    String existingEventEndTime = existingEventTimes[1].trim();
 
-                String[] newEventTimes = event.getEvent_time().split("-");
-                String newEventStartTime = newEventTimes[0].trim();
-                String newEventEndTime = newEventTimes[1].trim();
+                    String[] newEventTimes = event.getEvent_time().split("-");
+                    String newEventStartTime = newEventTimes[0].trim();
+                    String newEventEndTime = newEventTimes[1].trim();
 
-                // Check for date clash
-                if (existingEventDate.equals(event.getEvent_date())) {
-                    // Check if the new event's start time falls within the time range of an existing event
-                    if (isTimeWithinRange(newEventStartTime, existingEventStartTime, existingEventEndTime) ||
-                            // Check if the new event's end time falls within the time range of an existing event
-                            isTimeWithinRange(newEventEndTime, existingEventStartTime, existingEventEndTime)) {
-                        return true; // Clash found
+                    // Check for date clash
+                    if (existingEventDate.equals(event.getEvent_date())) {
+                        // Check if the new event's start time falls within the time range of an existing event
+                        if (isTimeWithinRange(newEventStartTime, existingEventStartTime, existingEventEndTime) ||
+                                // Check if the new event's end time falls within the time range of an existing event
+                                isTimeWithinRange(newEventEndTime, existingEventStartTime, existingEventEndTime)) {
+                            return true; // Clash found
+                        }
                     }
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
+        String parentFileName = getParentUsername(username) + "_booking.csv";
+        System.out.println(parentFileName);
+        if (Files.exists(Paths.get(parentFileName))) {
+            try (Scanner scanner = new Scanner(new FileReader(parentFileName))) {
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+                    String[] parts = line.split(",");
+                    System.out.println(parts[1]);
+                    System.out.println(event.getEvent_date());
+                    if (parts[1].equals(event.getEvent_date())) { // Assuming the date is the second column in parent's booking CSV
+                        return true; // Date clash found in parent's bookings
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert(Alert.AlertType.ERROR, "Error Message", "An error occurred while checking for date clashes in parent's bookings.");
+            }
         }
         return false; // No clash found
     }
@@ -259,5 +279,25 @@ public class RegisterEvent<T extends YoungStudents> extends ViewEvent {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    public String getParentUsername(String studentUsername) {
+        String sql = "SELECT PARENT_USERNAME FROM user.parentchild WHERE STUDENT_USERNAME = ?";
+        String parentUsername = null;
+
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, studentUsername);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    parentUsername = resultSet.getString("PARENT_USERNAME");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return parentUsername;
     }
 }
