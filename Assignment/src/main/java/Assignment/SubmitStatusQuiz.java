@@ -57,7 +57,6 @@ public class SubmitStatusQuiz<T extends YoungStudents> extends ViewQuiz {
 
     private void initializeMenuButton() {
         List<String> availableQuizTitles = super.getAvailableQuizTitles();
-
         MenuButtonQuiz.getItems().clear(); // Clear existing items if any
 
         for (String title : availableQuizTitles) {

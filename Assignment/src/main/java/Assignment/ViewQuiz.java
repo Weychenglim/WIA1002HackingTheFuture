@@ -190,7 +190,7 @@ public class ViewQuiz<T extends YoungStudents> {
 
     protected List<String> getAvailableQuizTitles() {
         return addQuizList2.stream()
-                .filter(quiz -> "Available".equals(quiz.getQuiz_status()))
+                .filter(quiz -> "Pending".equals(quiz.getQuiz_status()))
                 .map(QuizInfo::getQuiz_Title)
                 .collect(Collectors.toList());
     }

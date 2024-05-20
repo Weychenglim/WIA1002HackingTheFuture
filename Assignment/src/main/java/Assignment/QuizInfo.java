@@ -69,4 +69,5 @@ public class QuizInfo {
 
     public void setQuiz_status(String quiz_status){ this.quiz_status = quiz_status;}
 
+
 }

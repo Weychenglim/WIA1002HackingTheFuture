@@ -1,0 +1,16 @@
+/* styles.css */
+.label-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2a9d8f;
+}
+
+.label-content {
+    -fx-font-size: 16px;
+    -fx-text-fill: #264653;
+}
+
+.label-footer {
+    -fx-font-size: 14px;
+    -fx-text-fill: #e76f51;
+}

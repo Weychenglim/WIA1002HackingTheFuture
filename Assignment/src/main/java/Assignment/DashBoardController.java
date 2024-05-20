@@ -1,11 +1,13 @@
 package Assignment;
 
+import com.gluonhq.charm.glisten.control.BottomNavigationButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -66,6 +68,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
         } else if (event.getSource() == QuizzesButton) {
             ViewQuiz<?> obj;
             if (role.equals("STUDENT")) {
@@ -89,6 +94,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             obj.initializeTickBox(ScienceTickBox, TechnologyTickBox, EngineeringTickBox, MathematicTickBox);
             obj.ShowQuizInfo(QuizesNumber, QuizesQuizTitle, QuizezQuizDescribtion, QuizesQuizTheme, QuizesQuizLink, QuizTable, QuizesStatus);
         } else if (event.getSource() == EventsButton) {
@@ -103,6 +111,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             ViewEvent obj = new ViewEvent(username);
             obj.ShowEventInfo(EventNumber, EventTitle, EventDescription, EventsVenue, EventDate, EventTime, EventTable, EventsStatus);
         } else if (event.getSource() == BookingButton) {
@@ -128,6 +139,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             obj.initialize(BookingDistance, BookingNumber, BookingSlot, BookingTable, BookingVenue);
         } else if (event.getSource() == LeaderBoardButton) {
             homeform.setVisible(false);
@@ -141,6 +155,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             LeaderboardRanking obj = new LeaderboardRanking();
             obj.initialize(LeaderBoardTable, LeaderboardNumber, LeaderboardPoints, LeaderboardStudentName, LeaderboardTime);
         } else if (event.getSource() == AddQuizButton) {
@@ -166,6 +183,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             obj.initializeMenuButton(engineeringMenuItem, mathematicsMenuItem, scienceMenuItem, technologyMenuItem);
             obj.addQuizShowQuizInfo(ViewQuizNumber, ViewQuizTitle, ViewQuizDescription, ViewQuizTheme, ViewQuizContent, AddQuizTable);
             obj.setQuizField(AddQuizTitleTextField, AddQuizDescriptionTextField, AddQuizContentTextField, AddMenuButton);
@@ -192,6 +212,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             obj.initialize(RegisterEventDatePane, RegisterEventDescriptionPane, RegisterEventTimePane, RegisterEventVenusPane, MenuButtonRegisterEvent);
         } else if (event.getSource() == AddQuizAddButton) {
             homeform.setVisible(false);
@@ -205,6 +228,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             AddNewQuiz obj = new AddNewQuiz();
             obj.initializeMenuButton(engineeringMenuItem, mathematicsMenuItem, scienceMenuItem, technologyMenuItem);
             obj.addQuizShowQuizInfo(ViewQuizNumber, ViewQuizTitle, ViewQuizDescription, ViewQuizTheme, ViewQuizContent, AddQuizTable);
@@ -222,6 +248,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             AddNewQuiz obj = new AddNewQuiz();
             obj.initializeMenuButton(engineeringMenuItem, mathematicsMenuItem, scienceMenuItem, technologyMenuItem);
             obj.addQuizShowQuizInfo(ViewQuizNumber, ViewQuizTitle, ViewQuizDescription, ViewQuizTheme, ViewQuizContent, AddQuizTable);
@@ -250,6 +279,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             obj.addEventShowEventInfo(AddEventNumber, AddEventTitle, AddEventDescription, AddEventVenue, AddEventDate, AddEventTime, AddEventTable);
             obj.setEventField(AddEventsTitleTextField, AddEventsDescriptionTextField, AddEventsVenusTextField, AddEventsTimeTextField, AddEventsDateTextField);
         } else if (event.getSource() == AddEventsAddButton) {
@@ -264,6 +296,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             AddNewEvent obj = new AddNewEvent();
             obj.addEventShowEventInfo(AddEventNumber, AddEventTitle, AddEventDescription, AddEventVenue, AddEventDate, AddEventTime, AddEventTable);
             obj.setEventField(AddEventsTitleTextField, AddEventsDescriptionTextField, AddEventsVenusTextField, AddEventsTimeTextField, AddEventsDateTextField);
@@ -280,6 +315,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             AddNewEvent obj = new AddNewEvent();
             obj.addEventShowEventInfo(AddEventNumber, AddEventTitle, AddEventDescription, AddEventVenue, AddEventDate, AddEventTime, AddEventTable);
             obj.setEventField(AddEventsTitleTextField, AddEventsDescriptionTextField, AddEventsVenusTextField, AddEventsTimeTextField, AddEventsDateTextField);
@@ -298,6 +336,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             obj.initialize(RegisterEventDatePane, RegisterEventDescriptionPane, RegisterEventTimePane, RegisterEventVenusPane, MenuButtonRegisterEvent);
             obj.clearMenuButtonPane();
             obj.initialize(RegisterEventDatePane, RegisterEventDescriptionPane, RegisterEventTimePane, RegisterEventVenusPane, MenuButtonRegisterEvent);
@@ -313,6 +354,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(true);
             MakeBookingForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             SubmitStatusQuiz obj = new SubmitStatusQuiz(username);
             obj.initialize(SubmitStatusQuizDescriptionPane, SubmitStatusQuizThemePane, MenuButtonQuiz);
         } else if (event.getSource() == SubmitStatusConfirmButton) {
@@ -329,6 +373,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(true);
             MakeBookingForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             obj.initialize(SubmitStatusQuizDescriptionPane, SubmitStatusQuizThemePane, MenuButtonQuiz);
             obj.clearMenuButtonPane();
             obj.initialize(SubmitStatusQuizDescriptionPane, SubmitStatusQuizThemePane, MenuButtonQuiz);
@@ -355,6 +402,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(false);
             AddRelationshipsPane.setVisible(true);
             MakeBookingForm.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             obj.initialize(AddRelationshipsChildrenUserNameTextField);
         } else if (event.getSource() == AddRelationshipsAddButton) {
             AddRelationship obj = new AddRelationship(username);
@@ -373,6 +423,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(false);
             AddRelationshipsPane.setVisible(true);
             MakeBookingForm.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             Parents.printParentChildMap();
             YoungStudents.printChildParentMap();
         } else if (event.getSource() == AddRelationshipsCancelButton) {
@@ -390,6 +443,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SubmitStatusForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
             MakeBookingForm.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
         } else if (event.getSource() == MakeBookingButton) {
             MakeBooking<?> obj;
             if (role.equals("PARENT")) {
@@ -413,6 +469,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddRelationshipsPane.setVisible(false);
             SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(true);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             obj.initialize(MakeBookingDateMenuButton, MakeBookingDestinationMenuButton, MakeBookingTimeSlotPane, MakeBookingUsernameButton);
             obj.initializeMenuButtons();
         } else if (event.getSource() == MakeBookingConfirmButton) {
@@ -438,13 +497,16 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddRelationshipsPane.setVisible(false);
             SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(true);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
             obj.initialize(MakeBookingDateMenuButton, MakeBookingDestinationMenuButton, MakeBookingTimeSlotPane, MakeBookingUsernameButton);
             obj.initializeMenuButtons();
             obj.confirmBooking();
             obj.clearMenuButtonPane();
             obj.initialize(MakeBookingDateMenuButton, MakeBookingDestinationMenuButton, MakeBookingTimeSlotPane, MakeBookingUsernameButton);
             obj.initializeMenuButtons();
-        }else if (event.getSource() == MakeBookingCancelButton) {
+        } else if (event.getSource() == MakeBookingCancelButton) {
             MakeBooking<?> obj;
             if (role.equals("PARENT")) {
                 obj = new MakeBooking<Parents>(username);
@@ -470,8 +532,335 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddRelationshipsPane.setVisible(false);
             SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
+        } else if (event.getSource() == UserProfileButton) {
+            UserProfile obj = new UserProfile(username, role);
+            if (role.equals("EDUCATOR")) {
+                UserProfileEducatorAchievement.setVisible(true);
+                UserProfileParentAchievementPane.setVisible(false);
+                UserProfileStudentAchievementPane.setVisible(false);
+            } else if (role.equals("PARENT")) {
+                UserProfileEducatorAchievement.setVisible(false);
+                UserProfileParentAchievementPane.setVisible(true);
+                UserProfileStudentAchievementPane.setVisible(false);
+                ParentUsername.setVisible(false);
+                ChildUsername.setVisible(true);
+            } else {
+                UserProfileEducatorAchievement.setVisible(false);
+                UserProfileParentAchievementPane.setVisible(false);
+                UserProfileStudentAchievementPane.setVisible(true);
+                ParentUsername.setVisible(true);
+                ChildUsername.setVisible(false);
+            }
+            homeform.setVisible(false);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(false);
+            RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            UserProfileForm.setVisible(true);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
+            obj.initialize(UserProfileEducatorAchievementNumberOfQuizesCreatedPane, UserProfileEmailPane, UserProfileLocationCoordinatePane, UserProfileParentAchiementNumberOfEventsCreatedPane, UserProfileParentAchiementPastBookingMadePane, UserProfileRolePane, UserProfileStudentAchievementFriendsPane, UserProfileStudentAchievementTotalPointsPane, UserProfileUsernamePane, UserProfileParentChildPane);
+        } else if (event.getSource() == UserProfileBacktoHomeButton) {
+            UserProfile obj = new UserProfile(username, role);
+            homeform.setVisible(true);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(false);
+            RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
+        } else if (event.getSource() == ConnectionButton) {
+            SearchFriend<?> obj;
+            if (role.equals("STUDENT")) {
+                obj = new SearchFriend<YoungStudents>();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Only Students can access !!");
+                alert.showAndWait();
+                return;
+            }
+            homeform.setVisible(false);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(false);
+            RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(true);
+            Notificationform.setVisible(false);
+        } else if (event.getSource() == SearchFriendSearchButton) {
+            SearchFriend<?> obj;
+            if (role.equals("STUDENT")) {
+                obj = new SearchFriend<YoungStudents>(username);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Only Students can access !!");
+                alert.showAndWait();
+                return;
+            }
+            homeform.setVisible(false);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(false);
+            RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(true);
+            Notificationform.setVisible(false);
+            obj.initialize(FriendsProfileEmailPane, FriendsProfileLocationCoordinatePane, FriendsProfileTotalPointsPane, FriendsProfileUsernamePane, SearchFriendUsernameTextField);
+            obj.searchAndDisplayFriendProfile();
+        } else if (event.getSource() == SearchFriendBacktoHomeButoon) {
+        homeform.setVisible(true);
+        Quizzesform.setVisible(false);
+        EventsForm.setVisible(false);
+        BookingForm.setVisible(false);
+        LeaderBoardForm.setVisible(false);
+        AddQuizForm.setVisible(false);
+        AddEventsForm.setVisible(false);
+        RegisterEventsForm.setVisible(false);
+        SubmitStatusForm.setVisible(false);
+        AddRelationshipsPane.setVisible(false);
+        MakeBookingForm.setVisible(false);
+        UserProfileForm.setVisible(false);
+        SearchFriendForm.setVisible(false);
+        Notificationform.setVisible(false);
+    }else if (event.getSource() == NotificationButton) {
+            SearchFriend<?> obj;
+            if (role.equals("STUDENT")) {
+                obj = new SearchFriend<YoungStudents>(username);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Only Students can access !");
+                alert.showAndWait();
+                return;
+            }
+            homeform.setVisible(false);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(false);
+            RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(true);
         }
     }
+
+
+    @FXML
+    private AnchorPane Notificationform;
+
+    @FXML
+    private Button SearchFriendBacktoHomeButoon;
+
+    @FXML
+    private Button SearchFriendSearchButton;
+
+    @FXML
+    private TextField SearchFriendUsernameTextField;
+
+    @FXML
+    private Button ConnectionButton;
+
+    @FXML
+    private Label ParentUsername;
+
+    @FXML
+    private Label ChildUsername;
+
+    @FXML
+    private Pane UserProfileParentChildPane;
+
+    @FXML
+    private AnchorPane UserProfileEducatorAchievement;
+
+    @FXML
+    private AnchorPane SearchFriendForm;
+
+    @FXML
+    private Pane UserProfileEducatorAchievementNumberOfQuizesCreatedPane;
+
+    @FXML
+    private Pane UserProfileEmailPane;
+
+    @FXML
+    private Pane UserProfileLocationCoordinatePane;
+
+    @FXML
+    private Pane UserProfileParentAchiementNumberOfEventsCreatedPane;
+
+    @FXML
+    private Pane UserProfileParentAchiementPastBookingMadePane;
+
+    @FXML
+    private AnchorPane UserProfileParentAchievementPane;
+
+    @FXML
+    private Pane UserProfileRolePane;
+
+    @FXML
+    private Pane UserProfileStudentAchievementFriendsPane;
+
+    @FXML
+    private AnchorPane UserProfileStudentAchievementPane;
+
+    @FXML
+    private Pane UserProfileStudentAchievementTotalPointsPane;
+
+    @FXML
+    private Pane UserProfileUsernamePane;
+
+
+    @FXML
+    private Pane FriendsProfileEmailPane;
+
+    @FXML
+    private Pane FriendsProfileFriendsPane;
+
+    @FXML
+    private Pane FriendsProfileLocationCoordinatePane;
+
+    @FXML
+    private Pane FriendsProfileTotalPointsPane;
+
+    @FXML
+    private Pane FriendsProfileUsernamePane;
+
+    @FXML
+    private AnchorPane FriendProfileForm;
+
+    @FXML
+    private Button FriendRequestAcceptButton1;
+
+    @FXML
+    private Button FriendRequestAcceptButton2;
+
+    @FXML
+    private Button FriendRequestAcceptButton3;
+
+    @FXML
+    private Button FriendRequestAcceptButton4;
+
+    @FXML
+    private Button FriendRequestAcceptButton5;
+
+    @FXML
+    private Button FriendRequestAcceptButton6;
+
+    @FXML
+    private Button FriendRequestAcceptButton7;
+
+    @FXML
+    private Button FriendRequestAcceptButton8;
+
+    @FXML
+    private HBox FriendRequestHBOX1;
+
+    @FXML
+    private HBox FriendRequestHBOX2;
+
+    @FXML
+    private HBox FriendRequestHBOX3;
+
+    @FXML
+    private HBox FriendRequestHBOX4;
+
+    @FXML
+    private HBox FriendRequestHBOX5;
+
+    @FXML
+    private HBox FriendRequestHBOX6;
+
+    @FXML
+    private HBox FriendRequestHBOX7;
+
+    @FXML
+    private HBox FriendRequestHBOX8;
+
+    @FXML
+    private BottomNavigationButton FriendRequestRejectButton1;
+
+    @FXML
+    private BottomNavigationButton FriendRequestRejectButton2;
+
+    @FXML
+    private BottomNavigationButton FriendRequestRejectButton3;
+
+    @FXML
+    private BottomNavigationButton FriendRequestRejectButton4;
+
+    @FXML
+    private BottomNavigationButton FriendRequestRejectButton5;
+
+    @FXML
+    private BottomNavigationButton FriendRequestRejectButton6;
+
+    @FXML
+    private BottomNavigationButton FriendRequestRejectButton7;
+
+    @FXML
+    private BottomNavigationButton FriendRequestRejectButton8;
+
+    @FXML
+    private Pane FriendRequestUsernamePane1;
+
+    @FXML
+    private Pane FriendRequestUsernamePane2;
+
+    @FXML
+    private Pane FriendRequestUsernamePane3;
+
+    @FXML
+    private Pane FriendRequestUsernamePane4;
+
+    @FXML
+    private Pane FriendRequestUsernamePane5;
+
+    @FXML
+    private Pane FriendRequestUsernamePane6;
+
+    @FXML
+    private Pane FriendRequestUsernamePane7;
+
+    @FXML
+    private Pane FriendRequestUsernamePane8;
 
     @FXML
     private TableColumn<BookingInfo, String> BookingDistance;

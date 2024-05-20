@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import java.net.URL?>
@@ -14,6 +15,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -175,7 +177,7 @@
                                                             <graphic>
                                                                 <FontAwesomeIconView glyphName="USER" />
                                                             </graphic></Button>
-                                                        <Button fx:id="NotificationButton" layoutX="714.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@DashBoardDesign.css">
+                                                        <Button fx:id="NotificationButton" onAction="#switchForm" layoutX="714.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@DashBoardDesign.css">
                                                             <graphic>
                                                                 <FontAwesomeIconView glyphName="BELL" />
                                                             </graphic>
@@ -190,7 +192,7 @@
                                                                 <Font name="Berlin Sans FB Bold" size="24.0" />
                                                             </font>
                                                         </Label>
-                                                        <Button fx:id="ConnectionButton" layoutX="612.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@DashBoardDesign.css">
+                                                        <Button fx:id="ConnectionButton" layoutX="612.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchForm" stylesheets="@DashBoardDesign.css">
                                                             <graphic>
                                                                 <FontAwesomeIconView />
                                                             </graphic>
@@ -321,7 +323,7 @@
                                                         </TableView>
                                                     </children>
                                                 </AnchorPane>
-                                                <Button fx:id="QuizesSubmitStatus" layoutX="721.0" layoutY="484.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" stylesheets="@DashBoardDesign.css" text="Submit Status">
+                                                <Button fx:id="QuizesSubmitStatus" layoutX="721.0" layoutY="484.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="135.0" stylesheets="@DashBoardDesign.css" text="Submit Status">
                                                     <styleClass>
                                                         <String fx:value="minimize" />
                                                         <String fx:value="shadow" />
@@ -711,11 +713,11 @@
                                         </AnchorPane>
                                         <AnchorPane fx:id="UserProfileForm" layoutX="238.0" layoutY="74.0" prefHeight="549.6" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
-                                                <AnchorPane layoutX="128.0" layoutY="10.0" prefHeight="526.0" prefWidth="584.0" stylesheets="@DashBoardDesign.css">
+                                                <AnchorPane layoutX="44.0" layoutY="10.0" prefHeight="526.0" prefWidth="816.0" stylesheets="@DashBoardDesign.css">
                                                     <children>
-                                                        <AnchorPane layoutX="6.0" layoutY="7.0" prefHeight="85.0" prefWidth="570.0" stylesheets="@DashBoardDesign.css">
+                                                        <AnchorPane layoutX="6.0" layoutY="7.0" prefHeight="73.0" prefWidth="800.0" stylesheets="@DashBoardDesign.css">
                                                             <children>
-                                                                <Label layoutX="197.0" layoutY="21.0" text="User Profile">
+                                                                <Label layoutX="312.0" layoutY="15.0" text="User Profile">
                                                                     <font>
                                                                         <Font name="Berlin Sans FB Bold" size="32.0" />
                                                                     </font>
@@ -726,13 +728,7 @@
                                                                 <String fx:value="shadow" />
                                                             </styleClass>
                                                         </AnchorPane>
-                                                        <Pane fx:id="UserProfilePane" layoutX="26.0" layoutY="117.0" prefHeight="298.0" prefWidth="521.0" stylesheets="@DashBoardDesign.css">
-                                                            <styleClass>
-                                                                <String fx:value="white-background" />
-                                                                <String fx:value="shadow" />
-                                                            </styleClass>
-                                                        </Pane>
-                                                        <Button fx:id="UserProfileBacktoHomeButton" layoutX="373.0" layoutY="441.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="174.0" stylesheets="@DashBoardDesign.css" text="Back to Home">
+                                                        <Button fx:id="UserProfileBacktoHomeButton" layoutX="610.0" layoutY="450.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="62.0" prefWidth="194.0" stylesheets="@DashBoardDesign.css" text="Back to Home">
                                                             <font>
                                                                 <Font name="Berlin Sans FB Bold" size="21.0" />
                                                             </font>
@@ -745,75 +741,102 @@
                                                                 <String fx:value="minimize" />
                                                             </styleClass>
                                                         </Button>
-                                                    </children>
-                                                    <styleClass>
-                                                        <String fx:value="white-background" />
-                                                        <String fx:value="shadow" />
-                                                    </styleClass>
-                                                </AnchorPane>
-                                            </children>
-                                        </AnchorPane>
-                                        <AnchorPane fx:id="SubmitStatusForm" layoutX="177.0" layoutY="7.0" prefHeight="535.0" prefWidth="533.0" stylesheets="@DashBoardDesign.css" visible="false">
-                                            <children>
-                                                <AnchorPane layoutX="6.0" layoutY="8.0" prefHeight="84.0" prefWidth="522.0" stylesheets="@DashBoardDesign.css">
-                                                    <styleClass>
-                                                        <String fx:value="nav-form" />
-                                                        <String fx:value="shadow" />
-                                                    </styleClass>
-                                                    <children>
-                                                        <Label layoutX="163.0" layoutY="21.0" text="Submit Status">
+                                                        <Label layoutX="29.0" layoutY="94.0" text="Profile Details" underline="true">
                                                             <font>
-                                                                <Font name="Berlin Sans FB Bold" size="30.0" />
+                                                                <Font name="Berlin Sans FB Bold" size="22.0" />
                                                             </font>
                                                         </Label>
+                                                        <Label layoutX="111.0" layoutY="131.0" text="Username :">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="19.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Pane fx:id="UserProfileUsernamePane" layoutX="226.0" layoutY="125.0" prefHeight="39.0" prefWidth="216.0" />
+                                                        <Label layoutX="140.0" layoutY="181.0" text="Email :">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="19.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Pane fx:id="UserProfileEmailPane" layoutX="225.0" layoutY="175.0" prefHeight="39.0" prefWidth="212.0" />
+                                                        <Label layoutX="14.0" layoutY="228.0" text="Location Coordinate :">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="19.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Pane fx:id="UserProfileLocationCoordinatePane" layoutX="226.0" layoutY="222.0" prefHeight="39.0" prefWidth="207.0" />
+                                                        <Label layoutX="154.0" layoutY="275.0" text="Role :">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="19.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Pane fx:id="UserProfileRolePane" layoutX="225.0" layoutY="269.0" prefHeight="39.0" prefWidth="207.0" />
+                                                        <AnchorPane layoutX="29.0" layoutY="372.0" prefHeight="137.0" prefWidth="200.0" />
+                                                        <Label layoutX="494.0" layoutY="94.0" text="User's Achievements" underline="true">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="22.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Line endX="-70.800048828125" endY="196.79998779296875" layoutX="518.0" layoutY="214.0" startX="-70.800048828125" startY="-111.20001220703125" />
+                                                        <AnchorPane fx:id="UserProfileStudentAchievementPane" layoutX="459.0" layoutY="131.0" prefHeight="258.0" prefWidth="338.0" visible="false">
+                                                            <children>
+                                                                <Label text="Total points :">
+                                                                    <font>
+                                                                        <Font name="Berlin Sans FB Bold" size="19.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Pane fx:id="UserProfileStudentAchievementTotalPointsPane" layoutX="125.0" layoutY="3.0" prefHeight="42.0" prefWidth="200.0" />
+                                                                <Label layoutX="7.0" layoutY="58.0" text="Friends :">
+                                                                    <font>
+                                                                        <Font name="Berlin Sans FB Bold" size="19.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Pane fx:id="UserProfileStudentAchievementFriendsPane" layoutX="93.0" layoutY="61.0" prefHeight="182.0" prefWidth="239.0" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <AnchorPane fx:id="UserProfileParentAchievementPane" layoutX="459.0" layoutY="131.0" prefHeight="258.0" prefWidth="338.0" visible="false">
+                                                            <children>
+                                                                <Label text="Past Booking Made : ">
+                                                                    <font>
+                                                                        <Font name="Berlin Sans FB Bold" size="19.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Pane fx:id="UserProfileParentAchiementPastBookingMadePane" layoutX="7.0" layoutY="35.0" prefHeight="187.0" prefWidth="321.0" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <AnchorPane fx:id="UserProfileEducatorAchievement" layoutX="469.0" layoutY="141.0" prefHeight="258.0" prefWidth="338.0">
+                                                            <children>
+                                                                <Label text="Number of Quizes Created :">
+                                                                    <font>
+                                                                        <Font name="Berlin Sans FB Bold" size="19.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Pane fx:id="UserProfileEducatorAchievementNumberOfQuizesCreatedPane" layoutX="255.0" layoutY="3.0" prefHeight="41.0" prefWidth="78.0" />
+                                                                <Label layoutY="54.0" text="Number of Events Created :">
+                                                                    <font>
+                                                                        <Font name="Berlin Sans FB Bold" size="19.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Pane fx:id="UserProfileParentAchiementNumberOfEventsCreatedPane" layoutX="253.0" layoutY="50.0" prefHeight="42.0" prefWidth="82.0" />
+                                                            </children>
+                                                        </AnchorPane>
+                                          <Label fx:id="ParentUsername" alignment="TOP_LEFT" layoutX="38.0" layoutY="321.0" prefHeight="102.0" prefWidth="218.0" text="Parent Username :" visible="false">
+                                             <font>
+                                                <Font name="Berlin Sans FB Bold" size="19.0" />
+                                             </font>
+                                          </Label>
+                                          <Pane fx:id="UserProfileParentChildPane" layoutX="227.0" layoutY="321.0" prefHeight="39.0" prefWidth="207.0" />
+                                          <Label fx:id="ChildUsername" alignment="TOP_LEFT" layoutX="52.0" layoutY="321.0" prefHeight="102.0" prefWidth="218.0" text="Child Username :" visible="false">
+                                             <font>
+                                                <Font name="Berlin Sans FB Bold" size="19.0" />
+                                             </font>
+                                          </Label>
                                                     </children>
+                                                    <styleClass>
+                                                        <String fx:value="white-background" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
                                                 </AnchorPane>
-                                                <Label layoutX="47.0" layoutY="123.0" text="Quiz Done : ">
-                                                    <font>
-                                                        <Font name="Berlin Sans FB Bold" size="21.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="47.0" layoutY="191.0" text="Quiz Description :">
-                                                    <font>
-                                                        <Font name="Berlin Sans FB Bold" size="21.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="47.0" layoutY="311.0" text="Quiz Theme :">
-                                                    <font>
-                                                        <Font name="Berlin Sans FB Bold" size="21.0" />
-                                                    </font>
-                                                </Label>
-                                                <Pane fx:id="SubmitStatusQuizDescriptionPane" layoutX="236.0" layoutY="196.0" prefHeight="104.0" prefWidth="280.0" stylesheets="@DashBoardDesign.css">
-                                                    <styleClass>
-                                                        <String fx:value="white-background" />
-                                                        <String fx:value="shadow" />
-                                                    </styleClass>
-                                                </Pane>
-                                                <Pane fx:id="SubmitStatusQuizThemePane" layoutX="236.0" layoutY="326.0" prefHeight="77.0" prefWidth="281.0" stylesheets="@DashBoardDesign.css">
-                                                    <styleClass>
-                                                        <String fx:value="white-background" />
-                                                        <String fx:value="shadow" />
-                                                    </styleClass>
-                                                </Pane>
-                                                <Button fx:id="SubmitStatusConfirmButton" layoutX="393.0" layoutY="462.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="120.0" stylesheets="@DashBoardDesign.css" text="Confirm">
-                                                    <styleClass>
-                                                        <String fx:value="font" />
-                                                        <String fx:value="minimize" />
-                                                        <String fx:value="nav-form" />
-                                                        <String fx:value="shadow" />
-                                                    </styleClass>
-                                                </Button>
-                                                <MenuButton fx:id="MenuButtonQuiz" layoutX="236.0" layoutY="125.0" mnemonicParsing="false" text="MenuButton">
-                                                    <items>
-                                                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                                                        <MenuItem mnemonicParsing="false" text="Action 2" />
-                                                    </items>
-                                                </MenuButton>
                                             </children>
-                                            <styleClass>
-                                                <String fx:value="white-background" />
-                                                <String fx:value="shadow" />
-                                            </styleClass>
                                         </AnchorPane>
                                         <AnchorPane fx:id="MakeBookingForm" layoutX="61.0" layoutY="14.0" prefHeight="549.6" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
@@ -871,7 +894,7 @@
                                                                 <Font name="Berlin Sans FB Bold" size="17.0" />
                                                             </font>
                                                         </Label>
-                                                        <Button fx:id="MakeBookingConfirmButton" layoutX="74.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="61.0" prefWidth="406.0" stylesheets="@DashBoardDesign.css" text="Confirm" >
+                                                        <Button fx:id="MakeBookingConfirmButton" layoutX="74.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="61.0" prefWidth="406.0" stylesheets="@DashBoardDesign.css" text="Confirm">
                                                             <font>
                                                                 <Font name="Berlin Sans FB Bold" size="24.0" />
                                                             </font>
@@ -882,7 +905,7 @@
                                                                 <String fx:value="font" />
                                                             </styleClass>
                                                         </Button>
-                                                        <Button fx:id="MakeBookingCancelButton" layoutX="74.0" layoutY="431.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="61.0" prefWidth="406.0" stylesheets="@DashBoardDesign.css" text="Cancel" >
+                                                        <Button fx:id="MakeBookingCancelButton" layoutX="74.0" layoutY="431.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="61.0" prefWidth="406.0" stylesheets="@DashBoardDesign.css" text="Cancel">
                                                             <font>
                                                                 <Font name="Berlin Sans FB Bold" size="24.0" />
                                                             </font>
@@ -899,23 +922,85 @@
                                                                 <String fx:value="shadow" />
                                                             </styleClass>
                                                         </Pane>
-                                          <Label layoutX="68.0" layoutY="114.0" text="Choose Child Username :">
-                                             <font>
-                                                <Font name="Berlin Sans FB Bold" size="17.0" />
-                                             </font>
-                                          </Label>
-                                          <MenuButton fx:id="MakeBookingUsernameButton" layoutX="347.0" layoutY="114.0" mnemonicParsing="false" stylesheets="@DashBoardDesign.css" text="Select Child">
-                                             <items>
-                                                <MenuItem mnemonicParsing="false" text="Action 1" />
-                                                <MenuItem mnemonicParsing="false" text="Action 2" />
-                                             </items>
-                                             <styleClass>
-                                                <String fx:value="white-background" />
-                                                <String fx:value="shadow" />
-                                             </styleClass>
-                                          </MenuButton>
+                                                        <Label layoutX="68.0" layoutY="114.0" text="Choose Child Username :">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="17.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <MenuButton fx:id="MakeBookingUsernameButton" layoutX="347.0" layoutY="114.0" mnemonicParsing="false" stylesheets="@DashBoardDesign.css" text="Select Child">
+                                                            <items>
+                                                                <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                                <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                            </items>
+                                                            <styleClass>
+                                                                <String fx:value="white-background" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass>
+                                                        </MenuButton>
                                                     </children>
                                                 </AnchorPane>
+                                              <AnchorPane fx:id="SubmitStatusForm" prefHeight="535.0" prefWidth="533.0" stylesheets="@DashBoardDesign.css" visible="false">
+                                                  <children>
+                                                      <AnchorPane layoutX="6.0" layoutY="8.0" prefHeight="84.0" prefWidth="522.0" stylesheets="@DashBoardDesign.css">
+                                                          <styleClass>
+                                                              <String fx:value="nav-form" />
+                                                              <String fx:value="shadow" />
+                                                          </styleClass>
+                                                          <children>
+                                                              <Label layoutX="163.0" layoutY="21.0" text="Submit Status">
+                                                                  <font>
+                                                                      <Font name="Berlin Sans FB Bold" size="30.0" />
+                                                                  </font>
+                                                              </Label>
+                                                          </children>
+                                                      </AnchorPane>
+                                                      <Label layoutX="47.0" layoutY="123.0" text="Quiz Done : ">
+                                                          <font>
+                                                              <Font name="Berlin Sans FB Bold" size="21.0" />
+                                                          </font>
+                                                      </Label>
+                                                      <Label layoutX="47.0" layoutY="191.0" text="Quiz Description :">
+                                                          <font>
+                                                              <Font name="Berlin Sans FB Bold" size="21.0" />
+                                                          </font>
+                                                      </Label>
+                                                      <Label layoutX="47.0" layoutY="311.0" text="Quiz Theme :">
+                                                          <font>
+                                                              <Font name="Berlin Sans FB Bold" size="21.0" />
+                                                          </font>
+                                                      </Label>
+                                                      <Pane fx:id="SubmitStatusQuizDescriptionPane" layoutX="236.0" layoutY="196.0" prefHeight="104.0" prefWidth="280.0" stylesheets="@DashBoardDesign.css">
+                                                          <styleClass>
+                                                              <String fx:value="white-background" />
+                                                              <String fx:value="shadow" />
+                                                          </styleClass>
+                                                      </Pane>
+                                                      <Pane fx:id="SubmitStatusQuizThemePane" layoutX="236.0" layoutY="326.0" prefHeight="77.0" prefWidth="281.0" stylesheets="@DashBoardDesign.css">
+                                                          <styleClass>
+                                                              <String fx:value="white-background" />
+                                                              <String fx:value="shadow" />
+                                                          </styleClass>
+                                                      </Pane>
+                                                      <Button fx:id="SubmitStatusConfirmButton" layoutX="393.0" layoutY="462.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="54.0" prefWidth="120.0" stylesheets="@DashBoardDesign.css" text="Confirm">
+                                                          <styleClass>
+                                                              <String fx:value="font" />
+                                                              <String fx:value="minimize" />
+                                                              <String fx:value="nav-form" />
+                                                              <String fx:value="shadow" />
+                                                          </styleClass>
+                                                      </Button>
+                                                      <MenuButton fx:id="MenuButtonQuiz" layoutX="236.0" layoutY="125.0" mnemonicParsing="false" text="MenuButton">
+                                                          <items>
+                                                              <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                              <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                          </items>
+                                                      </MenuButton>
+                                                  </children>
+                                                  <styleClass>
+                                                      <String fx:value="white-background" />
+                                                      <String fx:value="shadow" />
+                                                  </styleClass>
+                                              </AnchorPane>
                                             </children>
                                         </AnchorPane>
                                         <AnchorPane fx:id="AddRelationshipsPane" layoutX="212.0" layoutY="52.0" prefHeight="407.0" prefWidth="464.0" stylesheets="@DashBoardDesign.css" visible="false">
@@ -966,24 +1051,433 @@
                                                 </Button>
                                             </children>
                                         </AnchorPane>
-                                        <AnchorPane layoutX="112.0" layoutY="81.0" prefHeight="548.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <AnchorPane fx:id="SearchFriendForm" layoutX="112.0" layoutY="81.0" prefHeight="548.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
-                                                <AnchorPane layoutX="98.0" layoutY="42.0" prefHeight="469.0" prefWidth="714.0" stylesheets="@DashBoardDesign.css">
+                                                <AnchorPane layoutX="20.0" layoutY="13.0" prefHeight="510.0" prefWidth="362.0" stylesheets="@DashBoardDesign.css">
                                                     <styleClass>
                                                         <String fx:value="white-background" />
                                                         <String fx:value="shadow" />
                                                     </styleClass>
                                                     <children>
-                                                        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="105.0" prefWidth="684.0" styleClass="nav-form" stylesheets="@DashBoardDesign.css" />
-                                                        <ScrollPane layoutX="17.0" layoutY="128.0" prefHeight="329.0" prefWidth="679.0">
-                                                            <content>
-                                                                <VBox prefHeight="418.0" prefWidth="665.0">
+                                                        <AnchorPane layoutX="8.0" layoutY="7.0" prefHeight="74.0" prefWidth="338.0" stylesheets="@DashBoardDesign.css">
+                                                            <styleClass>
+                                                                <String fx:value="nav-form" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass>
+                                                            <children>
+                                                                <Label layoutX="53.0" layoutY="17.0" text="Search For Friend">
+                                                                    <font>
+                                                                        <Font name="Berlin Sans FB Bold" size="28.0" />
+                                                                    </font>
+                                                                </Label>
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <Label layoutX="28.0" layoutY="132.0" text="Username :">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="16.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="SearchFriendUsernameTextField" layoutX="125.0" layoutY="131.0" prefHeight="30.0" prefWidth="212.0" stylesheets="@DashBoardDesign.css">
+                                                            <styleClass>
+                                                                <String fx:value="white-background" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass>
+                                                        </TextField>
+                                                        <Button fx:id="SearchFriendSearchButton" layoutX="9.0" layoutY="258.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="59.0" prefWidth="338.0" stylesheets="@DashBoardDesign.css" text="Search">
+                                                            <styleClass>
+                                                                <String fx:value="nav-form" />
+                                                                <String fx:value="font" />
+                                                                <String fx:value="minimize" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass>
+                                                        </Button>
+                                                        <Button fx:id="SearchFriendBacktoHomeButoon" layoutX="10.0" layoutY="330.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="59.0" prefWidth="338.0" stylesheets="@DashBoardDesign.css" text="Back to Home">
+                                                            <styleClass>
+                                                                <String fx:value="nav-form" />
+                                                                <String fx:value="font" />
+                                                                <String fx:value="close" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass>
+                                                        </Button>
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane fx:id="FriendProfileForm" layoutX="394.0" layoutY="13.0" prefHeight="507.0" prefWidth="486.0" stylesheets="@DashBoardDesign.css">
+                                                    <styleClass>
+                                                        <String fx:value="white-background" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
+                                                    <children>
+                                                        <AnchorPane layoutX="7.0" layoutY="7.0" prefHeight="73.0" prefWidth="470.0" stylesheets="@DashBoardDesign.css">
+                                                            <styleClass>
+                                                                <String fx:value="nav-form" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass>
+                                                            <children>
+                                                                <Label layoutX="133.0" layoutY="17.0" text="Friend's Profile">
+                                                                    <font>
+                                                                        <Font name="Berlin Sans FB Bold" size="28.0" />
+                                                                    </font>
+                                                                </Label>
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <Button fx:id="SearchFriendSendFriendRequestButton" layoutX="83.0" layoutY="426.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="59.0" prefWidth="338.0" stylesheets="@DashBoardDesign.css" text="Send Friend Request">
+                                                            <styleClass>
+                                                                <String fx:value="nav-form" />
+                                                                <String fx:value="font" />
+                                                                <String fx:value="minimize" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass>
+                                                        </Button>
+                                                        <Label layoutX="14.0" layoutY="94.0" text="Profile Details " underline="true">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="20.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label layoutX="94.0" layoutY="128.0" text="Username :">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="16.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Pane fx:id="FriendsProfileUsernamePane" layoutX="206.0" layoutY="135.0" prefHeight="31.0" prefWidth="214.0" />
+                                                        <Label layoutX="119.0" layoutY="171.0" text="Email :">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="16.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Pane fx:id="FriendsProfileEmailPane" layoutX="206.0" layoutY="178.0" prefHeight="31.0" prefWidth="213.0" />
+                                                        <Label layoutX="14.0" layoutY="213.0" text="LocationCoordinate :">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="16.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Pane fx:id="FriendsProfileLocationCoordinatePane" layoutX="204.0" layoutY="220.0" prefHeight="31.0" prefWidth="217.0" />
+                                                        <Label layoutX="14.0" layoutY="254.0" text="Achievement" underline="true">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="20.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label layoutX="76.0" layoutY="292.0" text="Total Points :">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="16.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Pane fx:id="FriendsProfileTotalPointsPane" layoutX="205.0" layoutY="299.0" prefHeight="31.0" prefWidth="214.0" />
+                                                    </children>
+                                                </AnchorPane>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane fx:id="Notificationform" layoutX="177.0" layoutY="20.0" prefHeight="517.0" prefWidth="600.0" stylesheets="@DashBoardDesign.css" visible="false">
+                                            <styleClass>
+                                                <String fx:value="white-background" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="82.0" prefWidth="583.0" stylesheets="@DashBoardDesign.css">
+                                                    <styleClass>
+                                                        <String fx:value="nav-form" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
+                                                    <children>
+                                                        <Label layoutX="246.0" layoutY="17.0" text="Inbox">
+                                                            <font>
+                                                                <Font name="Berlin Sans FB Bold" size="34.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane layoutX="-1.0" layoutY="114.0" prefHeight="405.0" prefWidth="602.0">
+                                                    <children>
+                                                        <VBox layoutX="11.2" layoutY="52.0" prefHeight="399.0" prefWidth="582.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="0.0">
+                                                            <children>
+                                                                <HBox prefHeight="398.0" prefWidth="591.0" VBox.vgrow="ALWAYS">
                                                                     <children>
-                                                                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="662.0" text="Button" />
+                                                                        <ScrollPane prefHeight="387.0" prefWidth="582.0" styleClass="white-background" stylesheets="@DashBoardDesign.css">
+                                                                            <content>
+                                                                                <VBox prefHeight="410.0" prefWidth="568.0" styleClass="white-background" stylesheets="@DashBoardDesign.css">
+                                                                                    <children>
+                                                                                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="566.0" styleClass="nav-form" stylesheets="@DashBoardDesign.css">
+                                                                                            <children>
+                                                                                                <Label alignment="CENTER" prefHeight="31.0" prefWidth="32.0" stylesheets="@DashBoardDesign.css" text="No">
+                                                                                                    <font>
+                                                                                                        <Font name="Berlin Sans FB Bold" size="22.0" />
+                                                                                                    </font>
+                                                                                                </Label>
+                                                                                                <Label alignment="CENTER" layoutX="10.0" layoutY="20.0" prefHeight="31.0" prefWidth="385.0" text="Friend Request">
+                                                                                                    <font>
+                                                                                                        <Font name="Berlin Sans FB Bold" size="22.0" />
+                                                                                                    </font>
+                                                                                                </Label>
+                                                                                                <Label alignment="CENTER" layoutX="10.0" layoutY="20.0" prefHeight="31.0" prefWidth="151.0" stylesheets="@DashBoardDesign.css" text="Action">
+                                                                                                    <font>
+                                                                                                        <Font name="Berlin Sans FB Bold" size="22.0" />
+                                                                                                    </font>
+                                                                                                </Label>
+                                                                                            </children>
+                                                                                        </HBox>
+                                                                                        <HBox fx:id="FriendRequestHBOX1" alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="538.0" spacing="10.0" stylesheets="@DashBoardDesign.css">
+                                                                                            <styleClass>
+                                                                                                <String fx:value="white-background" />
+                                                                                                <String fx:value="shadow" />
+                                                                                            </styleClass>
+                                                                                            <children>
+                                                                                                <Label text=" 1" textAlignment="CENTER">
+                                                                                                    <font>
+                                                                                                        <Font name="Berlin Sans FB Bold" size="25.0" />
+                                                                                                    </font>
+                                                                                                </Label>
+                                                                                                <Pane fx:id="FriendRequestUsernamePane1" prefHeight="52.0" prefWidth="325.0" />
+                                                                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                                                                    <children>
+                                                                                                        <Button fx:id="FriendRequestAcceptButton1" mnemonicParsing="false" style="-fx-background-color: #22ea64;" stylesheets="@DashBoardDesign.css" text="Accept" textFill="#22ea64">
+                                                                                                            <styleClass>
+                                                                                                                <String fx:value="minimize" />
+                                                                                                                <String fx:value="font" />
+                                                                                                                <String fx:value="shadow" />
+                                                                                                            </styleClass>
+                                                                                                        </Button>
+                                                                                                        <BottomNavigationButton fx:id="FriendRequestRejectButton1" style="-fx-background-color: #ef3a3a;" stylesheets="@DashBoardDesign.css" text="Reject" textFill="#ef3a3a">
+                                                                                                            <styleClass>
+                                                                                                                <String fx:value="font" />
+                                                                                                                <String fx:value="close" />
+                                                                                                                <String fx:value="shadow" />
+                                                                                                            </styleClass>
+                                                                                                        </BottomNavigationButton>
+                                                                                                    </children>
+                                                                                                </HBox>
+                                                                                            </children>
+                                                                                        </HBox>
+                                                                                        <HBox fx:id="FriendRequestHBOX2" alignment="CENTER_LEFT" layoutX="11.0" layoutY="61.0" prefHeight="54.0" prefWidth="538.0" spacing="10.0" stylesheets="@DashBoardDesign.css">
+                                                                                            <styleClass>
+                                                                                                <String fx:value="white-background" />
+                                                                                                <String fx:value="shadow" />
+                                                                                            </styleClass>
+                                                                                            <children>
+                                                                                                <Label text=" 2" textAlignment="CENTER">
+                                                                                                    <font>
+                                                                                                        <Font name="Berlin Sans FB Bold" size="25.0" />
+                                                                                                    </font>
+                                                                                                </Label>
+                                                                                                <Pane fx:id="FriendRequestUsernamePane2" prefHeight="52.0" prefWidth="325.0" />
+                                                                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                                                                    <children>
+                                                                                                        <Button fx:id="FriendRequestAcceptButton2" mnemonicParsing="false" style="-fx-background-color: #22ea64;" stylesheets="@DashBoardDesign.css" text="Accept" textFill="#22ea64">
+                                                                                                            <styleClass>
+                                                                                                                <String fx:value="minimize" />
+                                                                                                                <String fx:value="font" />
+                                                                                                                <String fx:value="shadow" />
+                                                                                                            </styleClass>
+                                                                                                        </Button>
+                                                                                                        <BottomNavigationButton fx:id="FriendRequestRejectButton2" style="-fx-background-color: #ef3a3a;" stylesheets="@DashBoardDesign.css" text="Reject" textFill="#ef3a3a">
+                                                                                                            <styleClass>
+                                                                                                                <String fx:value="font" />
+                                                                                                                <String fx:value="close" />
+                                                                                                                <String fx:value="shadow" />
+                                                                                                            </styleClass>
+                                                                                                        </BottomNavigationButton>
+                                                                                                    </children>
+                                                                                                </HBox>
+                                                                                            </children>
+                                                                                        </HBox>
+                                                                                        <HBox fx:id="FriendRequestHBOX3" alignment="CENTER_LEFT" layoutX="11.0" layoutY="61.0" prefHeight="54.0" prefWidth="538.0" spacing="10.0" stylesheets="@DashBoardDesign.css">
+                                                                                            <styleClass>
+                                                                                                <String fx:value="white-background" />
+                                                                                                <String fx:value="shadow" />
+                                                                                            </styleClass>
+                                                                                            <children>
+                                                                                                <Label text=" 3" textAlignment="CENTER">
+                                                                                                    <font>
+                                                                                                        <Font name="Berlin Sans FB Bold" size="25.0" />
+                                                                                                    </font>
+                                                                                                </Label>
+                                                                                                <Pane fx:id="FriendRequestUsernamePane3" prefHeight="52.0" prefWidth="325.0" />
+                                                                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                                                                    <children>
+                                                                                                        <Button fx:id="FriendRequestAcceptButton3" mnemonicParsing="false" style="-fx-background-color: #22ea64;" stylesheets="@DashBoardDesign.css" text="Accept" textFill="#22ea64">
+                                                                                                            <styleClass>
+                                                                                                                <String fx:value="minimize" />
+                                                                                                                <String fx:value="font" />
+                                                                                                                <String fx:value="shadow" />
+                                                                                                            </styleClass>
+                                                                                                        </Button>
+                                                                                                        <BottomNavigationButton fx:id="FriendRequestRejectButton3" style="-fx-background-color: #ef3a3a;" stylesheets="@DashBoardDesign.css" text="Reject" textFill="#ef3a3a">
+                                                                                                            <styleClass>
+                                                                                                                <String fx:value="font" />
+                                                                                                                <String fx:value="close" />
+                                                                                                                <String fx:value="shadow" />
+                                                                                                            </styleClass>
+                                                                                                        </BottomNavigationButton>
+                                                                                                    </children>
+                                                                                                </HBox>
+                                                                                            </children>
+                                                                                        </HBox>
+                                                                                        <HBox fx:id="FriendRequestHBOX4" alignment="CENTER_LEFT" layoutX="11.0" layoutY="61.0" prefHeight="54.0" prefWidth="538.0" spacing="10.0" stylesheets="@DashBoardDesign.css">
+                                                                                            <styleClass>
+                                                                                                <String fx:value="white-background" />
+                                                                                                <String fx:value="shadow" />
+                                                                                            </styleClass>
+                                                                                            <children>
+                                                                                                <Label text=" 4" textAlignment="CENTER">
+                                                                                                    <font>
+                                                                                                        <Font name="Berlin Sans FB Bold" size="25.0" />
+                                                                                                    </font>
+                                                                                                </Label>
+                                                                                                <Pane fx:id="FriendRequestUsernamePane4" prefHeight="52.0" prefWidth="325.0" />
+                                                                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                                                                    <children>
+                                                                                                        <Button fx:id="FriendRequestAcceptButton4" mnemonicParsing="false" style="-fx-background-color: #22ea64;" stylesheets="@DashBoardDesign.css" text="Accept" textFill="#22ea64">
+                                                                                                            <styleClass>
+                                                                                                                <String fx:value="minimize" />
+                                                                                                                <String fx:value="font" />
+                                                                                                                <String fx:value="shadow" />
+                                                                                                            </styleClass>
+                                                                                                        </Button>
+                                                                                                        <BottomNavigationButton fx:id="FriendRequestRejectButton4" style="-fx-background-color: #ef3a3a;" stylesheets="@DashBoardDesign.css" text="Reject" textFill="#ef3a3a">
+                                                                                                            <styleClass>
+                                                                                                                <String fx:value="font" />
+                                                                                                                <String fx:value="close" />
+                                                                                                                <String fx:value="shadow" />
+                                                                                                            </styleClass>
+                                                                                                        </BottomNavigationButton>
+                                                                                                    </children>
+                                                                                                </HBox>
+                                                                                            </children>
+                                                                                        </HBox>
+                                                                                        <HBox fx:id="FriendRequestHBOX5" alignment="CENTER_LEFT" layoutX="11.0" layoutY="224.0" prefHeight="54.0" prefWidth="538.0" spacing="10.0" stylesheets="@DashBoardDesign.css">
+                                                                                            <styleClass>
+                                                                                                <String fx:value="white-background" />
+                                                                                                <String fx:value="shadow" />
+                                                                                            </styleClass>
+                                                                                            <children>
+                                                                                                <Label text=" 5" textAlignment="CENTER">
+                                                                                                    <font>
+                                                                                                        <Font name="Berlin Sans FB Bold" size="25.0" />
+                                                                                                    </font>
+                                                                                                </Label>
+                                                                                                <Pane fx:id="FriendRequestUsernamePane5" prefHeight="52.0" prefWidth="325.0" />
+                                                                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                                                                    <children>
+                                                                                                        <Button fx:id="FriendRequestAcceptButton5" mnemonicParsing="false" style="-fx-background-color: #22ea64;" stylesheets="@DashBoardDesign.css" text="Accept" textFill="#22ea64">
+                                                                                                            <styleClass>
+                                                                                                                <String fx:value="minimize" />
+                                                                                                                <String fx:value="font" />
+                                                                                                                <String fx:value="shadow" />
+                                                                                                            </styleClass>
+                                                                                                        </Button>
+                                                                                                        <BottomNavigationButton fx:id="FriendRequestRejectButton5" style="-fx-background-color: #ef3a3a;" stylesheets="@DashBoardDesign.css" text="Reject" textFill="#ef3a3a">
+                                                                                                            <styleClass>
+                                                                                                                <String fx:value="font" />
+                                                                                                                <String fx:value="close" />
+                                                                                                                <String fx:value="shadow" />
+                                                                                                            </styleClass>
+                                                                                                        </BottomNavigationButton>
+                                                                                                    </children>
+                                                                                                </HBox>
+                                                                                            </children>
+                                                                                        </HBox>
+                                                                                        <HBox fx:id="FriendRequestHBOX6" alignment="CENTER_LEFT" layoutX="11.0" layoutY="279.0" prefHeight="54.0" prefWidth="538.0" spacing="10.0" stylesheets="@DashBoardDesign.css">
+                                                                                            <styleClass>
+                                                                                                <String fx:value="white-background" />
+                                                                                                <String fx:value="shadow" />
+                                                                                            </styleClass>
+                                                                                            <children>
+                                                                                                <Label text=" 6" textAlignment="CENTER">
+                                                                                                    <font>
+                                                                                                        <Font name="Berlin Sans FB Bold" size="25.0" />
+                                                                                                    </font>
+                                                                                                </Label>
+                                                                                                <Pane fx:id="FriendRequestUsernamePane6" prefHeight="52.0" prefWidth="325.0" />
+                                                                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                                                                    <children>
+                                                                                                        <Button fx:id="FriendRequestAcceptButton6" mnemonicParsing="false" style="-fx-background-color: #22ea64;" stylesheets="@DashBoardDesign.css" text="Accept" textFill="#22ea64">
+                                                                                                            <styleClass>
+                                                                                                                <String fx:value="minimize" />
+                                                                                                                <String fx:value="font" />
+                                                                                                                <String fx:value="shadow" />
+                                                                                                            </styleClass>
+                                                                                                        </Button>
+                                                                                                        <BottomNavigationButton fx:id="FriendRequestRejectButton6" style="-fx-background-color: #ef3a3a;" stylesheets="@DashBoardDesign.css" text="Reject" textFill="#ef3a3a">
+                                                                                                            <styleClass>
+                                                                                                                <String fx:value="font" />
+                                                                                                                <String fx:value="close" />
+                                                                                                                <String fx:value="shadow" />
+                                                                                                            </styleClass>
+                                                                                                        </BottomNavigationButton>
+                                                                                                    </children>
+                                                                                                </HBox>
+                                                                                            </children>
+                                                                                        </HBox>
+                                                                                        <HBox fx:id="FriendRequestHBOX7" alignment="CENTER_LEFT" layoutX="11.0" layoutY="333.0" prefHeight="54.0" prefWidth="538.0" spacing="10.0" stylesheets="@DashBoardDesign.css">
+                                                                                            <styleClass>
+                                                                                                <String fx:value="white-background" />
+                                                                                                <String fx:value="shadow" />
+                                                                                            </styleClass>
+                                                                                            <children>
+                                                                                                <Label text=" 7" textAlignment="CENTER">
+                                                                                                    <font>
+                                                                                                        <Font name="Berlin Sans FB Bold" size="25.0" />
+                                                                                                    </font>
+                                                                                                </Label>
+                                                                                                <Pane fx:id="FriendRequestUsernamePane7" prefHeight="52.0" prefWidth="325.0" />
+                                                                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                                                                    <children>
+                                                                                                        <Button fx:id="FriendRequestAcceptButton7" mnemonicParsing="false" style="-fx-background-color: #22ea64;" stylesheets="@DashBoardDesign.css" text="Accept" textFill="#22ea64">
+                                                                                                            <styleClass>
+                                                                                                                <String fx:value="minimize" />
+                                                                                                                <String fx:value="font" />
+                                                                                                                <String fx:value="shadow" />
+                                                                                                            </styleClass>
+                                                                                                        </Button>
+                                                                                                        <BottomNavigationButton fx:id="FriendRequestRejectButton7" style="-fx-background-color: #ef3a3a;" stylesheets="@DashBoardDesign.css" text="Reject" textFill="#ef3a3a">
+                                                                                                            <styleClass>
+                                                                                                                <String fx:value="font" />
+                                                                                                                <String fx:value="close" />
+                                                                                                                <String fx:value="shadow" />
+                                                                                                            </styleClass>
+                                                                                                        </BottomNavigationButton>
+                                                                                                    </children>
+                                                                                                </HBox>
+                                                                                            </children>
+                                                                                        </HBox>
+                                                                                        <HBox fx:id="FriendRequestHBOX8" alignment="CENTER_LEFT" layoutX="11.0" layoutY="368.0" prefHeight="54.0" prefWidth="538.0" spacing="10.0" stylesheets="@DashBoardDesign.css">
+                                                                                            <styleClass>
+                                                                                                <String fx:value="white-background" />
+                                                                                                <String fx:value="shadow" />
+                                                                                            </styleClass>
+                                                                                            <children>
+                                                                                                <Label text=" 8" textAlignment="CENTER">
+                                                                                                    <font>
+                                                                                                        <Font name="Berlin Sans FB Bold" size="25.0" />
+                                                                                                    </font>
+                                                                                                </Label>
+                                                                                                <Pane fx:id="FriendRequestUsernamePane8" prefHeight="52.0" prefWidth="325.0" />
+                                                                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                                                                    <children>
+                                                                                                        <Button fx:id="FriendRequestAcceptButton8" mnemonicParsing="false" style="-fx-background-color: #22ea64;" stylesheets="@DashBoardDesign.css" text="Accept" textFill="#22ea64">
+                                                                                                            <styleClass>
+                                                                                                                <String fx:value="minimize" />
+                                                                                                                <String fx:value="font" />
+                                                                                                                <String fx:value="shadow" />
+                                                                                                            </styleClass>
+                                                                                                        </Button>
+                                                                                                        <BottomNavigationButton fx:id="FriendRequestRejectButton8" style="-fx-background-color: #ef3a3a;" stylesheets="@DashBoardDesign.css" text="Reject" textFill="#ef3a3a">
+                                                                                                            <styleClass>
+                                                                                                                <String fx:value="font" />
+                                                                                                                <String fx:value="close" />
+                                                                                                                <String fx:value="shadow" />
+                                                                                                            </styleClass>
+                                                                                                        </BottomNavigationButton>
+                                                                                                    </children>
+                                                                                                </HBox>
+                                                                                            </children>
+                                                                                        </HBox>
+                                                                                    </children>
+                                                                                </VBox>
+                                                                            </content>
+                                                                        </ScrollPane>
                                                                     </children>
-                                                                </VBox>
-                                                            </content>
-                                                        </ScrollPane>
+                                                                </HBox>
+                                                            </children>
+                                                        </VBox>
                                                     </children>
                                                 </AnchorPane>
                                             </children>
