@@ -19,6 +19,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class MakeBooking<T extends Parents> {
@@ -89,25 +92,46 @@ public class MakeBooking<T extends Parents> {
 
     private void populateDateMenuButton(String destination) {
         String fileName = destination + ".csv";
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dateString = "10/09/2024"; // Your specific date string
+        LocalDate currentDate;
+
+        try {
+            currentDate = LocalDate.parse(dateString, dateFormatter);
+        } catch (DateTimeParseException e) {
+            e.printStackTrace();
+            currentDate = LocalDate.now(); // Fallback to the current date if parsing fails
+        }
+        LocalDate oneWeekLater = currentDate.plusWeeks(1);
+
+        MakeBookingDateMenuButton.getItems().clear();
+        MakeBookingDateMenuButton.setText("Select Date");
 
         try (Scanner scanner = new Scanner(new FileReader(fileName))) {
-            MakeBookingDateMenuButton.getItems().clear();
-
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] parts = line.split(",");
-                String date = parts[0];
+                String dateStr = parts[0].replaceAll("[^\\x00-\\x7F]", "").trim();
 
-                MenuItem menuItem = new MenuItem(date);
-                menuItem.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        selectedDate = date;
-                        MakeBookingDateMenuButton.setText(selectedDate);
-                        populateTimeSlotPane(fileName, selectedDate);
+                try {
+                    LocalDate date = LocalDate.parse(dateStr, dateFormatter);
+                    if (!date.isBefore(currentDate) && !date.isAfter(oneWeekLater)) {
+                        MenuItem menuItem = new MenuItem(dateStr);
+                        String finalDateStr = dateStr;
+                        menuItem.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+                                selectedDate = finalDateStr;
+                                MakeBookingDateMenuButton.setText(selectedDate);
+                                populateTimeSlotPane(fileName, selectedDate);
+                            }
+                        });
+                        MakeBookingDateMenuButton.getItems().add(menuItem);
                     }
-                });
-                MakeBookingDateMenuButton.getItems().add(menuItem);
+                } catch (DateTimeParseException e) {
+                    // Handle invalid date format if necessary
+                    e.printStackTrace();
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -222,7 +246,6 @@ public class MakeBooking<T extends Parents> {
 
         return false; // No clashes found
     }
-
 
     private void saveBookingToCSV() {
         String parentFileName = username + "_booking.csv";

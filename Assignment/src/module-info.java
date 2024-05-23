@@ -8,6 +8,8 @@ module Assignment {
     requires javafx.fxml;
     requires com.gluonhq.charm.glisten;
     requires com.gluonhq.attach.util;
+    requires javafx.swing;
+    requires org.json;
 
     exports Assignment;
     opens Assignment to javafx.fxml;

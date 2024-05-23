@@ -6,9 +6,8 @@ class Graph {
     private Map<String, List<String>> adjList = new HashMap<>();
     private Map<String, Point> coordinates = new HashMap<>();
 
-    public void addStudent(String student, double x, double y) {
+    public void addStudent(String student) {
         adjList.putIfAbsent(student, new ArrayList<>());
-        coordinates.put(student, new Point(x, y));
     }
 
     public void addFriendship(String student1, String student2) {
@@ -22,6 +21,10 @@ class Graph {
 
     public Map<String, Point> getCoordinates() {
         return coordinates;
+    }
+
+    public void setCoordinates(String student, double x, double y) {
+        coordinates.put(student, new Point(x, y));
     }
 }
 
