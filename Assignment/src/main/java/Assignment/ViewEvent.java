@@ -164,5 +164,12 @@ public class ViewEvent {
                 .collect(Collectors.toList());
     }
 
+    protected List<String> getAvailableEventTitles() {
+        return addEventList2.stream()
+                .filter(event -> "Available".equals(event.getEvent_status()))
+                .map(EventInfo::getEvent_title)
+                .collect(Collectors.toList());
+    }
+
 
 }

@@ -79,6 +79,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
         } else if (event.getSource() == QuizzesButton) {
             ViewQuiz<?> obj;
             if (role.equals("STUDENT")) {
@@ -124,6 +125,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             ViewEvent obj = new ViewEvent(username);
             obj.ShowEventInfo(EventNumber, EventTitle, EventDescription, EventsVenue, EventDate, EventTime, EventTable, EventsStatus);
         } else if (event.getSource() == BookingButton) {
@@ -153,6 +155,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             obj.initialize(BookingDistance, BookingNumber, BookingSlot, BookingTable, BookingVenue);
         } else if (event.getSource() == LeaderBoardButton) {
             homeform.setVisible(false);
@@ -170,6 +173,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             LeaderboardRanking obj = new LeaderboardRanking();
             obj.initialize(LeaderBoardTable, LeaderboardNumber, LeaderboardPoints, LeaderboardStudentName, LeaderboardTime);
         } else if (event.getSource() == AddQuizButton) {
@@ -198,6 +202,8 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             UserProfileForm.setVisible(false);
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
+            LearnMoreForm.setVisible(false);
+            ;
             FriendGraphForm.setVisible(false);
             obj.initializeMenuButton(engineeringMenuItem, mathematicsMenuItem, scienceMenuItem, technologyMenuItem);
             obj.addQuizShowQuizInfo(ViewQuizNumber, ViewQuizTitle, ViewQuizDescription, ViewQuizTheme, ViewQuizContent, AddQuizTable);
@@ -229,6 +235,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             obj.initialize(RegisterEventDatePane, RegisterEventDescriptionPane, RegisterEventTimePane, RegisterEventVenusPane, MenuButtonRegisterEvent);
         } else if (event.getSource() == AddQuizAddButton) {
             homeform.setVisible(false);
@@ -246,6 +253,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             AddNewQuiz obj = new AddNewQuiz();
             obj.initializeMenuButton(engineeringMenuItem, mathematicsMenuItem, scienceMenuItem, technologyMenuItem);
             obj.addQuizShowQuizInfo(ViewQuizNumber, ViewQuizTitle, ViewQuizDescription, ViewQuizTheme, ViewQuizContent, AddQuizTable);
@@ -267,6 +275,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             AddNewQuiz obj = new AddNewQuiz();
             obj.initializeMenuButton(engineeringMenuItem, mathematicsMenuItem, scienceMenuItem, technologyMenuItem);
             obj.addQuizShowQuizInfo(ViewQuizNumber, ViewQuizTitle, ViewQuizDescription, ViewQuizTheme, ViewQuizContent, AddQuizTable);
@@ -299,6 +308,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             obj.addEventShowEventInfo(AddEventNumber, AddEventTitle, AddEventDescription, AddEventVenue, AddEventDate, AddEventTime, AddEventTable);
             obj.setEventField(AddEventsTitleTextField, AddEventsDescriptionTextField, AddEventsVenusTextField, AddEventsTimeTextField, AddEventsDateTextField);
         } else if (event.getSource() == AddEventsAddButton) {
@@ -317,6 +327,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             AddNewEvent obj = new AddNewEvent();
             obj.addEventShowEventInfo(AddEventNumber, AddEventTitle, AddEventDescription, AddEventVenue, AddEventDate, AddEventTime, AddEventTable);
             obj.setEventField(AddEventsTitleTextField, AddEventsDescriptionTextField, AddEventsVenusTextField, AddEventsTimeTextField, AddEventsDateTextField);
@@ -337,6 +348,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             AddNewEvent obj = new AddNewEvent();
             obj.addEventShowEventInfo(AddEventNumber, AddEventTitle, AddEventDescription, AddEventVenue, AddEventDate, AddEventTime, AddEventTable);
             obj.setEventField(AddEventsTitleTextField, AddEventsDescriptionTextField, AddEventsVenusTextField, AddEventsTimeTextField, AddEventsDateTextField);
@@ -359,6 +371,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             obj.initialize(RegisterEventDatePane, RegisterEventDescriptionPane, RegisterEventTimePane, RegisterEventVenusPane, MenuButtonRegisterEvent);
             obj.clearMenuButtonPane();
             obj.initialize(RegisterEventDatePane, RegisterEventDescriptionPane, RegisterEventTimePane, RegisterEventVenusPane, MenuButtonRegisterEvent);
@@ -378,6 +391,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             SubmitStatusQuiz obj = new SubmitStatusQuiz(username);
             obj.initialize(SubmitStatusQuizDescriptionPane, SubmitStatusQuizThemePane, MenuButtonQuiz);
         } else if (event.getSource() == SubmitStatusConfirmButton) {
@@ -398,6 +412,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             obj.initialize(SubmitStatusQuizDescriptionPane, SubmitStatusQuizThemePane, MenuButtonQuiz);
             obj.clearMenuButtonPane();
             obj.initialize(SubmitStatusQuizDescriptionPane, SubmitStatusQuizThemePane, MenuButtonQuiz);
@@ -428,6 +443,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             obj.initialize(AddRelationshipsChildrenUserNameTextField);
         } else if (event.getSource() == AddRelationshipsAddButton) {
             AddRelationship obj = new AddRelationship(username);
@@ -450,6 +466,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             Parents.printParentChildMap();
             YoungStudents.printChildParentMap();
         } else if (event.getSource() == AddRelationshipsCancelButton) {
@@ -471,6 +488,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
         } else if (event.getSource() == MakeBookingButton) {
             MakeBooking<?> obj;
             if (role.equals("PARENT")) {
@@ -498,6 +516,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             obj.initialize(MakeBookingDateMenuButton, MakeBookingDestinationMenuButton, MakeBookingTimeSlotPane, MakeBookingUsernameButton);
             obj.initializeMenuButtons();
         } else if (event.getSource() == MakeBookingConfirmButton) {
@@ -527,6 +546,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             obj.initialize(MakeBookingDateMenuButton, MakeBookingDestinationMenuButton, MakeBookingTimeSlotPane, MakeBookingUsernameButton);
             obj.initializeMenuButtons();
             obj.confirmBooking();
@@ -563,6 +583,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
         } else if (event.getSource() == UserProfileButton) {
             UserProfile obj = new UserProfile(username, role);
             if (role.equals("EDUCATOR")) {
@@ -597,6 +618,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             obj.initialize(UserProfileEducatorAchievementNumberOfQuizesCreatedPane, UserProfileEmailPane, UserProfileLocationCoordinatePane, UserProfileParentAchiementNumberOfEventsCreatedPane, UserProfileParentAchiementPastBookingMadePane, UserProfileRolePane, UserProfileStudentAchievementFriendsPane, UserProfileStudentAchievementTotalPointsPane, UserProfileUsernamePane, UserProfileParentChildPane);
         } else if (event.getSource() == UserProfileBacktoHomeButton) {
             UserProfile obj = new UserProfile(username, role);
@@ -615,6 +637,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
         } else if (event.getSource() == ConnectionButton) {
             SearchFriend<?> obj;
             if (role.equals("STUDENT")) {
@@ -642,6 +665,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(true);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
         } else if (event.getSource() == SearchFriendSearchButton) {
             SearchFriend<?> obj;
             if (role.equals("STUDENT")) {
@@ -669,6 +693,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(true);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             obj.initialize(FriendsProfileEmailPane, FriendsProfileLocationCoordinatePane, FriendsProfileTotalPointsPane, FriendsProfileUsernamePane, SearchFriendUsernameTextField);
             obj.searchAndDisplayFriendProfile();
         } else if (event.getSource() == SearchFriendBacktoHomeButoon) {
@@ -687,6 +712,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
         } else if (event.getSource() == NotificationButton) {
             SearchFriend<?> obj;
             if (role.equals("STUDENT")) {
@@ -714,6 +740,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(true);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             loadFriendRequests();
         } else if (event.getSource() == SearchFriendSendFriendRequestButton) {
             SearchFriend<?> obj;
@@ -742,9 +769,10 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(true);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
             obj.initialize(FriendsProfileEmailPane, FriendsProfileLocationCoordinatePane, FriendsProfileTotalPointsPane, FriendsProfileUsernamePane, SearchFriendUsernameTextField);
             obj.sendFriendRequest();
-        } else if (event.getSource() == FriendGraphButton ) {
+        } else if (event.getSource() == FriendGraphButton) {
             GenerateFriendGraph<?> obj;
             if (role.equals("STUDENT")) {
                 obj = new GenerateFriendGraph<>(username);
@@ -771,7 +799,42 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             SearchFriendForm.setVisible(false);
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(true);
+            LearnMoreForm.setVisible(false);
             obj.initialize(FriendGraphPane);
+        } else if (event.getSource() == learnmorebutton) {
+            homeform.setVisible(false);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(false);
+            RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
+            FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(true);
+        } else if (event.getSource() == LearnMoreHomeButton)  {
+            homeform.setVisible(true);
+            Quizzesform.setVisible(false);
+            EventsForm.setVisible(false);
+            BookingForm.setVisible(false);
+            LeaderBoardForm.setVisible(false);
+            AddQuizForm.setVisible(false);
+            AddEventsForm.setVisible(false);
+            RegisterEventsForm.setVisible(false);
+            SubmitStatusForm.setVisible(false);
+            AddRelationshipsPane.setVisible(false);
+            MakeBookingForm.setVisible(false);
+            UserProfileForm.setVisible(false);
+            SearchFriendForm.setVisible(false);
+            Notificationform.setVisible(false);
+            FriendGraphForm.setVisible(false);
+            LearnMoreForm.setVisible(false);
         }
     }
 
@@ -1375,7 +1438,13 @@ public class DashBoardController extends SixteenDashboard implements Initializab
     private AnchorPane UserProfileForm;
 
     @FXML
-    private Pane UserProfilePane;
+    private AnchorPane LearnMoreForm;
+
+    @FXML
+    private Button LearnMoreHomeButton;
+
+    @FXML
+    private Button learnmorebutton;
 
     public void close() {
         System.exit(0);

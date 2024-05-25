@@ -21,6 +21,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -95,7 +96,7 @@ public class RegisterEvent<T extends YoungStudents> extends ViewEvent {
     }
 
     public void initializeMenuButton() {
-        List<String> eventTitles = getEventTitles();
+        List<String> eventTitles = super.getAvailableEventTitles();
 
         MenuButtonRegisterEvent.getItems().clear(); // Clear existing items if any
 
@@ -196,15 +197,15 @@ public class RegisterEvent<T extends YoungStudents> extends ViewEvent {
             e.printStackTrace();
         }
     }
-
     private boolean checkEventClash(EventInfo event, String username) {
         if (!Files.exists(Paths.get(username + ".csv"))) {
             try {
                 Files.createFile(Paths.get(username + ".csv"));
             } catch (IOException e) {
                 e.printStackTrace();
-            }// No clash found since the file was just created
-        }else {
+            }
+            // No clash found since the file was just created
+        } else {
             try {
                 List<String> lines = Files.readAllLines(Paths.get(username + ".csv"));
                 for (String line : lines) {
@@ -232,26 +233,31 @@ public class RegisterEvent<T extends YoungStudents> extends ViewEvent {
                 e.printStackTrace();
             }
         }
-        String parentFileName = getParentUsername(username) + "_booking.csv";
-        System.out.println(parentFileName);
-        if (Files.exists(Paths.get(parentFileName))) {
-            try (Scanner scanner = new Scanner(new FileReader(parentFileName))) {
-                while (scanner.hasNextLine()) {
-                    String line = scanner.nextLine();
-                    String[] parts = line.split(",");
-                    System.out.println(parts[1]);
-                    System.out.println(event.getEvent_date());
-                    if (parts[1].equals(event.getEvent_date())) { // Assuming the date is the second column in parent's booking CSV
-                        return true; // Date clash found in parent's bookings
+
+        List<String> parentUsernames = getParentUsernames(username);
+        for (String parentUsername : parentUsernames) {
+            String parentFileName = parentUsername + "_booking.csv";
+            System.out.println(parentFileName);
+            if (Files.exists(Paths.get(parentFileName))) {
+                try (Scanner scanner = new Scanner(new FileReader(parentFileName))) {
+                    while (scanner.hasNextLine()) {
+                        String line = scanner.nextLine();
+                        String[] parts = line.split(",");
+                        System.out.println(parts[1]);
+                        System.out.println(event.getEvent_date());
+                        if (parts[1].equals(event.getEvent_date())) { // Assuming the date is the second column in parent's booking CSV
+                            return true; // Date clash found in parent's bookings
+                        }
                     }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    showAlert(Alert.AlertType.ERROR, "Error Message", "An error occurred while checking for date clashes in parent's bookings.");
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-                showAlert(Alert.AlertType.ERROR, "Error Message", "An error occurred while checking for date clashes in parent's bookings.");
             }
         }
         return false; // No clash found
     }
+
 
     private boolean isTimeWithinRange(String time, String startTime, String endTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -281,23 +287,24 @@ public class RegisterEvent<T extends YoungStudents> extends ViewEvent {
         alert.showAndWait();
     }
 
-    public String getParentUsername(String studentUsername) {
+    public List<String> getParentUsernames(String studentUsername) {
         String sql = "SELECT PARENT_USERNAME FROM user.parentchild WHERE STUDENT_USERNAME = ?";
-        String parentUsername = null;
+        List<String> parentUsernames = new ArrayList<>();
 
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, studentUsername);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    parentUsername = resultSet.getString("PARENT_USERNAME");
+                while (resultSet.next()) {
+                    parentUsernames.add(resultSet.getString("PARENT_USERNAME"));
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return parentUsername;
+        return parentUsernames;
     }
+
 }

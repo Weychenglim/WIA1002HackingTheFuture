@@ -1,8 +1,10 @@
 package Assignment;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import org.json.JSONArray;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -57,7 +59,7 @@ public class UserProfile {
         UserProfile.role = role;
     }
 
-    public void initialize(Pane UserProfileEducatorAchievementNumberOfQuizesCreatedPane,Pane UserProfileEmailPane, Pane UserProfileLocationCoordinatePane, Pane UserProfileParentAchiementNumberOfEventsCreatedPane ,Pane UserProfileParentAchiementPastBookingMadePane , Pane UserProfileRolePane, Pane UserProfileStudentAchievementFriendsPane , Pane UserProfileStudentAchievementTotalPointsPane , Pane UserProfileUsernamePane, Pane UserProfileParentChildPane) {
+    public void initialize(Pane UserProfileEducatorAchievementNumberOfQuizesCreatedPane, Pane UserProfileEmailPane, Pane UserProfileLocationCoordinatePane, Pane UserProfileParentAchiementNumberOfEventsCreatedPane, Pane UserProfileParentAchiementPastBookingMadePane, Pane UserProfileRolePane, Pane UserProfileStudentAchievementFriendsPane, Pane UserProfileStudentAchievementTotalPointsPane, Pane UserProfileUsernamePane, Pane UserProfileParentChildPane) {
         this.UserProfileParentChildPane = UserProfileParentChildPane;
         UserProfileParentChildPane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         this.UserProfileRolePane = UserProfileRolePane;
@@ -68,13 +70,13 @@ public class UserProfile {
         UserProfileStudentAchievementFriendsPane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         this.UserProfileEmailPane = UserProfileEmailPane;
         UserProfileEmailPane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
-        this.UserProfileEducatorAchievementNumberOfQuizesCreatedPane =UserProfileEducatorAchievementNumberOfQuizesCreatedPane;
+        this.UserProfileEducatorAchievementNumberOfQuizesCreatedPane = UserProfileEducatorAchievementNumberOfQuizesCreatedPane;
         UserProfileEducatorAchievementNumberOfQuizesCreatedPane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         this.UserProfileLocationCoordinatePane = UserProfileLocationCoordinatePane;
         UserProfileLocationCoordinatePane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         this.UserProfileParentAchiementNumberOfEventsCreatedPane = UserProfileParentAchiementNumberOfEventsCreatedPane;
         UserProfileParentAchiementNumberOfEventsCreatedPane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
-        this.UserProfileParentAchiementPastBookingMadePane  = UserProfileParentAchiementPastBookingMadePane;
+        this.UserProfileParentAchiementPastBookingMadePane = UserProfileParentAchiementPastBookingMadePane;
         UserProfileParentAchiementPastBookingMadePane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         this.UserProfileStudentAchievementTotalPointsPane = UserProfileStudentAchievementTotalPointsPane;
         UserProfileStudentAchievementTotalPointsPane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
@@ -117,7 +119,7 @@ public class UserProfile {
                 UserProfileRolePane.getChildren().add(createStyledLabel("EDUCATOR"));
 
                 UserProfileLocationCoordinatePane.getChildren().clear();
-                UserProfileLocationCoordinatePane.getChildren().add(createStyledLabel( coordinates));
+                UserProfileLocationCoordinatePane.getChildren().add(createStyledLabel(coordinates));
 
                 UserProfileEducatorAchievementNumberOfQuizesCreatedPane.getChildren().clear();
                 UserProfileEducatorAchievementNumberOfQuizesCreatedPane.getChildren().add(createStyledLabel(String.valueOf(quizzesCount)));
@@ -130,7 +132,6 @@ public class UserProfile {
             e.printStackTrace();
         }
     }
-
 
     private void displayParentProfile() {
         String sql = "SELECT PARENT_USERNAME, PARENT_EMAIL, PARENT_LOCATION_COORDINATE FROM user.parent WHERE PARENT_USERNAME = ?";
@@ -172,7 +173,6 @@ public class UserProfile {
         }
     }
 
-
     private void displayStudentProfile() {
         String sql = "SELECT STUDENT_USERNAME, STUDENT_EMAIL, STUDENT_LOCATION_COORDINATE, CURRENT_POINTS FROM user.student WHERE STUDENT_USERNAME = ?";
 
@@ -188,13 +188,13 @@ public class UserProfile {
                 String coordinates = resultSet.getString("STUDENT_LOCATION_COORDINATE");
                 int points = resultSet.getInt("CURRENT_POINTS");
                 String parentUsername = getParentUsername(username);
-                String friends = getFriends(username);
+                String friends = getFriendsFromDatabase(username);
 
                 UserProfileUsernamePane.getChildren().clear();
                 UserProfileUsernamePane.getChildren().add(createStyledLabel(username));
 
                 UserProfileEmailPane.getChildren().clear();
-                UserProfileEmailPane.getChildren().add(createStyledLabel( email));
+                UserProfileEmailPane.getChildren().add(createStyledLabel(email));
 
                 UserProfileRolePane.getChildren().clear();
                 UserProfileRolePane.getChildren().add(createStyledLabel("YOUNG STUDENT"));
@@ -212,18 +212,16 @@ public class UserProfile {
                 UserProfileStudentAchievementFriendsPane.getChildren().add(createStyledLabel(friends));
             }
 
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 
     private Label createStyledLabel(String text) {
         Label label = new Label(text);
         label.getStyleClass().add("label-content");
         return label;
     }
-
 
     private String getChildUsernames(String parentUsername) throws SQLException {
         String sql = "SELECT STUDENT_USERNAME FROM user.parentchild WHERE PARENT_USERNAME = ?";
@@ -283,24 +281,40 @@ public class UserProfile {
         return pastBookings.toString();
     }
 
-    private String getFriends(String studentUsername) throws IOException {
-        String fileName = studentUsername + "_friend.csv";
+    private String getFriendsFromDatabase(String studentUsername) {
         StringBuilder friends = new StringBuilder();
+        String sql = "SELECT friends FROM user.friendlist WHERE STUDENT_username = ?";
 
-        if (Files.exists(Paths.get(fileName))) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, studentUsername);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                String friendsJson = resultSet.getString("friends");
+                JSONArray friendsArray = new JSONArray(friendsJson);
+                for (int i = 0; i < friendsArray.length(); i++) {
                     if (friends.length() > 0) {
                         friends.append(", ");
                     }
-                    friends.append(line);
+                    friends.append(friendsArray.getString(i));
                 }
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error Message", "An error occurred while retrieving friends data.");
         }
 
         return friends.toString();
     }
 
-
+    private void showAlert(Alert.AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 }
