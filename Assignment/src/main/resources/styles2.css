@@ -1,0 +1,25 @@
+.root {
+    -fx-font-family: 'Berlin Sans FB', sans-serif;
+    -fx-background-color: #f7f9fc;  /* Light grey background */
+    -fx-padding: 20px;
+    -fx-alignment: center;  /* Center align content in root */
+}
+
+.label-content {
+    -fx-font-family: 'Berlin Sans FB', sans-serif;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #264653;  /* Dark blue color */
+    -fx-background-color: #eaf4f4;  /* Light teal background */
+    -fx-padding: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-margin: 5px;
+    -fx-alignment: center;  /* Center align text in label */
+    -fx-text-alignment: center;  /* Center align text in label */
+}
+
+.vbox {
+    -fx-spacing: 10px;
+    -fx-alignment: center;  /* Center align content in VBox */
+}
