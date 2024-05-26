@@ -124,13 +124,13 @@
                                             </font>
                                         </Label>
                                         <Button fx:id="LeaderBoardButton" layoutX="10.0" layoutY="395.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" stylesheets="@DashBoardDesign.css" text="Leaderboard">
-                                            <graphic>
-                                                <FontAwesomeIconView glyphName="LADDER" text="" />
-                                            </graphic>
                                             <styleClass>
                                                 <String fx:value="nav-button" />
                                                 <String fx:value="minimize" />
                                             </styleClass>
+                                            <graphic>
+                                                <FontAwesomeIconView glyphName="TROPHY" />
+                                            </graphic>
                                         </Button>
                                         <Button fx:id="AddQuizButton" layoutX="9.0" layoutY="253.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" stylesheets="@DashBoardDesign.css" text="Add Quizes">
                                             <graphic>
@@ -184,7 +184,8 @@
                                                             </styleClass>
                                                             <graphic>
                                                                 <FontAwesomeIconView glyphName="USER" />
-                                                            </graphic></Button>
+                                                            </graphic>
+                                                        </Button>
                                                         <Button fx:id="NotificationButton" layoutX="693.0" layoutY="11.0" mnemonicParsing="false" onAction="#switchForm" stylesheets="@DashBoardDesign.css">
                                                             <graphic>
                                                                 <FontAwesomeIconView glyphName="BELL" />
@@ -198,7 +199,7 @@
                                                                 <Font name="Berlin Sans FB Bold" size="24.0" />
                                                             </font>
                                                         </Label>
-                                                        <Button fx:id="ConnectionButton" layoutX="599.0" layoutY="12.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="58.0" stylesheets="@DashBoardDesign.css">
+                                                        <Button fx:id="ConnectionButton" layoutX="599.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="58.0" stylesheets="@DashBoardDesign.css">
                                                             <styleClass>
                                                                 <String fx:value="User-Profile-bttn" />
                                                                 <String fx:value="minimize" />
@@ -290,11 +291,9 @@
                                                         <ImageView fitHeight="258.0" fitWidth="383.0" layoutX="4.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
                                                                 <Image url="@../../java/Assignment/STEM.jpg" />
-
-
                                                             </image>
                                                         </ImageView>
-                                                        <Button fx:id="learnmorebutton" layoutX="16.0" layoutY="226.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="358.0" stylesheets="@DashBoardDesign.css" text="Learn More " onAction="#switchForm">
+                                                        <Button fx:id="learnmorebutton" layoutX="16.0" layoutY="226.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="51.0" prefWidth="358.0" stylesheets="@DashBoardDesign.css" text="Learn More ">
                                                             <styleClass>
                                                                 <String fx:value="second-Nov-form" />
                                                                 <String fx:value="minimize" />
@@ -887,7 +886,7 @@
                                                                         <Font name="Berlin Sans FB Bold" size="19.0" />
                                                                     </font>
                                                                 </Label>
-                                                                <Pane fx:id="UserProfileStudentAchievementFriendsPane" layoutX="93.0" layoutY="61.0" prefHeight="182.0" prefWidth="239.0" />
+                                                                <Pane fx:id="UserProfileStudentAchievementFriendsPane" layoutX="93.0" layoutY="61.0" prefHeight="249.0" prefWidth="239.0" />
                                                             </children>
                                                         </AnchorPane>
                                                         <AnchorPane fx:id="UserProfileParentAchievementPane" layoutX="459.0" layoutY="131.0" prefHeight="258.0" prefWidth="338.0" visible="false">
@@ -897,7 +896,7 @@
                                                                         <Font name="Berlin Sans FB Bold" size="19.0" />
                                                                     </font>
                                                                 </Label>
-                                                                <Pane fx:id="UserProfileParentAchiementPastBookingMadePane" layoutX="7.0" layoutY="35.0" prefHeight="187.0" prefWidth="321.0" />
+                                                                <Pane fx:id="UserProfileParentAchiementPastBookingMadePane" layoutX="7.0" layoutY="35.0" prefHeight="268.0" prefWidth="322.0" />
                                                             </children>
                                                         </AnchorPane>
                                                         <AnchorPane fx:id="UserProfileEducatorAchievement" layoutX="469.0" layoutY="141.0" prefHeight="258.0" prefWidth="338.0">
@@ -1126,7 +1125,7 @@
                                                                 <String fx:value="shadow" />
                                                             </styleClass>
                                                         </Button>
-                                                        <Button fx:id="SearchFriendBacktoHomeButoon" layoutX="10.0" layoutY="330.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="59.0" prefWidth="338.0" stylesheets="@DashBoardDesign.css" text="Back to Home" >
+                                                        <Button fx:id="SearchFriendBacktoHomeButoon" layoutX="10.0" layoutY="330.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="59.0" prefWidth="338.0" stylesheets="@DashBoardDesign.css" text="Back to Home">
                                                             <styleClass>
                                                                 <String fx:value="red" />
                                                                 <String fx:value="font" />
@@ -1255,13 +1254,13 @@
                                                                                                 <String fx:value="shadow" />
                                                                                             </styleClass>
                                                                                             <children>
-                                                                                                <Label text=" 1" textAlignment="CENTER">
+                                                                                                <Label prefHeight="35.0" prefWidth="19.0" text=" 1" textAlignment="CENTER">
                                                                                                     <font>
                                                                                                         <Font name="Berlin Sans FB Bold" size="25.0" />
                                                                                                     </font>
                                                                                                 </Label>
-                                                                                                <Pane fx:id="FriendRequestUsernamePane1" prefHeight="52.0" prefWidth="325.0" />
-                                                                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                                                                <Pane fx:id="FriendRequestUsernamePane1" prefHeight="35.0" prefWidth="299.0" HBox.hgrow="ALWAYS" />
+                                                                                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="198.0" spacing="20.0">
                                                                                                     <children>
                                                                                                         <Button fx:id="FriendRequestAcceptButton1" mnemonicParsing="false" onAction="#acceptFriendRequest" style="-fx-background-color: #22ea64;" stylesheets="@DashBoardDesign.css" text="Accept" textFill="#22ea64">
                                                                                                             <styleClass>
@@ -1852,17 +1851,17 @@
                                                                 <Font name="Arial Bold" size="12.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label layoutX="6.0" layoutY="48.0" prefHeight="40.0" prefWidth="864.0" text="STEM literacy is not only crucial for understanding the world around us but also for preparingthe next generation of innovators, problem solvers, ">
+                                                        <Label layoutX="6.0" layoutY="41.0" prefHeight="40.0" prefWidth="864.0" text="STEM literacy is not only crucial for understanding the world around us but also for preparingthe next generation of innovators, problem solvers, ">
                                                             <font>
                                                                 <Font name="Arial Bold" size="12.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label layoutX="6.0" layoutY="81.0" prefHeight="40.0" prefWidth="864.0" text="and leaders.Another crucial benet for students actively participating in hands-on STEM challenges is that they will increase intellectual complexity and">
+                                                        <Label layoutX="6.0" layoutY="73.0" prefHeight="40.0" prefWidth="864.0" text="and leaders.Another crucial benet for students actively participating in hands-on STEM challenges is that they will increase intellectual complexity and">
                                                             <font>
                                                                 <Font name="Arial Bold" size="12.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label layoutX="6.0" layoutY="113.0" prefHeight="40.0" prefWidth="864.0" text="develop criticalthinking, creativity, and teamwork skills beyond theoretical knowledge.">
+                                                        <Label layoutX="6.0" layoutY="105.0" prefHeight="40.0" prefWidth="864.0" text="develop criticalthinking, creativity, and teamwork skills beyond theoretical knowledge.">
                                                             <font>
                                                                 <Font name="Arial Bold" size="12.0" />
                                                             </font>
@@ -1872,19 +1871,19 @@
                                                                 <Font name="Arial Bold" size="12.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label layoutX="6.0" layoutY="209.0" prefHeight="40.0" prefWidth="864.0" text="secondary schools focuses on theory rather than on application and experientiallearning and is taught in a way that reinforces a disconnect ">
+                                                        <Label layoutX="6.0" layoutY="201.0" prefHeight="40.0" prefWidth="864.0" text="secondary schools focuses on theory rather than on application and experientiallearning and is taught in a way that reinforces a disconnect ">
                                                             <font>
                                                                 <Font name="Arial Bold" size="12.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label layoutX="6.0" layoutY="241.0" prefHeight="40.0" prefWidth="864.0" text="between the dierent STEM disciplines. This will lead to a potential shortage of skilled professionals inSTEM elds in the future.">
+                                                        <Label layoutX="6.0" layoutY="232.0" prefHeight="40.0" prefWidth="864.0" text="between the dierent STEM disciplines. This will lead to a potential shortage of skilled professionals inSTEM elds in the future.">
                                                             <font>
                                                                 <Font name="Arial Bold" size="12.0" />
                                                             </font>
                                                         </Label>
                                                     </children>
                                                 </Pane>
-                                                <Button fx:id="LearnMoreHomeButton" layoutX="698.0" layoutY="482.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="180.0" stylesheets="@DashBoardDesign.css" text="Back to Home" onAction="#switchForm">
+                                                <Button fx:id="LearnMoreHomeButton" layoutX="698.0" layoutY="482.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="56.0" prefWidth="180.0" stylesheets="@DashBoardDesign.css" text="Back to Home">
                                                     <graphic>
                                                         <FontAwesomeIconView glyphName="HOME" size="19" />
                                                     </graphic>

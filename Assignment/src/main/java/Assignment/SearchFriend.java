@@ -2,6 +2,7 @@ package Assignment;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -34,6 +35,9 @@ public class SearchFriend<T extends YoungStudents> {
     @FXML
     private TextField SearchFriendUsernameTextField;
 
+    @FXML
+    private Button SearchFriendSendFriendRequestButton;
+
     public SearchFriend() {
     }
 
@@ -41,12 +45,13 @@ public class SearchFriend<T extends YoungStudents> {
         SearchFriend.username = username;
     }
 
-    public void initialize(Pane FriendsProfileEmailPane, Pane FriendsProfileLocationCoordinatePane, Pane FriendsProfileTotalPointsPane, Pane FriendsProfileUsernamePane, TextField SearchFriendUsernameTextField) {
+    public void initialize(Pane FriendsProfileEmailPane, Pane FriendsProfileLocationCoordinatePane, Pane FriendsProfileTotalPointsPane, Pane FriendsProfileUsernamePane, TextField SearchFriendUsernameTextField, Button SearchFriendSendFriendRequestButton) {
         this.FriendsProfileEmailPane = FriendsProfileEmailPane;
         this.FriendsProfileLocationCoordinatePane = FriendsProfileLocationCoordinatePane;
         this.FriendsProfileTotalPointsPane = FriendsProfileTotalPointsPane;
         this.FriendsProfileUsernamePane = FriendsProfileUsernamePane;
         this.SearchFriendUsernameTextField = SearchFriendUsernameTextField;
+        this.SearchFriendSendFriendRequestButton = SearchFriendSendFriendRequestButton;
     }
 
     @FXML

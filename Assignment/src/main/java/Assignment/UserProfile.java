@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import org.json.JSONArray;
 
 import java.io.BufferedReader;
@@ -209,7 +211,14 @@ public class UserProfile {
                 UserProfileParentChildPane.getChildren().add(createStyledLabel(parentUsername));
 
                 UserProfileStudentAchievementFriendsPane.getChildren().clear();
-                UserProfileStudentAchievementFriendsPane.getChildren().add(createStyledLabel(friends));
+                TextFlow descriptionFlow = new TextFlow();
+                Text descriptionText = new Text(friends);
+                descriptionFlow.getChildren().add(descriptionText);
+                descriptionFlow.setPrefWidth(UserProfileStudentAchievementFriendsPane.getPrefWidth());
+                descriptionFlow.getStyleClass().add("label-content");
+                UserProfileStudentAchievementFriendsPane.getChildren().clear();
+                UserProfileStudentAchievementFriendsPane.getChildren().add(descriptionFlow);
+
             }
 
         } catch (SQLException e) {
@@ -223,6 +232,7 @@ public class UserProfile {
         return label;
     }
 
+
     private String getChildUsernames(String parentUsername) throws SQLException {
         String sql = "SELECT STUDENT_USERNAME FROM user.parentchild WHERE PARENT_USERNAME = ?";
         StringBuilder childUsernames = new StringBuilder();
@@ -233,11 +243,13 @@ public class UserProfile {
             preparedStatement.setString(1, parentUsername);
 
             ResultSet resultSet = preparedStatement.executeQuery();
+            int i = 1;
             while (resultSet.next()) {
                 if (childUsernames.length() > 0) {
-                    childUsernames.append(", ");
+                    childUsernames.append("\n");
                 }
-                childUsernames.append(resultSet.getString("STUDENT_USERNAME"));
+                childUsernames.append(i +".  " + resultSet.getString("STUDENT_USERNAME"));
+                i++;
             }
         }
 
@@ -269,11 +281,14 @@ public class UserProfile {
         if (Files.exists(Paths.get(fileName))) {
             try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
                 String line;
+                int i = 1 ;
                 while ((line = reader.readLine()) != null) {
                     if (pastBookings.length() > 0) {
-                        pastBookings.append(", ");
+                        pastBookings.append("\n");
                     }
-                    pastBookings.append(line);
+                    String [] part = line.split(",");
+                    pastBookings.append(i + ".  " + part[0] + " " + part[1]);
+                    i++;
                 }
             }
         }

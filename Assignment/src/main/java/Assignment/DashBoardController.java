@@ -397,7 +397,9 @@ public class DashBoardController extends SixteenDashboard implements Initializab
         } else if (event.getSource() == SubmitStatusConfirmButton) {
             SubmitStatusQuiz obj = new SubmitStatusQuiz(username);
             obj.confirmRegistration();
-            homeform.setVisible(false);
+            obj.initialize(SubmitStatusQuizDescriptionPane, SubmitStatusQuizThemePane, MenuButtonQuiz);
+            obj.clearMenuButtonPane();
+            homeform.setVisible(true);
             Quizzesform.setVisible(false);
             EventsForm.setVisible(false);
             BookingForm.setVisible(false);
@@ -405,7 +407,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             AddQuizForm.setVisible(false);
             AddEventsForm.setVisible(false);
             RegisterEventsForm.setVisible(false);
-            SubmitStatusForm.setVisible(true);
+            SubmitStatusForm.setVisible(false);
             MakeBookingForm.setVisible(false);
             AddRelationshipsPane.setVisible(false);
             UserProfileForm.setVisible(false);
@@ -413,9 +415,6 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
             LearnMoreForm.setVisible(false);
-            obj.initialize(SubmitStatusQuizDescriptionPane, SubmitStatusQuizThemePane, MenuButtonQuiz);
-            obj.clearMenuButtonPane();
-            obj.initialize(SubmitStatusQuizDescriptionPane, SubmitStatusQuizThemePane, MenuButtonQuiz);
         } else if (event.getSource() == AddRelationshipButton) {
             AddRelationship<?> obj;
             if (role.equals("PARENT")) {
@@ -694,7 +693,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
             LearnMoreForm.setVisible(false);
-            obj.initialize(FriendsProfileEmailPane, FriendsProfileLocationCoordinatePane, FriendsProfileTotalPointsPane, FriendsProfileUsernamePane, SearchFriendUsernameTextField);
+            obj.initialize(FriendsProfileEmailPane, FriendsProfileLocationCoordinatePane, FriendsProfileTotalPointsPane, FriendsProfileUsernamePane, SearchFriendUsernameTextField,SearchFriendSendFriendRequestButton);
             obj.searchAndDisplayFriendProfile();
         } else if (event.getSource() == SearchFriendBacktoHomeButoon) {
             homeform.setVisible(true);
@@ -770,7 +769,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
             LearnMoreForm.setVisible(false);
-            obj.initialize(FriendsProfileEmailPane, FriendsProfileLocationCoordinatePane, FriendsProfileTotalPointsPane, FriendsProfileUsernamePane, SearchFriendUsernameTextField);
+            obj.initialize(FriendsProfileEmailPane, FriendsProfileLocationCoordinatePane, FriendsProfileTotalPointsPane, FriendsProfileUsernamePane, SearchFriendUsernameTextField,SearchFriendSendFriendRequestButton);
             obj.sendFriendRequest();
         } else if (event.getSource() == FriendGraphButton) {
             GenerateFriendGraph<?> obj;
@@ -1493,6 +1492,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
         Button[] acceptButtons = {FriendRequestAcceptButton1, FriendRequestAcceptButton2, FriendRequestAcceptButton3, FriendRequestAcceptButton4, FriendRequestAcceptButton5, FriendRequestAcceptButton6, FriendRequestAcceptButton7, FriendRequestAcceptButton8, FriendRequestAcceptButton9, FriendRequestAcceptButton10, FriendRequestAcceptButton11, FriendRequestAcceptButton12, FriendRequestAcceptButton13, FriendRequestAcceptButton14, FriendRequestAcceptButton15};
         Button[] rejectButtons = {FriendRequestRejectButton1, FriendRequestRejectButton2, FriendRequestRejectButton3, FriendRequestRejectButton4, FriendRequestRejectButton5, FriendRequestRejectButton6, FriendRequestRejectButton7, FriendRequestRejectButton8, FriendRequestRejectButton9, FriendRequestRejectButton10, FriendRequestRejectButton11, FriendRequestRejectButton12, FriendRequestRejectButton13, FriendRequestRejectButton14, FriendRequestRejectButton15};
         Pane[] usernamePanes = {FriendRequestUsernamePane1, FriendRequestUsernamePane2, FriendRequestUsernamePane3, FriendRequestUsernamePane4, FriendRequestUsernamePane5, FriendRequestUsernamePane6, FriendRequestUsernamePane7, FriendRequestUsernamePane8, FriendRequestUsernamePane9, FriendRequestUsernamePane10, FriendRequestUsernamePane11, FriendRequestUsernamePane12, FriendRequestUsernamePane13, FriendRequestUsernamePane14, FriendRequestUsernamePane15};
+
         for (int i = 0; i < requestHBoxes.length; i++) {
             boolean visible = i < numberOfRequests;
             requestHBoxes[i].setVisible(visible);
@@ -1500,8 +1500,8 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             rejectButtons[i].setVisible(visible);
             usernamePanes[i].setVisible(visible);
         }
-        // Initialize pane with friend username
 
+        // Initialize pane with friend username
         File file = new File(username + "_request.csv");
         if (!file.exists()) {
             return;
@@ -1509,14 +1509,20 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             try (BufferedReader br = new BufferedReader(new FileReader(username + "_request.csv"))) {
                 String line = br.readLine(); // Read the first line only
                 int i = 0;
-                while (i<numberOfRequests){
-                    String[] parts = line.split(",");
-                    if (parts.length >= 2) {
-                        Label label = new Label(parts[0]); // Assuming friend username is in the first column
-                        usernamePanes[i].getChildren().add(label);
-                        i++;
+                while (i < numberOfRequests) {
+                    if (line != null) {
+                        String[] parts = line.split(",");
+                        if (parts.length >= 2) {
+                            Label label = new Label(parts[0]); // Assuming friend username is in the first column
+                            usernamePanes[i].getStylesheets().add(getClass().getResource("/styles2.css").toExternalForm());
+                            label.getStyleClass().add("label-content"); // Add the style class to the label
+                            usernamePanes[i].getChildren().add(label);
+                            i++;
+                        }
+                        line = br.readLine();
+                    } else {
+                        break; // Exit the loop if no more lines are found
                     }
-                    line = br.readLine();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -1524,6 +1530,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             }
         }
     }
+
 
 
 

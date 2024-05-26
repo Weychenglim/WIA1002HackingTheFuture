@@ -9,10 +9,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Pane;
 
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
@@ -22,6 +19,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MakeBooking<T extends Parents> {
@@ -79,6 +78,8 @@ public class MakeBooking<T extends Parents> {
                     public void handle(ActionEvent event) {
                         selectedDestination = destination;
                         MakeBookingDestinationMenuButton.setText(selectedDestination);
+                        MakeBookingDateMenuButton.getItems().clear();
+                        MakeBookingDateMenuButton.setText("Select Date");
                         populateDateMenuButton(selectedDestination);
                     }
                 });
@@ -103,9 +104,6 @@ public class MakeBooking<T extends Parents> {
             currentDate = LocalDate.now(); // Fallback to the current date if parsing fails
         }
         LocalDate oneWeekLater = currentDate.plusWeeks(1);
-
-        MakeBookingDateMenuButton.getItems().clear();
-        MakeBookingDateMenuButton.setText("Select Date");
 
         try (Scanner scanner = new Scanner(new FileReader(fileName))) {
             while (scanner.hasNextLine()) {
@@ -142,11 +140,11 @@ public class MakeBooking<T extends Parents> {
     private void populateTimeSlotPane(String fileName, String date) {
         MakeBookingTimeSlotPane.getChildren().clear();
 
-        try (Scanner scanner = new Scanner(new FileReader(fileName))) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
+        try (BufferedReader reader  = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine())!= null) {
                 String[] parts = line.split(",");
-                if (parts[0].equals(date)) {
+                if (removeBOM(parts[0]).equals(date)) {
                     Label timeSlotLabel = new Label(parts[1]);
                     MakeBookingTimeSlotPane.getChildren().add(timeSlotLabel);
                 }
@@ -214,8 +212,6 @@ public class MakeBooking<T extends Parents> {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
                     String[] parts = line.split(",");
-                    System.out.println(parts[1]);
-                    System.out.println(selectedDate);
                     String date = removeBOM(selectedDate);
                     if (parts[1].equals(date)) {
                         return true; // Date clash found in child's events
@@ -227,15 +223,15 @@ public class MakeBooking<T extends Parents> {
             }
         }
 
-        // Check for clashes in parent's booking
+        // Check for clashes in current parent's bookings
         String parentFileName = username + "_booking.csv";
         if (Files.exists(Paths.get(parentFileName))) {
             try (Scanner scanner = new Scanner(new FileReader(parentFileName))) {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
                     String[] parts = line.split(",");
-                    if (parts[1].equals(selectedDate)) { // Assuming the date is the second column in parent's booking CSV
-                        return true; // Date clash found in parent's bookings
+                    if (parts[1].equals(selectedDate) && parts[2].equals(selectedChild)) {
+                        return true; // Date clash found in current parent's bookings for the same child
                     }
                 }
             } catch (IOException e) {
@@ -244,8 +240,31 @@ public class MakeBooking<T extends Parents> {
             }
         }
 
+        // Check for clashes in bookings made by other parents for the same child
+        for (String parentUsername : getAllParentUsernames(selectedChild)) {
+            // Skip the current parent's file as it has already been checked
+            if (parentUsername.equals(username)) continue;
+
+            String otherParentFileName = parentUsername + "_booking.csv";
+            if (Files.exists(Paths.get(otherParentFileName))) {
+                try (Scanner scanner = new Scanner(new FileReader(otherParentFileName))) {
+                    while (scanner.hasNextLine()) {
+                        String line = scanner.nextLine();
+                        String[] parts = line.split(",");
+                        if (parts[2].equals(selectedChild) && parts[1].equals(selectedDate)) {
+                            return true; // Date clash found in another parent's bookings for the same child
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    showAlert(Alert.AlertType.ERROR, "Error Message", "An error occurred while checking for date clashes in other parents' bookings.");
+                }
+            }
+        }
+
         return false; // No clashes found
     }
+
 
     private void saveBookingToCSV() {
         String parentFileName = username + "_booking.csv";
@@ -285,6 +304,26 @@ public class MakeBooking<T extends Parents> {
         } else {
             return str;
         }
+    }
+
+    public List<String> getAllParentUsernames(String studentUsername) {
+        String sql = "SELECT PARENT_USERNAME FROM user.parentchild WHERE STUDENT_USERNAME = ?";
+        List<String> parentUsernames = new ArrayList<>();
+
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, studentUsername);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    parentUsernames.add(resultSet.getString("PARENT_USERNAME"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return parentUsernames;
     }
 }
 

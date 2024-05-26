@@ -7,7 +7,7 @@
 
 .label-content {
     -fx-font-family: 'Berlin Sans FB', sans-serif;
-    -fx-font-size: 20px;
+    -fx-font-size: 13px;
     -fx-font-weight: bold;
     -fx-text-fill: #264653;  /* Dark blue color */
     -fx-background-color: #eaf4f4;  /* Light teal background */
