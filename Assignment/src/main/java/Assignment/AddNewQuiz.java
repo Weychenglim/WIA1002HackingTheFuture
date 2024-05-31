@@ -176,7 +176,7 @@ public class AddNewQuiz<T extends Educators> {
     }
 
     public void addNewQuiz() {
-        String sql = "INSERT INTO user.quiz (title, description, theme, quizizz_link) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO user.quiz (quiz_id, title, description, theme, quizizz_link) VALUES(?,?,?,?,?)";
         try {
             this.connection = DatabaseConnector.getConnection();
 
@@ -200,11 +200,13 @@ public class AddNewQuiz<T extends Educators> {
                     alert.setContentText("Quizizz link already exists!");
                     alert.showAndWait();
                 } else {
+                    int newQuizId = getNextQuizId();
                     this.preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setString(1, AddQuizTitleTextField.getText());
-                    preparedStatement.setString(2, AddQuizDescriptionTextField.getText());
-                    preparedStatement.setString(3, AddMenuButton.getText());
-                    preparedStatement.setString(4, AddQuizContentTextField.getText());
+                    preparedStatement.setInt(1, newQuizId);
+                    preparedStatement.setString(2, AddQuizTitleTextField.getText());
+                    preparedStatement.setString(3, AddQuizDescriptionTextField.getText());
+                    preparedStatement.setString(4, AddMenuButton.getText());
+                    preparedStatement.setString(5, AddQuizContentTextField.getText());
                     preparedStatement.executeUpdate();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
@@ -221,6 +223,17 @@ public class AddNewQuiz<T extends Educators> {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
+        }
+    }
+
+    private int getNextQuizId() throws SQLException {
+        String sql = "SELECT MAX(quiz_id) AS max_id FROM user.quiz";
+        this.statement = connection.createStatement();
+        this.resultSet = statement.executeQuery(sql);
+        if (resultSet.next()) {
+            return resultSet.getInt("max_id") + 1;
+        } else {
+            return 1; // If there are no records, start with ID 1
         }
     }
 

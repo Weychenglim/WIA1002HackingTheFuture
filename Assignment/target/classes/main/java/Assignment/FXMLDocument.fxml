@@ -186,7 +186,7 @@
                                                                 <FontAwesomeIconView glyphName="USER" />
                                                             </graphic>
                                                         </Button>
-                                                        <Button fx:id="NotificationButton" layoutX="693.0" layoutY="11.0" mnemonicParsing="false" onAction="#switchForm" stylesheets="@DashBoardDesign.css">
+                                                        <Button fx:id="NotificationButton" layoutX="708.0" layoutY="13.0" mnemonicParsing="false" onAction="#switchForm" stylesheets="@DashBoardDesign.css">
                                                             <graphic>
                                                                 <FontAwesomeIconView glyphName="BELL" />
                                                             </graphic>
@@ -207,7 +207,7 @@
                                                             <graphic>
                                                                 <FontAwesomeIconView />
                                                             </graphic></Button>
-                                                        <Button fx:id="AddRelationshipButton" layoutX="489.0" layoutY="11.0" mnemonicParsing="false" onAction="#switchForm" stylesheets="@DashBoardDesign.css">
+                                                        <Button fx:id="AddRelationshipButton" layoutX="498.0" layoutY="13.0" mnemonicParsing="false" onAction="#switchForm" stylesheets="@DashBoardDesign.css">
                                                             <styleClass>
                                                                 <String fx:value="User-Profile-bttn" />
                                                                 <String fx:value="minimize" />
@@ -219,7 +219,7 @@
                                                             <font>
                                                                 <Font name="Berlin Sans FB Bold" size="14.0" />
                                                             </font></Label>
-                                                        <Button fx:id="FriendGraphButton" layoutX="363.0" layoutY="11.0" mnemonicParsing="false" onAction="#switchForm" stylesheets="@DashBoardDesign.css">
+                                                        <Button fx:id="FriendGraphButton" layoutX="376.0" layoutY="13.0" mnemonicParsing="false" onAction="#switchForm" stylesheets="@DashBoardDesign.css">
                                                             <styleClass>
                                                                 <String fx:value="User-Profile-bttn" />
                                                                 <String fx:value="minimize" />

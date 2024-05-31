@@ -88,7 +88,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Students can access !!");
+                alert.setContentText("Only Students can access !");
                 alert.showAndWait();
                 return;
             }
@@ -136,7 +136,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Parents can access !!");
+                alert.setContentText("Only Parents can access !");
                 alert.showAndWait();
                 return;
             }
@@ -184,7 +184,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Educators can access !!");
+                alert.setContentText("Only Educators can access !");
                 alert.showAndWait();
                 return;
             }
@@ -216,7 +216,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Students can access !!");
+                alert.setContentText("Only Students can access !");
                 alert.showAndWait();
                 return;
             }
@@ -289,7 +289,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Educators can access !!");
+                alert.setContentText("Only Educators can access !");
                 alert.showAndWait();
                 return;
             }
@@ -423,7 +423,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Parent can access !!");
+                alert.setContentText("Only Parent can access !");
                 alert.showAndWait();
                 return;
             }
@@ -496,7 +496,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Parents can access !!");
+                alert.setContentText("Only Parents can access !");
                 alert.showAndWait();
                 return;
             }
@@ -526,7 +526,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Parents can access !!");
+                alert.setContentText("Only Parents can access !");
                 alert.showAndWait();
                 return;
             }
@@ -560,7 +560,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Parents can access !!");
+                alert.setContentText("Only Parents can access !");
                 alert.showAndWait();
                 return;
             }
@@ -637,6 +637,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
             LearnMoreForm.setVisible(false);
+
         } else if (event.getSource() == ConnectionButton) {
             SearchFriend<?> obj;
             if (role.equals("STUDENT")) {
@@ -645,7 +646,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Students can access !!");
+                alert.setContentText("Only Students can access !");
                 alert.showAndWait();
                 return;
             }
@@ -673,7 +674,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Students can access !!");
+                alert.setContentText("Only Students can access !");
                 alert.showAndWait();
                 return;
             }
@@ -696,6 +697,17 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             obj.initialize(FriendsProfileEmailPane, FriendsProfileLocationCoordinatePane, FriendsProfileTotalPointsPane, FriendsProfileUsernamePane, SearchFriendUsernameTextField,SearchFriendSendFriendRequestButton);
             obj.searchAndDisplayFriendProfile();
         } else if (event.getSource() == SearchFriendBacktoHomeButoon) {
+            SearchFriend<?> obj;
+            if (role.equals("STUDENT")) {
+                obj = new SearchFriend<YoungStudents>(username);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Only Students can access !");
+                alert.showAndWait();
+                return;
+            }
             homeform.setVisible(true);
             Quizzesform.setVisible(false);
             EventsForm.setVisible(false);
@@ -712,6 +724,8 @@ public class DashBoardController extends SixteenDashboard implements Initializab
             Notificationform.setVisible(false);
             FriendGraphForm.setVisible(false);
             LearnMoreForm.setVisible(false);
+            obj.initialize(FriendsProfileEmailPane, FriendsProfileLocationCoordinatePane, FriendsProfileTotalPointsPane, FriendsProfileUsernamePane, SearchFriendUsernameTextField,SearchFriendSendFriendRequestButton);
+            obj.clear();
         } else if (event.getSource() == NotificationButton) {
             SearchFriend<?> obj;
             if (role.equals("STUDENT")) {
@@ -749,7 +763,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Students can access !!");
+                alert.setContentText("Only Students can access !");
                 alert.showAndWait();
                 return;
             }
@@ -779,7 +793,7 @@ public class DashBoardController extends SixteenDashboard implements Initializab
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Only Students can access !");
+                alert.setContentText("Only Students can access!");
                 alert.showAndWait();
                 return;
             }

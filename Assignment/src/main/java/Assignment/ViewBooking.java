@@ -20,26 +20,28 @@ import java.util.List;
 public class ViewBooking<T extends Parents> {
 
     @FXML
-    private TableColumn<BookingInfo, String> BookingDistance;
+    private TableColumn<BookingInfo, String> BookingDistance; // Column for displaying booking distance
 
     @FXML
-    private TableColumn<BookingInfo, String> BookingNumber;
+    private TableColumn<BookingInfo, String> BookingNumber; // Column for displaying booking number
 
     @FXML
-    private TableColumn<BookingInfo, String> BookingSlot;
+    private TableColumn<BookingInfo, String> BookingSlot; // Column for displaying booking slot
 
     @FXML
-    private TableView<BookingInfo> BookingTable;
+    private TableView<BookingInfo> BookingTable; // Table to display booking information
 
     @FXML
-    private TableColumn<BookingInfo, String> BookingVenue;
+    private TableColumn<BookingInfo, String> BookingVenue; // Column for displaying booking venue
 
-    private static String username;
+    private static String username; // Static variable to hold the username of the logged-in user
 
+    // Constructor to initialize the username
     public ViewBooking(String username) {
         ViewBooking.username = username;
     }
 
+    // Method to initialize the table columns and show booking information
     public void initialize(TableColumn<BookingInfo, String> BookingDistance, TableColumn<BookingInfo, String> BookingNumber, TableColumn<BookingInfo, String> BookingSlot, TableView<BookingInfo> BookingTable, TableColumn<BookingInfo, String> BookingVenue) {
         this.BookingDistance = BookingDistance;
         this.BookingNumber = BookingNumber;
@@ -47,21 +49,22 @@ public class ViewBooking<T extends Parents> {
         this.BookingTable = BookingTable;
         this.BookingVenue = BookingVenue;
 
-        showBookingInfo();
+        showBookingInfo(); // Display booking information
     }
 
+    // Method to set up the table columns and populate the table with booking data
     private void showBookingInfo() {
-        System.out.println("aa");
-        ObservableList<BookingInfo> bookingList = addBookingInfo();
+        ObservableList<BookingInfo> bookingList = addBookingInfo(); // Retrieve booking data
 
         BookingDistance.setCellValueFactory(new PropertyValueFactory<>("distance"));
         BookingNumber.setCellValueFactory(new PropertyValueFactory<>("id"));
         BookingSlot.setCellValueFactory(new PropertyValueFactory<>("slots"));
         BookingVenue.setCellValueFactory(new PropertyValueFactory<>("destination"));
 
-        BookingTable.setItems(bookingList);
+        BookingTable.setItems(bookingList); // Set the table items
     }
 
+    // Method to retrieve booking information from the database and format it for display
     public ObservableList<BookingInfo> addBookingInfo() {
         ObservableList<BookingInfo> listData = FXCollections.observableArrayList();
         String sql = "SELECT Destination, x_coordinate, y_coordinate FROM user.booking";
@@ -74,10 +77,10 @@ public class ViewBooking<T extends Parents> {
                 double xCoordinate = resultSet.getDouble("x_coordinate");
                 double yCoordinate = resultSet.getDouble("y_coordinate");
 
-                double distance = calculateDistance(username, xCoordinate, yCoordinate);
-                String formattedDistance = String.format("%.2f km", distance);
+                double distance = calculateDistance(username, xCoordinate, yCoordinate); // Calculate the distance
+                String formattedDistance = String.format("%.2f km", distance); // Format the distance
 
-                String slots = getSlotCount(destination);
+                String slots = getSlotCount(destination); // Retrieve the slot count
 
                 listData.add(new BookingInfo(null, destination, formattedDistance, slots)); // Temporarily set ID to null
             }
@@ -86,6 +89,7 @@ public class ViewBooking<T extends Parents> {
             e.printStackTrace();
         }
 
+        // Sort the list by distance
         listData.sort(Comparator.comparingDouble(info -> Double.parseDouble(info.getDistance().replace(" km", ""))));
 
         // Reassign booking numbers
@@ -96,6 +100,7 @@ public class ViewBooking<T extends Parents> {
         return listData;
     }
 
+    // Method to calculate the distance between the user's location and the booking location
     private double calculateDistance(String username, double xCoordinate, double yCoordinate) throws SQLException {
         String sql = "SELECT PARENT_LOCATION_COORDINATE FROM user.parent WHERE PARENT_USERNAME = ?";
         double parentX = 0;
@@ -112,23 +117,21 @@ public class ViewBooking<T extends Parents> {
                     String yStr = coordinates[1].replaceAll("[^\\d.]", ""); // Remove all non-digit and non-dot characters
                     parentX = Double.parseDouble(xStr);
                     parentY = Double.parseDouble(yStr);
-                    System.out.println(xCoordinate + " " + yCoordinate);
-                    System.out.println(xStr + " " + yStr);
                 }
             }
         }
 
-        return (Math.sqrt(Math.pow((xCoordinate - parentX), 2) + Math.pow((yCoordinate - parentY), 2))/50);
+        // Return the calculated distance divided by 50 (assuming some unit conversion)
+        return (Math.sqrt(Math.pow((xCoordinate - parentX), 2) + Math.pow((yCoordinate - parentY), 2)) / 50);
     }
 
-
+    // Method to retrieve the slot count from a CSV file based on the destination
     private String getSlotCount(String destination) throws IOException {
         String fileName = destination + ".csv";
         if (Files.exists(Paths.get(fileName))) {
             List<String> lines = Files.readAllLines(Paths.get(fileName));
             return String.valueOf(lines.size());
         }
-        return "0";
+        return "0"; // Return 0 if the file does not exist
     }
-
 }

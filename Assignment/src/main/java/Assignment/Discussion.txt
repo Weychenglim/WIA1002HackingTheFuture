@@ -1,5 +1,6 @@
 CHAT: 
-a (EDUCATOR): HI
-b (PARENT): Bye
-a (EDUCATOR): FUCK you
-c (STUDENT): NOPE
+
+Adamtan09 (STUDENT): Hi Everyone!
+yinjiadoe20 (STUDENT): Hi Adam
+ahmadfirdaus07 (STUDENT): Hi Guys
+ernestchean1 (EDUCATOR): ANNOUNCEMENT: New Events have been uploaded

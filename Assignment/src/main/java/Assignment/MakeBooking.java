@@ -79,6 +79,7 @@ public class MakeBooking<T extends Parents> {
                         selectedDestination = destination;
                         MakeBookingDestinationMenuButton.setText(selectedDestination);
                         MakeBookingDateMenuButton.getItems().clear();
+                        MakeBookingTimeSlotPane.getChildren().clear();
                         MakeBookingDateMenuButton.setText("Select Date");
                         populateDateMenuButton(selectedDestination);
                     }
@@ -92,6 +93,7 @@ public class MakeBooking<T extends Parents> {
     }
 
     private void populateDateMenuButton(String destination) {
+        MakeBookingDateMenuButton.getItems().clear();
         String fileName = destination + ".csv";
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String dateString = "10/09/2024"; // Your specific date string
@@ -185,7 +187,7 @@ public class MakeBooking<T extends Parents> {
     }
 
     public void confirmBooking() {
-        if (selectedChild == null || selectedDestination == null || selectedDate == null) {
+        if (selectedChild == null || selectedDestination == null || selectedDate == null || MakeBookingTimeSlotPane.getChildren().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Error Message", "Please select a child, destination, and date.");
             return;
         }

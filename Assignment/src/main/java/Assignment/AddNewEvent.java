@@ -11,6 +11,7 @@ import java.util.Optional;
 
 public class AddNewEvent<T extends Educators>{
 
+    // FXML annotations to link to UI components
     @FXML
     private TableColumn<EventInfo,String> AddEventTime;
 
@@ -47,7 +48,6 @@ public class AddNewEvent<T extends Educators>{
     @FXML
     private TextField AddEventsDescriptionTextField;
 
-
     private Connection connection;
     private PreparedStatement preparedStatement;
     private Statement statement;
@@ -55,14 +55,15 @@ public class AddNewEvent<T extends Educators>{
 
     private static String username;
 
-    public AddNewEvent(){
+    // Default constructor
+    public AddNewEvent() {}
 
-    }
-
+    // Constructor to initialize username
     public AddNewEvent(String username){
         AddNewEvent.username = username;
     }
 
+    // Method to update the number of events created by the educator
     public void updateNumEvent(){
         String sql = "UPDATE user.educator SET NUM_EVENTS_CREATED = NUM_EVENTS_CREATED + 1 WHERE EDUCATOR_USERNAME = ?";
 
@@ -85,6 +86,63 @@ public class AddNewEvent<T extends Educators>{
         }
     }
 
+    private ObservableList<EventInfo> addEventList;
+
+    // Method to display event information in the table view
+    public void addEventShowEventInfo(TableColumn<EventInfo,String> AddEventNumber, TableColumn<EventInfo,String> AddEventTitle, TableColumn<EventInfo,String> AddEventDescription, TableColumn<EventInfo,String> AddEventVenue ,TableColumn<EventInfo,String> AddEventDate ,TableColumn<EventInfo,String> AddEventTime, TableView<EventInfo> AddEventTable) {
+        this.AddEventNumber = AddEventNumber;
+        this.AddEventTitle = AddEventTitle;
+        this.AddEventDescription = AddEventDescription;
+        this.AddEventVenue = AddEventVenue;
+        this.AddEventDate = AddEventDate;
+        this.AddEventTime = AddEventTime;
+        this.AddEventTable = AddEventTable;
+
+        addEventList = addEventsInfo();
+
+        // Set cell value factories for table columns
+        this.AddEventNumber.setCellValueFactory(new PropertyValueFactory<>("event_id"));
+        this.AddEventTitle.setCellValueFactory(new PropertyValueFactory<>("event_title"));
+        this.AddEventDescription.setCellValueFactory(new PropertyValueFactory<>("event_description"));
+        this.AddEventVenue.setCellValueFactory(new PropertyValueFactory<>("event_venue"));
+        this.AddEventDate.setCellValueFactory(new PropertyValueFactory<>("event_date"));
+        this.AddEventTime.setCellValueFactory(new PropertyValueFactory<>("event_time"));
+
+        // Set custom cell factory for wrapping text in table cells
+        this.AddEventTitle.setCellFactory(column -> new WrappingTableCell<>());
+        this.AddEventDescription.setCellFactory(column -> new WrappingTableCell<>());
+        this.AddEventVenue.setCellFactory(column -> new WrappingTableCell<>());
+        this.AddEventDate.setCellFactory(column -> new WrappingTableCell<>());
+        this.AddEventTime.setCellFactory(column -> new WrappingTableCell<>());
+
+        // Set the items in the table
+        this.AddEventTable.setItems(addEventList);
+    }
+
+    // Method to set event field values when an event is selected from the table
+    public void setEventField(TextField AddEventsTitleTextField, TextField AddEventsDescriptionTextField, TextField AddEventsVenusTextField, TextField AddEventsTimeTextField, TextField AddEventsDateTextField) {
+        this.AddEventsTitleTextField = AddEventsTitleTextField;
+        this.AddEventsDescriptionTextField = AddEventsDescriptionTextField;
+        this.AddEventsVenusTextField = AddEventsVenusTextField;
+        this.AddEventsDateTextField = AddEventsDateTextField;
+        this.AddEventsTimeTextField = AddEventsTimeTextField;
+
+        EventInfo eventD = AddEventTable.getSelectionModel().getSelectedItem();
+        int num = AddEventTable.getSelectionModel().getSelectedIndex();
+
+        if ((num - 1) < -1) {
+            return;
+        }
+
+        // Set text fields with the selected event details
+        this.AddEventsTitleTextField.setText(eventD.getEvent_title());
+        this.AddEventsDescriptionTextField.setText(eventD.getEvent_description());
+        this.AddEventsVenusTextField.setText(eventD.getEvent_venue());
+        this.AddEventsDateTextField.setText(eventD.getEvent_date());
+        this.AddEventsTimeTextField.setText(eventD.getEvent_time());
+    }
+
+    // Method to add a new event to the database
     public ObservableList<EventInfo> addEventsInfo() {
         ObservableList<EventInfo> listData = FXCollections.observableArrayList();
         String sql = "SELECT * FROM user.event";
@@ -110,60 +168,9 @@ public class AddNewEvent<T extends Educators>{
         return listData;
     }
 
-    private ObservableList<EventInfo> addEventList;
-
-    public void addEventShowEventInfo(TableColumn<EventInfo,String> AddEventNumber, TableColumn<EventInfo,String> AddEventTitle, TableColumn<EventInfo,String> AddEventDescription, TableColumn<EventInfo,String> AddEventVenue ,TableColumn<EventInfo,String> AddEventDate ,TableColumn<EventInfo,String> AddEventTime, TableView<EventInfo> AddEventTable) {
-        this.AddEventNumber = AddEventNumber;
-        this.AddEventTitle = AddEventTitle;
-        this.AddEventDescription = AddEventDescription;
-        this.AddEventVenue = AddEventVenue;
-        this.AddEventDate = AddEventDate;
-        this.AddEventTime = AddEventTime;
-        this.AddEventTable = AddEventTable;
-
-        addEventList = addEventsInfo();
-
-        this.AddEventNumber.setCellValueFactory(new PropertyValueFactory<>("event_id"));
-        this.AddEventTitle.setCellValueFactory(new PropertyValueFactory<>("event_title"));
-        this.AddEventDescription.setCellValueFactory(new PropertyValueFactory<>("event_description"));
-        this.AddEventVenue.setCellValueFactory(new PropertyValueFactory<>("event_venue"));
-        this.AddEventDate.setCellValueFactory(new PropertyValueFactory<>("event_date"));
-        this.AddEventTime.setCellValueFactory(new PropertyValueFactory<>("event_time"));
-
-
-        // Set custom cell factory
-        this.AddEventTitle.setCellFactory(column -> new WrappingTableCell<>());
-        this.AddEventDescription.setCellFactory(column -> new WrappingTableCell<>());
-        this.AddEventVenue.setCellFactory(column -> new WrappingTableCell<>());
-        this.AddEventDate.setCellFactory(column -> new WrappingTableCell<>());
-        this.AddEventTime.setCellFactory(column -> new WrappingTableCell<>());
-
-        this.AddEventTable.setItems(addEventList);
-    }
-
-    public void setEventField(TextField AddEventsTitleTextField, TextField AddEventsDescriptionTextField, TextField AddEventsVenusTextField, TextField AddEventsTimeTextField, TextField AddEventsDateTextField) {
-        this.AddEventsTitleTextField = AddEventsTitleTextField;
-        this.AddEventsDescriptionTextField = AddEventsDescriptionTextField;
-        this.AddEventsVenusTextField = AddEventsVenusTextField;
-        this.AddEventsDateTextField = AddEventsDateTextField;
-        this.AddEventsTimeTextField = AddEventsTimeTextField;
-
-        EventInfo eventD = AddEventTable.getSelectionModel().getSelectedItem();
-        int num = AddEventTable.getSelectionModel().getSelectedIndex();
-
-        if ((num - 1) < -1) {
-            return;
-        }
-
-        this.AddEventsTitleTextField.setText(eventD.getEvent_title());
-        this.AddEventsDescriptionTextField.setText(eventD.getEvent_description());
-        this.AddEventsVenusTextField.setText(eventD.getEvent_venue());
-        this.AddEventsDateTextField.setText(eventD.getEvent_date());
-        this.AddEventsTimeTextField.setText(eventD.getEvent_time());
-    }
-
+    // Method to fetch event information from the database and add it to an observable list
     public void addNewEvent() {
-        String sql = "INSERT INTO user.event (event_title, event_description, event_venue, event_date, event_time) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO user.event (event_id, event_title, event_description, event_venue, event_date, event_time) VALUES(?,?,?,?,?,?)";
         try {
             this.connection = DatabaseConnector.getConnection();
 
@@ -187,12 +194,16 @@ public class AddNewEvent<T extends Educators>{
                     alert.setContentText("Event title already exists!");
                     alert.showAndWait();
                 } else {
+                    // Get the maximum event_id and increment by 1
+                    int newEventId = getNextEventId();
+
                     this.preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setString(1, AddEventsTitleTextField.getText());
-                    preparedStatement.setString(2, AddEventsDescriptionTextField.getText());
-                    preparedStatement.setString(3, AddEventsVenusTextField.getText());
-                    preparedStatement.setString(4, AddEventsDateTextField.getText());
-                    preparedStatement.setString(5, AddEventsTimeTextField.getText());
+                    preparedStatement.setInt(1, newEventId);
+                    preparedStatement.setString(2, AddEventsTitleTextField.getText());
+                    preparedStatement.setString(3, AddEventsDescriptionTextField.getText());
+                    preparedStatement.setString(4, AddEventsVenusTextField.getText());
+                    preparedStatement.setString(5, AddEventsDateTextField.getText());
+                    preparedStatement.setString(6, AddEventsTimeTextField.getText());
                     preparedStatement.executeUpdate();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
@@ -212,6 +223,19 @@ public class AddNewEvent<T extends Educators>{
         }
     }
 
+    // Method to get the next event ID
+    private int getNextEventId() throws SQLException {
+        String sql = "SELECT MAX(event_id) AS max_id FROM user.event";
+        this.statement = connection.createStatement();
+        this.resultSet = statement.executeQuery(sql);
+        if (resultSet.next()) {
+            return resultSet.getInt("max_id") + 1;
+        } else {
+            return 1; // If there are no records, start with ID 1
+        }
+    }
+
+    // Method to clear the event text fields
     public void addEventClear() {
         AddEventsTitleTextField.setText("");
         AddEventsDescriptionTextField.setText("");
@@ -220,6 +244,7 @@ public class AddNewEvent<T extends Educators>{
         AddEventsTimeTextField.setText("");
     }
 
+    // Method to delete an event from the database
     public void deleteEvent() {
         // Get the selected event title
         String selectedEventTitle = AddEventsTitleTextField.getText();
@@ -263,6 +288,7 @@ public class AddNewEvent<T extends Educators>{
         }
     }
 
+    // Method to show alert messages
     private void showAlert(Alert.AlertType alertType, String title, String content) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -270,5 +296,4 @@ public class AddNewEvent<T extends Educators>{
         alert.setContentText(content);
         alert.showAndWait();
     }
-
 }

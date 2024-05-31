@@ -59,7 +59,7 @@ public class AddRelationship<T extends Parents> {
         }
     }
 
-
+    // check whether the child username entered is true
     private boolean childExists(String childUsername) {
         String sql = "SELECT COUNT(*) FROM user.student WHERE STUDENT_USERNAME = ?";
         try (Connection connection = DatabaseConnector.getConnection();
@@ -76,6 +76,7 @@ public class AddRelationship<T extends Parents> {
         return false;
     }
 
+    //To check whether the relationship already exists
     private boolean relationshipExists(String parentUsername, String studentUsername) {
         try (Connection connection = DatabaseConnector.getConnection()) {
             String sql = "SELECT * FROM user.parentchild WHERE PARENT_USERNAME = ? AND STUDENT_USERNAME = ?";
@@ -98,6 +99,7 @@ public class AddRelationship<T extends Parents> {
         alert.showAndWait();
     }
 
+    // Get number of parents from the database
     private int getNumberOfParents(String studentUsername) {
         String sql = "SELECT COUNT(*) FROM user.parentchild WHERE STUDENT_USERNAME = ?";
         try (Connection connection = DatabaseConnector.getConnection();

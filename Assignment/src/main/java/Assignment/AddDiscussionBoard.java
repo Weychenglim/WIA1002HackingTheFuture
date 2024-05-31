@@ -20,9 +20,9 @@ public class AddDiscussionBoard{
     private Button discussionBoardSendButton;
     private String username;
     private String role;
-
     private final String filePath = "C:\\Users\\User\\Documents\\SEM2_WIA1002\\WIA1002_HackingTheFuture\\Assignment\\src\\main\\java\\Assignment\\Discussion.txt";
 
+    // Initialize varaible
     public AddDiscussionBoard(ScrollPane discussionBoardDisplay, TextField discussionBoardTextField, Button discussionBoardSendButton, String username, String role) {
         this.discussionBoardDisplay = discussionBoardDisplay;
         this.discussionBoardTextField = discussionBoardTextField;
@@ -32,6 +32,7 @@ public class AddDiscussionBoard{
         System.out.println(username+role);
     }
 
+    // Display Discussion from txt file
     public void displayDiscussion() {
         try {
             File file = new File(filePath);
@@ -53,6 +54,7 @@ public class AddDiscussionBoard{
         }
     }
 
+    // Read from txt file and display it in the format of username(role) : message
     public void postMessage() {
         String message = discussionBoardTextField.getText();
         if (!message.isEmpty()) {

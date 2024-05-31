@@ -258,7 +258,7 @@ public class UserProfile {
 
     private String getParentUsername(String studentUsername) throws SQLException {
         String sql = "SELECT PARENT_USERNAME FROM user.parentchild WHERE STUDENT_USERNAME = ?";
-        String parentUsername = "";
+        StringBuilder parentUsername = new StringBuilder();
 
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -266,13 +266,13 @@ public class UserProfile {
             preparedStatement.setString(1, studentUsername);
 
             ResultSet resultSet = preparedStatement.executeQuery();
+            int i = 1;
             if (resultSet.next()) {
-                parentUsername = resultSet.getString("PARENT_USERNAME");
-            }
+                parentUsername.append(i + ".  " + resultSet.getString("PARENT_USERNAME") + "\n");
         }
 
-        return parentUsername;
-    }
+        return parentUsername.toString();
+    }}
 
     private String getPastBookings(String parentUsername) throws IOException {
         String fileName = parentUsername + "_booking.csv";

@@ -47,11 +47,17 @@ public class SearchFriend<T extends YoungStudents> {
 
     public void initialize(Pane FriendsProfileEmailPane, Pane FriendsProfileLocationCoordinatePane, Pane FriendsProfileTotalPointsPane, Pane FriendsProfileUsernamePane, TextField SearchFriendUsernameTextField, Button SearchFriendSendFriendRequestButton) {
         this.FriendsProfileEmailPane = FriendsProfileEmailPane;
+        FriendsProfileEmailPane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         this.FriendsProfileLocationCoordinatePane = FriendsProfileLocationCoordinatePane;
+        FriendsProfileLocationCoordinatePane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         this.FriendsProfileTotalPointsPane = FriendsProfileTotalPointsPane;
+        FriendsProfileTotalPointsPane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         this.FriendsProfileUsernamePane = FriendsProfileUsernamePane;
+        FriendsProfileUsernamePane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         this.SearchFriendUsernameTextField = SearchFriendUsernameTextField;
+        SearchFriendUsernameTextField.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         this.SearchFriendSendFriendRequestButton = SearchFriendSendFriendRequestButton;
+        SearchFriendSendFriendRequestButton.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
     }
 
     @FXML
@@ -101,10 +107,10 @@ public class SearchFriend<T extends YoungStudents> {
         FriendsProfileUsernamePane.getChildren().clear();
 
         // Create and add new labels with profile information
-        FriendsProfileEmailPane.getChildren().add(new Label(email));
-        FriendsProfileLocationCoordinatePane.getChildren().add(new Label(coordinates));
-        FriendsProfileTotalPointsPane.getChildren().add(new Label(String.valueOf(points)));
-        FriendsProfileUsernamePane.getChildren().add(new Label(username));
+        FriendsProfileEmailPane.getChildren().add((createStyledLabel(email)));
+        FriendsProfileLocationCoordinatePane.getChildren().add(createStyledLabel(coordinates));
+        FriendsProfileTotalPointsPane.getChildren().add(createStyledLabel(String.valueOf(points)));
+        FriendsProfileUsernamePane.getChildren().add(createStyledLabel(username));
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String content) {
@@ -208,5 +214,19 @@ public class SearchFriend<T extends YoungStudents> {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error Message", "An error occurred while sending friend request.");
         }
+    }
+
+    private Label createStyledLabel(String text) {
+        Label label = new Label(text);
+        label.getStyleClass().add("label-content");
+        return label;
+    }
+
+    void clear(){
+        SearchFriendUsernameTextField.setText("");
+        FriendsProfileEmailPane.getChildren().clear();
+        FriendsProfileLocationCoordinatePane.getChildren().clear();
+        FriendsProfileTotalPointsPane.getChildren().clear();
+        FriendsProfileUsernamePane.getChildren().clear();
     }
 }
