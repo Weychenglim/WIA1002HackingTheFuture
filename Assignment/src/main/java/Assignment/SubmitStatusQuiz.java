@@ -11,11 +11,15 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+import java.awt.Desktop;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -120,6 +124,12 @@ public class SubmitStatusQuiz<T extends YoungStudents> extends ViewQuiz {
         alert.setContentText("Successfully Registered!");
         alert.showAndWait();
         updateNumPoints();
+
+        // Retrieve the quiz link and open it in the browser
+        String quizLink = getQuizLinkFromDatabase(registeredQuiz.getQuiz_Title());
+        if (quizLink != null) {
+            openBrowser(quizLink);
+        }
     }
 
     private void saveRegisteredInfoToCSV(QuizInfo quiz, String username) {
@@ -157,6 +167,41 @@ public class SubmitStatusQuiz<T extends YoungStudents> extends ViewQuiz {
         } catch (SQLException e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error Message", "An error occurred while updating the points.");
+        }
+    }
+
+    private String getQuizLinkFromDatabase(String quizTitle) {
+        String quizLink = null;
+        String sql = "SELECT quizizz_link FROM user.quiz WHERE title = ?";
+
+        try {
+            Connection connection = DatabaseConnector.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, quizTitle);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                quizLink = resultSet.getString("quizizz_link");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error Message", "An error occurred while retrieving the quiz link.");
+        }
+
+        return quizLink;
+    }
+
+    private void openBrowser(String url) {
+        if (Desktop.isDesktopSupported()) {
+            Desktop desktop = Desktop.getDesktop();
+            try {
+                desktop.browse(new URI(url));
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+                showAlert(Alert.AlertType.ERROR, "Error Message", "An error occurred while opening the browser.");
+            }
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Error Message", "Desktop is not supported on this system.");
         }
     }
 
