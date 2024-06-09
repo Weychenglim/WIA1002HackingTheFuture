@@ -10,7 +10,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
@@ -106,6 +109,12 @@ public class ViewEvent {
         }
 
         LocalDate currentDate = LocalDate.now();
+        /*
+        String dateString = "14/09/2024"; // Your specific date string
+        LocalDate currentDate;
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            currentDate = LocalDate.parse(dateString, dateFormatter);
+        */
 
         // Separate live events and upcoming events
         List<EventInfo> liveEvents = listData.stream()

@@ -961,10 +961,6 @@
                                                             </font>
                                                         </Label>
                                                         <MenuButton fx:id="MakeBookingDestinationMenuButton" layoutX="347.0" layoutY="165.0" mnemonicParsing="false" stylesheets="@DashBoardDesign.css" text="Select Destination">
-                                                            <items>
-                                                                <MenuItem mnemonicParsing="false" text="Action 1" />
-                                                                <MenuItem mnemonicParsing="false" text="Action 2" />
-                                                            </items>
                                                             <styleClass>
                                                                 <String fx:value="white-background" />
                                                                 <String fx:value="shadow" />
@@ -976,10 +972,6 @@
                                                             </font>
                                                         </Label>
                                                         <MenuButton fx:id="MakeBookingDateMenuButton" layoutX="347.0" layoutY="218.0" mnemonicParsing="false" stylesheets="@DashBoardDesign.css" text="Select Date">
-                                                            <items>
-                                                                <MenuItem mnemonicParsing="false" text="Action 1" />
-                                                                <MenuItem mnemonicParsing="false" text="Action 2" />
-                                                            </items>
                                                             <styleClass>
                                                                 <String fx:value="white-background" />
                                                                 <String fx:value="shadow" />
